@@ -7,7 +7,7 @@ pipeline {
         stage ('Checkout') {
             agent any
             steps {
-                git branch: 'main', url: 'https://github.com/ysebastia/docker.git'
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [[$class: 'CleanBeforeCheckout', deleteUntrackedNestedRepositories: true]], userRemoteConfigs: [[url: 'https://github.com/ysebastia/docker.git']]])
             }
         }
         stage('QA') {
@@ -24,7 +24,6 @@ pipeline {
             	        sloccountPublish encoding: '', pattern: 'build/cloc.xml'
             	        archiveArtifacts artifacts: 'build/cloc.xml', followSymlinks: false
             	        sh 'rm build/cloc.xml'
-            	        cleanWs()
       		        }
                 }
 	        	stage ('Hadolint') {
@@ -41,7 +40,6 @@ pipeline {
 	                	])
 	              		archiveArtifacts artifacts: 'hadolint.json', followSymlinks: false
 	              		sh 'rm hadolint.json'
-	              		cleanWs()
 	            	}
 	        	}
 		    }
