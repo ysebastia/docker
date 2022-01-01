@@ -24,6 +24,7 @@ pipeline {
             	        sloccountPublish encoding: '', pattern: 'build/cloc.xml'
             	        archiveArtifacts artifacts: 'build/cloc.xml', followSymlinks: false
             	        sh 'rm build/cloc.xml'
+            	        cleanWs()
       		        }
                 }
 	        	stage ('Hadolint') {
@@ -40,6 +41,7 @@ pipeline {
 	                	])
 	              		archiveArtifacts artifacts: 'hadolint.json', followSymlinks: false
 	              		sh 'rm hadolint.json'
+	              		cleanWs()
 	            	}
 	        	}
 		    }
