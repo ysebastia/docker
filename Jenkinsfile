@@ -23,6 +23,7 @@ pipeline {
       		            sh 'cloc --by-file --xml --fullpath --not-match-d="(build|vendor)" --out=build/cloc.xml ./'
             	        sloccountPublish encoding: '', pattern: 'build/cloc.xml'
             	        archiveArtifacts artifacts: 'build/cloc.xml', followSymlinks: false
+            	        sh 'rm build/cloc.xml'
       		        }
                 }
 	        	stage ('Hadolint') {
