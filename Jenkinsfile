@@ -3,6 +3,7 @@ pipeline {
     environment {
 	    release_cloc = "ysebastia/cloc:1.90"
 	    release_csslint = "ysebastia/csslint:1.0.5"
+	    release_jshint = "ysebastia/jshint:2.13.2"
     }
     stages {
         stage ('Checkout') {
@@ -68,6 +69,16 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_csslint}", "csslint").push()
+                            }
+                        }
+                    }
+                }
+                stage('jshint') {
+                    agent any
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_jshint}", "jshint").push()
                             }
                         }
                     }
