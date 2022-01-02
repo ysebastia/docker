@@ -35,7 +35,7 @@ pipeline {
             	        sh 'rm build/cloc.xml'
       		        }
                 }
-	        	stage ('Hadolint') {
+	        	stage ('hadolint') {
 	            	agent {
 	              		docker {
                         	image 'docker.io/hadolint/hadolint:v2.8.0-alpine'
@@ -51,6 +51,23 @@ pipeline {
 	              		sh 'rm hadolint.json'
 	            	}
 	        	}
+                stage ('shellcheck') {
+      		        agent {
+        		        dockerfile {
+            		        dir 'src/shellcheck'
+            		        filename 'Dockerfile'
+         		        }
+      		        }
+      		        steps {
+      		        	sh 'touch shellcheck.xml'
+      		            sh '/usr/local/bin/shellcheck.bash ./src/ | tee -a shellcheck.xml'
+            			recordIssues(tools: [
+              				checkStyle(pattern: 'shellcheck.xml')
+            			])
+            			archiveArtifacts artifacts: 'shellcheck.xml', followSymlinks: false
+            	        sh 'rm shellcheck.xml'
+      		        }
+                }
 		    }
         }
         stage('Build') {
@@ -104,7 +121,7 @@ pipeline {
                             }
                         }
                     }
-                }                
+                }
             }
         }
     }
