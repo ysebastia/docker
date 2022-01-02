@@ -1,6 +1,7 @@
 pipeline {
     agent any
     environment {
+        release_ansiblelint = "ysebastia/ansible-lint:4.3.7"
 	    release_cloc = "ysebastia/cloc:1.90"
 	    release_csslint = "ysebastia/csslint:1.0.5"
 	    release_doxygen = "ysebastia/doxygen:1.9.2"
@@ -72,6 +73,16 @@ pipeline {
         }
         stage('Build') {
             parallel {
+                stage('ansible-lint') {
+                    agent any
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_ansiblelint}", "src/ansible-lint").push()
+                            }
+                        }
+                    }
+                }
                 stage('cloc') {
                     agent any
                     steps {
