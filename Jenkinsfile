@@ -3,7 +3,7 @@ pipeline {
     environment {
 	    release_cloc = "ysebastia/cloc:1.90"
 	    release_csslint = "ysebastia/csslint:1.0.5"
-	    release_csslint = "ysebastia/doxygen:1.9.2"
+	    release_doxygen = "ysebastia/doxygen:1.9.2"
 	    release_jshint = "ysebastia/jshint:2.13.2"
     }
     stages {
