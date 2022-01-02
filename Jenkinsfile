@@ -3,6 +3,7 @@ pipeline {
     environment {
 	    release_cloc = "ysebastia/cloc:1.90"
 	    release_csslint = "ysebastia/csslint:1.0.5"
+	    release_csslint = "ysebastia/doxygen:1.9.2"
 	    release_jshint = "ysebastia/jshint:2.13.2"
     }
     stages {
@@ -69,6 +70,16 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_csslint}", "csslint").push()
+                            }
+                        }
+                    }
+                }
+                stage('doxygen') {
+                    agent any
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_doxygen}", "doxygen").push()
                             }
                         }
                     }
