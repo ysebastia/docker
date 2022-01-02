@@ -8,7 +8,12 @@ pipeline {
         stage ('Checkout') {
             agent any
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [[$class: 'CleanBeforeCheckout', deleteUntrackedNestedRepositories: true]], userRemoteConfigs: [[url: 'https://github.com/ysebastia/docker.git']]])
+                checkout([
+                	$class: 'GitSCM',
+                	branches: [[name: '*/main']],
+                	extensions: [[$class: 'CleanBeforeCheckout', deleteUntrackedNestedRepositories: true]],
+                	userRemoteConfigs: [[url: 'https://github.com/ysebastia/docker.git']]
+            	])
             }
         }
         stage('QA') {
