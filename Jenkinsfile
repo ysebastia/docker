@@ -5,6 +5,7 @@ pipeline {
 	    release_csslint = "ysebastia/csslint:1.0.5"
 	    release_doxygen = "ysebastia/doxygen:1.9.2"
 	    release_jshint = "ysebastia/jshint:2.13.2"
+	    release_shellcheck = "ysebastia/shellcheck:0.7.2"
     }
     stages {
         stage ('Checkout') {
@@ -23,7 +24,7 @@ pipeline {
                 stage ('cloc') {
       		        agent {
         		        dockerfile {
-            		        dir 'cloc'
+            		        dir 'src/cloc'
             		        filename 'Dockerfile'
          		        }
       		        }
@@ -42,7 +43,7 @@ pipeline {
 	        		}
 	            	steps {
 	                	sh 'touch hadolint.json'
-	                	sh 'hadolint -f json */Dockerfile | tee -a hadolint.json'
+	                	sh 'hadolint -f json src/*/Dockerfile | tee -a hadolint.json'
 	            		recordIssues( healthy: 1, unhealthy: 2, tools: [
 	                  		hadoLint(pattern: 'hadolint.json')
 	                	])
@@ -59,7 +60,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_cloc}", "cloc").push()
+                                docker.build("${env.release_cloc}", "src/cloc").push()
                             }
                         }
                     }
@@ -69,7 +70,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_csslint}", "csslint").push()
+                                docker.build("${env.release_csslint}", "src/csslint").push()
                             }
                         }
                     }
@@ -79,7 +80,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_doxygen}", "doxygen").push()
+                                docker.build("${env.release_doxygen}", "src/doxygen").push()
                             }
                         }
                     }
@@ -89,11 +90,21 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_jshint}", "jshint").push()
+                                docker.build("${env.release_jshint}", "src/jshint").push()
                             }
                         }
                     }
                 }
+                stage('shellcheck') {
+                    agent any
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_shellcheck}", "src/shellcheck").push()
+                            }
+                        }
+                    }
+                }                
             }
         }
     }
