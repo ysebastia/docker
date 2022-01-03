@@ -6,6 +6,7 @@ pipeline {
 	    release_csslint = "ysebastia/csslint:1.0.5"
 	    release_doxygen = "ysebastia/doxygen:1.9.2"
 	    release_jshint = "ysebastia/jshint:2.13.2"
+	    release_phpcs = "ysebastia/phpcs:3.6.2-php7.4.27"
 	    release_phpmd = "ysebastia/phpmd:2.11.1-php7.4.27-2"
 	    release_shellcheck = "ysebastia/shellcheck:0.7.2"
     }
@@ -120,6 +121,16 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_jshint}", "src/jshint").push()
+                            }
+                        }
+                    }
+                }
+                stage('phpcs') {
+                    agent any
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_phpcs}", "src/phpcs").push()
                             }
                         }
                     }
