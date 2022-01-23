@@ -14,4 +14,3 @@ RUN wget --no-check-certificate -q https://github.com/techsneeze/dmarcts-report-
 	&& rm -r /tmp/master.zip /tmp/dmarcts-report-viewer-master
 WORKDIR /var/www/html
 COPY config.inc.php /var/www/html/dmarcts-report-viewer-config.php
-RUN echo "error_reporting = E_ALL & ~E_NOTICE & ~E_DEPRECATED" > /usr/local/etc/php/conf.d/dmarcts.ini

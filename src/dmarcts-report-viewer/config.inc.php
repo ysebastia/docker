@@ -1,4 +1,8 @@
 <?php
+
+ini_set('display_errors', 'Off');
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE);
+
 /* Ensure we got the environment */
 $vars = array(
     'DMARCTS_DBHOST',
