@@ -4,6 +4,7 @@ pipeline {
         release_ansiblelint = "ysebastia/ansible-lint:4.3.7"
 	    release_cloc = "ysebastia/cloc:1.90"
 	    release_csslint = "ysebastia/csslint:1.0.5"
+	    release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.2"
 	    release_doxygen = "ysebastia/doxygen:1.9.2"
 	    release_jshint = "ysebastia/jshint:2.13.2"
 	    release_phpcpd = "ysebastia/phpcpd:6.0.3-php7.4.27"
@@ -102,6 +103,16 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_csslint}", "src/csslint").push()
+                            }
+                        }
+                    }
+                }
+                stage('dmarcts-report-viewer') {
+                    agent any
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_dmarctsreportviewer}", "src/dmarcts-report-viewer").push()
                             }
                         }
                     }
