@@ -19,7 +19,7 @@ RUN wget --no-check-certificate -q https://github.com/techsneeze/dmarcts-report-
 	&& unzip -q master.zip
 WORKDIR /tmp/dmarcts-report-parser-master
 RUN mkdir /app \
-	&& mv * /app/
+	&& mv ./* /app/
 WORKDIR /app
 RUN rm -r /tmp/master.zip /tmp/dmarcts-report-parser-master
 COPY config.inc.conf /app/dmarcts-report-parser.conf
