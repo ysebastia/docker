@@ -16,12 +16,11 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /tmp
 RUN wget --no-check-certificate -q https://github.com/techsneeze/dmarcts-report-parser/archive/refs/heads/master.zip \
-	&& unzip -q master.zip \
-	&& cd dmarcts-report-parser-master \
-	&& mkdir /app \
-	&& mv * /app/  \
-	&& ls -lisah /app/ \
-	&& rm -r /tmp/master.zip /tmp/dmarcts-report-parser-master
+	&& unzip -q master.zip
+WORKDIR /tmp/dmarcts-report-parser-master
+RUN mkdir /app \
+	&& mv * /app/
 WORKDIR /app
+RUN rm -r /tmp/master.zip /tmp/dmarcts-report-parser-master
 COPY config.inc.conf /app/dmarcts-report-parser.conf
 CMD [ "perl", "dmarcts-report-parser.pl", "-i"]
