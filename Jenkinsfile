@@ -5,7 +5,7 @@ pipeline {
 	    release_cloc = "ysebastia/cloc:1.90"
 	    release_csslint = "ysebastia/csslint:1.0.5"
 	    release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.2-3"
-	    release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.1-slim-3"
+	    release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.1-slim-4"
 	    release_doxygen = "ysebastia/doxygen:1.9.2"
 	    release_jshint = "ysebastia/jshint:2.13.2"
 	    release_phpcpd = "ysebastia/phpcpd:6.0.3-php7.4.27"
