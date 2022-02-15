@@ -9,7 +9,7 @@ pipeline {
 	    release_doxygen = "ysebastia/doxygen:1.9.2"
 	    release_jshint = "ysebastia/jshint:2.13.2"
 	    release_phpcpd = "ysebastia/phpcpd:6.0.3-php7.4.27-1"
-	    release_phpcs = "ysebastia/phpcs:3.6.2-php7.4.27"
+	    release_phpcs = "ysebastia/phpcs:3.6.2-php7.4.27-1"
 	    release_phpmd = "ysebastia/phpmd:2.11.1-php7.4.27-2"
 	    release_shellcheck = "ysebastia/shellcheck:0.7.2"
     }
