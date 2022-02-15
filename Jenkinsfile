@@ -1,17 +1,18 @@
 pipeline {
     agent any
     environment {
-        release_ansiblelint = "ysebastia/ansible-lint:4.3.7"
-	    release_cloc = "ysebastia/cloc:1.90"
-	    release_csslint = "ysebastia/csslint:1.0.5"
-	    release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.2-4"
-	    release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.1-slim-4"
-	    release_doxygen = "ysebastia/doxygen:1.9.2"
-	    release_jshint = "ysebastia/jshint:2.13.2"
-	    release_phpcpd = "ysebastia/phpcpd:6.0.3-php7.4.27-1"
-	    release_phpcs = "ysebastia/phpcs:3.6.2-php7.4.27-1"
-	    release_phpmd = "ysebastia/phpmd:2.11.1-php7.4.27-4"
-	    release_shellcheck = "ysebastia/shellcheck:0.7.2"
+		release_ansiblelint = "ysebastia/ansible-lint:4.3.7"
+		release_cloc = "ysebastia/cloc:1.90"
+		release_csslint = "ysebastia/csslint:1.0.5"
+		release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.1-slim-4"
+		release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.2-4"
+		release_doxygen = "ysebastia/doxygen:1.9.2"
+		release_jshint = "ysebastia/jshint:2.13.2"
+		release_phpcpd = "ysebastia/phpcpd:6.0.3-php7.4.27-1"
+		release_phpcs = "ysebastia/phpcs:3.6.2-php7.4.27-1"
+		release_phpmd = "ysebastia/phpmd:2.11.1-php7.4.27-4"
+		release_pylint = "ysebastia/pylint:2.10.2-r1"
+		release_shellcheck = "ysebastia/shellcheck:0.7.2"
     }
     stages {
         stage ('Checkout') {
@@ -174,6 +175,16 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_phpmd}", "src/phpmd").push()
+                            }
+                        }
+                    }
+                }
+                stage('pylint') {
+                    agent any
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_pylint}", "src/pylint").push()
                             }
                         }
                     }
