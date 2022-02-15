@@ -7,7 +7,7 @@ RUN apt-get update \
     wget=1.21-1+deb11u1 \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /tmp
-RUN wget --no-check-certificate -q https://github.com/techsneeze/dmarcts-report-viewer/archive/refs/heads/master.zip \
+RUN wget -q https://github.com/techsneeze/dmarcts-report-viewer/archive/refs/heads/master.zip \
 	&& unzip -q master.zip
 WORKDIR /tmp/dmarcts-report-viewer-master
 RUN mv ./* /var/www/html/  \
