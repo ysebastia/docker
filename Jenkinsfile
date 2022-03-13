@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-		release_ansiblelint = "ysebastia/ansible-lint:4.3.7"
+		release_ansiblelint = "ysebastia/ansible-lint:4.3.7-2"
 		release_cloc = "ysebastia/cloc:1.90"
 		release_csslint = "ysebastia/csslint:1.0.5"
 		release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.1-slim-4"
