@@ -1,18 +1,19 @@
 pipeline {
     agent any
     environment {
-		release_ansiblelint = "ysebastia/ansible-lint:4.3.7-2"
-		release_cloc = "ysebastia/cloc:1.90"
+		release_ansiblelint = "ysebastia/ansible-lint:6.2.1"
+		release_cloc = "ysebastia/cloc:1.92"
 		release_csslint = "ysebastia/csslint:1.0.5"
 		release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.1-slim-4"
 		release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.2-4"
-		release_doxygen = "ysebastia/doxygen:1.9.2"
+		release_doxygen = "ysebastia/doxygen:1.9.4"
 		release_jshint = "ysebastia/jshint:2.13.2"
 		release_phpcpd = "ysebastia/phpcpd:6.0.3-php7.4.28-1"
 		release_phpcs = "ysebastia/phpcs:3.7.1-php8.1.7"
 		release_phpmd = "ysebastia/phpmd:2.11.1-php7.4.28-4"
-		release_pylint = "ysebastia/pylint:2.10.2-r1-2"
-		release_shellcheck = "ysebastia/shellcheck:0.7.2"
+		release_pylint = "ysebastia/pylint:2.12.2-r1-2"
+		release_shellcheck = "ysebastia/shellcheck:0.8.0"
+		release_wget = "ysebastia/wget:1.21.3"
     }
     stages {
         stage ('Checkout') {
@@ -77,7 +78,21 @@ pipeline {
                 }
 		    }
         }
-        stage('Build') {
+        stage('Build #0') {
+            parallel {
+                stage('wget') {
+                    agent any
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_wget}", "src/wget").push()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Build #1') {
             parallel {
                 stage('ansible-lint') {
                     agent any
