@@ -8,7 +8,7 @@ pipeline {
 		release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.2-4"
 		release_doxygen = "ysebastia/doxygen:1.9.4"
 		release_jshint = "ysebastia/jshint:2.13.2"
-		release_phpcpd = "ysebastia/phpcpd:6.0.3-php7.4.28-1"
+		release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.7"
 		release_phpcs = "ysebastia/phpcs:3.7.1-php8.1.7"
 		release_phpmd = "ysebastia/phpmd:2.11.1-php7.4.28-4"
 		release_pylint = "ysebastia/pylint:2.12.2-r1-2"
