@@ -1,17 +1,14 @@
-FROM php:8.1.2-apache-bullseye
-ARG DEBIAN_FRONTEND=noninteractive
-RUN docker-php-ext-install mysqli
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-    unzip=6.0-26 \
-    wget=1.21-1+deb11u1 \
-    && rm -rf /var/lib/apt/lists/*
+FROM docker.io/ysebastia/wget:1.21.3 as downloader
+
 WORKDIR /tmp
 RUN wget -q https://github.com/techsneeze/dmarcts-report-viewer/archive/refs/heads/master.zip \
 	&& unzip -q master.zip
-WORKDIR /tmp/dmarcts-report-viewer-master
-RUN mv ./* /var/www/html/  \
-	&& cp /var/www/html/dmarcts-report-viewer.php /var/www/html/index.php \
-	&& rm -r /tmp/master.zip /tmp/dmarcts-report-viewer-master
+
+FROM php:8.1.7-apache-bullseye
+ARG DEBIAN_FRONTEND=noninteractive
+RUN docker-php-ext-install mysqli
+
+COPY --from=downloader /tmp/dmarcts-report-viewer-master/ /var/www/html/
 WORKDIR /var/www/html
+RUN cp dmarcts-report-viewer.php index.php
 COPY config.inc.php /var/www/html/dmarcts-report-viewer-config.php
