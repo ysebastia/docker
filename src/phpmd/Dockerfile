@@ -1,6 +1,9 @@
-FROM php:7.4.28-cli-alpine3.15
-RUN apk add --no-cache ca-certificates=20211220-r0 wget=1.21.2-r2
-RUN wget -q https://github.com/phpmd/phpmd/releases/download/2.11.1/phpmd.phar \
-	&& mv phpmd.phar /usr/local/bin/phpmd \
-	&& chmod +x /usr/local/bin/phpmd
+FROM docker.io/ysebastia/wget:1.21.3 as downloader
+
+WORKDIR /tmp
+RUN wget -q https://github.com/phpmd/phpmd/releases/download/2.12.0/phpmd.phar -O /tmp/phpmd
+
+FROM php:8.1.7-cli-alpine3.16
+COPY --from=downloader /tmp/phpmd /usr/local/bin/phpmd
+RUN chmod +x /usr/local/bin/phpmd
 CMD ["/usr/local/bin/phpmd"]
