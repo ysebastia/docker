@@ -1,82 +1,82 @@
 pipeline {
     agent any
     environment {
-		release_ansiblelint = "ysebastia/ansible-lint:6.2.1"
-		release_cloc = "ysebastia/cloc:1.92"
-		release_csslint = "ysebastia/csslint:1.0.5"
-		release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.1-slim-4"
-		release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.7"
-		release_doxygen = "ysebastia/doxygen:1.9.4"
-		release_jshint = "ysebastia/jshint:2.13.2"
-		release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.7"
-		release_phpcs = "ysebastia/phpcs:3.7.1-php8.1.7-1"
-		release_phpmd = "ysebastia/phpmd:2.11.1-php8.1.7"
-		release_pylint = "ysebastia/pylint:2.12.2-r1-2"
-		release_shellcheck = "ysebastia/shellcheck:0.8.0"
-		release_wget = "ysebastia/wget:1.21.3"
+    release_ansiblelint = "ysebastia/ansible-lint:6.3.0"
+    release_cloc = "ysebastia/cloc:1.92"
+    release_csslint = "ysebastia/csslint:1.0.5"
+    release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.1-slim-4"
+    release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.7"
+    release_doxygen = "ysebastia/doxygen:1.9.4"
+    release_jshint = "ysebastia/jshint:2.13.2"
+    release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.7"
+    release_phpcs = "ysebastia/phpcs:3.7.1-php8.1.7-1"
+    release_phpmd = "ysebastia/phpmd:2.11.1-php8.1.7"
+    release_pylint = "ysebastia/pylint:2.12.2-r1-2"
+    release_shellcheck = "ysebastia/shellcheck:0.8.0"
+    release_wget = "ysebastia/wget:1.21.3"
     }
     stages {
         stage ('Checkout') {
             agent any
             steps {
                 checkout([
-                	$class: 'GitSCM',
-                	branches: [[name: '*/main']],
-                	extensions: [[$class: 'CleanBeforeCheckout', deleteUntrackedNestedRepositories: true]],
-                	userRemoteConfigs: [[url: 'https://github.com/ysebastia/docker.git']]
-            	])
+                  $class: 'GitSCM',
+                  branches: [[name: '*/main']],
+                  extensions: [[$class: 'CleanBeforeCheckout', deleteUntrackedNestedRepositories: true]],
+                  userRemoteConfigs: [[url: 'https://github.com/ysebastia/docker.git']]
+              ])
             }
         }
         stage('QA') {
-		    parallel {
+        parallel {
                 stage ('cloc') {
-      		        agent {
-        		        dockerfile {
-            		        dir 'src/cloc'
-            		        filename 'Dockerfile'
-         		        }
-      		        }
-      		        steps {
-      		            sh 'cloc --by-file --xml --fullpath --not-match-d="(build|vendor)" --out=build/cloc.xml ./'
-            	        sloccountPublish encoding: '', pattern: 'build/cloc.xml'
-            	        archiveArtifacts artifacts: 'build/cloc.xml', followSymlinks: false
-            	        sh 'rm build/cloc.xml'
-      		        }
+                  agent {
+                    dockerfile {
+                        dir 'src/cloc'
+                        filename 'Dockerfile'
+                     }
+                  }
+                  steps {
+                      sh 'cloc --by-file --xml --fullpath --not-match-d="(build|vendor)" --out=build/cloc.xml ./'
+                      sloccountPublish encoding: '', pattern: 'build/cloc.xml'
+                      archiveArtifacts artifacts: 'build/cloc.xml', followSymlinks: false
+                      sh 'rm build/cloc.xml'
+                  }
                 }
-	        	stage ('hadolint') {
-	            	agent {
-	              		docker {
-                        	image 'docker.io/hadolint/hadolint:v2.8.0-alpine'
-                    	}
-	        		}
-	            	steps {
-	                	sh 'touch hadolint.json'
-	                	sh 'hadolint -f json src/*/Dockerfile | tee -a hadolint.json'
-	            		recordIssues( healthy: 1, unhealthy: 2, tools: [
-	                  		hadoLint(pattern: 'hadolint.json')
-	                	])
-	              		archiveArtifacts artifacts: 'hadolint.json', followSymlinks: false
-	              		sh 'rm hadolint.json'
-	            	}
-	        	}
+            stage ('hadolint') {
+                agent {
+                    docker {
+                          image 'docker.io/hadolint/hadolint:v2.8.0-alpine'
+                      }
+              }
+                steps {
+                    sh 'touch hadolint.json'
+                    sh 'hadolint -f json src/*/Dockerfile | tee -a hadolint.json'
+                  recordIssues( healthy: 1, unhealthy: 2, tools: [
+                        hadoLint(pattern: 'hadolint.json')
+                    ])
+                    archiveArtifacts artifacts: 'hadolint.json', followSymlinks: false
+                    sh 'rm hadolint.json'
+                }
+            }
                 stage ('shellcheck') {
-      		        agent {
-        		        dockerfile {
-            		        dir 'src/shellcheck'
-            		        filename 'Dockerfile'
-         		        }
-      		        }
-      		        steps {
-      		        	sh 'touch shellcheck.xml'
-      		            sh '/usr/local/bin/shellcheck.bash ./src/ | tee -a shellcheck.xml'
-            			recordIssues(tools: [
-              				checkStyle(pattern: 'shellcheck.xml')
-            			])
-            			archiveArtifacts artifacts: 'shellcheck.xml', followSymlinks: false
-            	        sh 'rm shellcheck.xml'
-      		        }
+                  agent {
+                    dockerfile {
+                        dir 'src/shellcheck'
+                        filename 'Dockerfile'
+                     }
+                  }
+                  steps {
+                    sh 'touch shellcheck.xml'
+                      sh '/usr/local/bin/shellcheck.bash ./src/ | tee -a shellcheck.xml'
+                  recordIssues(tools: [
+                      checkStyle(pattern: 'shellcheck.xml')
+                  ])
+                  archiveArtifacts artifacts: 'shellcheck.xml', followSymlinks: false
+                      sh 'rm shellcheck.xml'
+                  }
                 }
-		    }
+        }
         }
         stage('Build #0') {
             parallel {
