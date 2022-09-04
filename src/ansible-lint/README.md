@@ -1,6 +1,7 @@
 Jenkins definition
 ```
 def ansiblelint(quality) {
+  sh "git config --global --add safe.directory '*'"
   sh 'touch ansible-lint.txt'
   sh 'ansible-lint -p | tee -a ansible-lint.txt'
   recordIssues qualityGates: [[threshold: quality, type: 'TOTAL', unstable: false]],  tools: [ansibleLint(id: 'ansibleLint', name: 'Ansible Lint', pattern: 'ansible-lint.txt')]
