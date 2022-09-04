@@ -12,7 +12,7 @@ def ansiblelint(quality) {
 Jenkins environment
 ```
   environment {
-    QUALITY_CSS = "1"
+    QUALITY_ANSIBLE = "1"
   }
 ```
 
