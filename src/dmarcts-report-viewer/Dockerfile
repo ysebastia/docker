@@ -1,8 +1,8 @@
-FROM docker.io/ysebastia/wget:1.21.3 as downloader
+FROM docker.io/ysebastia/wget:1.21.3-r1 as downloader
 
 WORKDIR /tmp
 RUN wget -q https://github.com/techsneeze/dmarcts-report-viewer/archive/refs/heads/master.zip \
-	&& unzip -q master.zip
+  && unzip -q master.zip
 
 FROM php:8.1.7-apache-bullseye
 ARG DEBIAN_FRONTEND=noninteractive

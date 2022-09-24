@@ -13,7 +13,7 @@ pipeline {
     release_phpmd = "ysebastia/phpmd:2.11.1-php8.1.7"
     release_pylint = "ysebastia/pylint:2.14.5"
     release_shellcheck = "ysebastia/shellcheck:0.8.0"
-    release_wget = "ysebastia/wget:1.21.3"
+    release_wget = "ysebastia/wget:1.21.3-r1"
     }
     stages {
         stage ('Checkout') {
