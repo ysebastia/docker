@@ -10,5 +10,4 @@ RUN apk add --no-cache ansible-lint=6.5.2-r0 \
   && chmod 777 /.cache /.ansible
 WORKDIR /ansible
 USER ansible
-RUN ansible-galaxy collection install ansible.posix
 CMD ["/usr/bin/ansible-lint"]
