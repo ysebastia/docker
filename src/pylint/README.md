@@ -1,13 +1,11 @@
 Jenkins definition
 ```
-def pylint(src, quality) {
-    script {
-        env.SRC_PYTHON = src
-    }
-    sh 'pylint $SRC_PYTHON --output-format=parseable --output=pylint.log || exit 0'
-    recordIssues qualityGates: [[threshold: quality, type: 'TOTAL', unstable: false]], tools: [pyLint(pattern: 'pylint.log')]
-    archiveArtifacts artifacts: 'pylint.log', followSymlinks: false
-    sh 'rm pylint.log'
+def pylint(quality) {
+  sh 'touch pylint.log'
+  sh 'find ./ -name "*.py" |xargs pylint --output-format=parseable | tee -a pylint.log'
+  recordIssues qualityGates: [[threshold: quality, type: 'TOTAL', unstable: false]], tools: [pyLint(pattern: 'pylint.log')]
+  archiveArtifacts artifacts: 'pylint.log', followSymlinks: false
+  sh 'rm pylint.log'
 }
 ```
 
@@ -27,7 +25,7 @@ Jenkins stage
       }
     }
     steps {
-      pylint('./',QUALITY_PYTHON)
+      pylint(QUALITY_PYTHON)
     }
   }
 ```
