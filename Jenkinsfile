@@ -4,7 +4,7 @@ pipeline {
     release_ansiblelint = "ysebastia/ansible-lint:6.5.2-1"
     release_cloc = "ysebastia/cloc:1.94"
     release_csslint = "ysebastia/csslint:1.0.5"
-    release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.1-slim-4"
+    release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.1-slim-5"
     release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.7"
     release_doxygen = "ysebastia/doxygen:1.9.5-1"
     release_jshint = "ysebastia/jshint:2.13.2"
