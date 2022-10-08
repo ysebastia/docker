@@ -14,6 +14,7 @@ pipeline {
     release_pylint = "ysebastia/pylint:2.15.0"
     release_shellcheck = "ysebastia/shellcheck:0.8.0"
     release_wget = "ysebastia/wget:1.21.3-r1"
+    release_tflint = "ysebastia/tflint:0.41.0"
     }
     stages {
         stage ('Checkout') {
@@ -210,6 +211,16 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_shellcheck}", "src/shellcheck").push()
+                            }
+                        }
+                    }
+                }
+                stage('tflint') {
+                    agent any
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_tflint}", "src/tflint").push()
                             }
                         }
                     }
