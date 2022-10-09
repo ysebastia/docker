@@ -52,7 +52,7 @@ pipeline {
               }
                 steps {
                     sh 'touch hadolint.json'
-                    sh 'hadolint -f json src/*/Dockerfile | tee -a hadolint.json'
+                    sh 'find ./ -iname "dockerfile" | xargs hadolint -f json | tee -a hadolint.json'
                   recordIssues( healthy: 1, unhealthy: 2, tools: [
                         hadoLint(pattern: 'hadolint.json')
                     ])
