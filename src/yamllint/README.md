@@ -25,7 +25,7 @@ Jenkins stage
       }
     }
     steps {
-      ansiblelint(QUALITY_YAML)
+      yamllint(QUALITY_YAML)
     }
   }
 ```
