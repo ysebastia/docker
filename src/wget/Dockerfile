@@ -4,5 +4,5 @@ RUN apk add --no-cache \
   gzip=1.12-r0 \
   make=4.3-r0 \
   tar=1.34-r0 \
-  unzip=6.0-r10 \
+  unzip=6.0-r11 \
   wget=1.21.3-r1
