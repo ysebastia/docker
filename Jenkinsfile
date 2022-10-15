@@ -13,8 +13,9 @@ pipeline {
     release_phpmd = "ysebastia/phpmd:2.13.0-php8.1.11"
     release_pylint = "ysebastia/pylint:2.15.4"
     release_shellcheck = "ysebastia/shellcheck:0.8.0"
-    release_wget = "ysebastia/wget:1.21.3-r1"
     release_tflint = "ysebastia/tflint:0.41.0"
+    release_wget = "ysebastia/wget:1.21.3-r1"
+    release_yamllint = "ysebastia/yamllint:1.27.1"
     }
     stages {
         stage ('Checkout') {
@@ -221,6 +222,16 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_tflint}", "src/tflint").push()
+                            }
+                        }
+                    }
+                }
+                stage('yamllint') {
+                    agent any
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_yamllint}", "src/yamllint").push()
                             }
                         }
                     }
