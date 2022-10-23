@@ -3,7 +3,7 @@ RUN apk add --no-cache \
   curl=7.85.0-r0 \
   bash=5.2.2-r0
 WORKDIR /tmp
-RUN wget -q https://raw.githubusercontent.com/terraform-linters/tflint/v0.41.0/install_linux.sh \
+RUN wget -q https://raw.githubusercontent.com/terraform-linters/tflint/v0.42.0/install_linux.sh \
   && bash /tmp/install_linux.sh
 
 FROM alpine:20220715
