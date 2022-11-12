@@ -48,7 +48,7 @@ pipeline {
             stage ('hadolint') {
                 agent {
                     docker {
-                          image 'docker.io/hadolint/hadolint:v2.9.3-alpine'
+                          image 'docker.io/hadolint/hadolint:v2.12.0-alpine'
                       }
               }
                 steps {
