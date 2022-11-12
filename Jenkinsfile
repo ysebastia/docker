@@ -14,7 +14,7 @@ pipeline {
     release_pylint = "ysebastia/pylint:2.15.5"
     release_shellcheck = "ysebastia/shellcheck:0.8.0"
     release_tflint = "ysebastia/tflint:0.42.2"
-    release_wget = "ysebastia/wget:1.21.3-r1"
+    release_wget = "ysebastia/wget:1.21.3-r2"
     release_yamllint = "ysebastia/yamllint:1.28.0"
     }
     stages {
