@@ -1,4 +1,4 @@
-FROM alpine:20220715
+FROM alpine:20221110
 RUN apk add --no-cache ansible-lint=6.8.6-r0 \
   git=2.38.1-r0 \
   py3-filelock=3.8.0-r0 \

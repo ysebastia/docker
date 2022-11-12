@@ -1,4 +1,4 @@
-FROM alpine:20220715
+FROM alpine:20221110
 RUN apk add --no-cache yamllint=1.27.1-r0 \
   && addgroup -S yamllint \
   && adduser -S yamllint -G yamllint -h /yamllint

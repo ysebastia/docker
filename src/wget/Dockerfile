@@ -1,4 +1,4 @@
-FROM alpine:20220715
+FROM alpine:20221110
 RUN apk add --no-cache \
   ca-certificates=20220614-r2 \
   gzip=1.12-r0 \

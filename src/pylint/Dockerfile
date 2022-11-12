@@ -1,4 +1,4 @@
-FROM alpine:20220715
+FROM alpine:20221110
 RUN apk add --no-cache \
   py3-pylint=2.15.5-r0 \
   file=5.42-r0 \
