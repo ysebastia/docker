@@ -29,3 +29,8 @@ Jenkins stage
     }
   }
 ```
+
+Command call
+```
+$ docker run --rm -t -v "$PWD":/app ysebastia/ansible-lint:6.8.6 ansible-lint -p /app
+```
