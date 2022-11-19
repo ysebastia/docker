@@ -21,7 +21,7 @@ Jenkins stage
   stage ('Tflint') {
     agent {
       docker {
-        image 'ysebastia/tflint:0.42.2'
+        image 'ysebastia/tflint:0.43.0'
       }
     }
     steps {
