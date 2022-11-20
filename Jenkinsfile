@@ -11,7 +11,7 @@ pipeline {
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.11"
     release_phpcs = "ysebastia/phpcs:3.7.1-php8.1.11"
     release_phpmd = "ysebastia/phpmd:2.13.0-php8.1.11"
-    release_pylint = "ysebastia/pylint:2.15.5"
+    release_pylint = "ysebastia/pylint:2.15.6"
     release_shellcheck = "ysebastia/shellcheck:0.8.0-r1"
     release_tflint = "ysebastia/tflint:0.43.0"
     release_wget = "ysebastia/wget:1.21.3-r2"
