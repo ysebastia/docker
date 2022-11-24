@@ -21,7 +21,7 @@ Jenkins stage
   stage ('Ansible lint') {
     agent {
       docker {
-        image 'ysebastia/ansible-lint:6.8.7'
+        image 'ysebastia/ansible-lint:6.9.0'
       }
     }
     steps {
@@ -32,5 +32,5 @@ Jenkins stage
 
 Command call
 ```
-$ docker run --rm -t -v "$PWD":/app ysebastia/ansible-lint:6.8.7 ansible-lint -p /app
+$ docker run --rm -t -v "$PWD":/app ysebastia/ansible-lint:6.9.0 ansible-lint -p /app
 ```
