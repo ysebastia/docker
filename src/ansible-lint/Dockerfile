@@ -11,6 +11,5 @@ RUN apk add --no-cache \
   black==22.10.0 \
   jsonschema==4.17.1 \
   wcmatch==8.4.1 \
-  && find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf \
-  && find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf
+  && find /usr/lib/ -name '*.pyc' -delete
 CMD ["/usr/bin/ansible-lint"]
