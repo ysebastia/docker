@@ -13,7 +13,7 @@ Jenkins stage
 stage ('Cloc') {
   agent {
     docker {
-      image 'ysebastia/cloc:1.94'
+      image 'ysebastia/cloc:1.96'
     }
   }
   steps {
