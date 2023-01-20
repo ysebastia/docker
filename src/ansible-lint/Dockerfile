@@ -6,9 +6,10 @@ RUN apk add --no-cache \
   && mkdir -p /.cache /.ansible \
   && chmod 777 /.cache /.ansible \
   && pip install --no-cache-dir --use-pep517 \
-  ansible-lint==6.11.0 \
   ansible-lint-junit==0.17.7 \
+  ansible-lint==6.11.0 \
   black==22.12.0 \
+  jmespath==1.0.1 \
   jsonschema==4.17.3 \
   wcmatch==8.4.1 \
   yamllint==1.29.0 \
