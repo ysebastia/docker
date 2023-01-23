@@ -6,6 +6,5 @@ RUN apk add --no-cache \
 COPY checkstyle2junit.xslt /usr/local/share/
 COPY shellcheck.bash /usr/local/bin/
 COPY shellcheck2junit.bash /usr/local/bin/
-RUN chmod +x /usr/local/bin/shellcheck.bash
-RUN chmod +x /usr/local/bin/shellcheck2junit.bash
+RUN chmod +x /usr/local/bin/*.bash
 CMD ["/usr/bin/shellcheck"]
