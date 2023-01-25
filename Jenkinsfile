@@ -13,7 +13,7 @@ pipeline {
     release_phpcs = "ysebastia/phpcs:3.7.1-php8.1.14"
     release_phpmd = "ysebastia/phpmd:2.13.0-php8.1.14"
     release_pylint = "ysebastia/pylint:2.15.10-2"
-    release_shellcheck = "ysebastia/shellcheck:0.9.0-1"
+    release_shellcheck = "ysebastia/shellcheck:0.9.0-2"
     release_tflint = "ysebastia/tflint:0.44.1"
     release_wget = "ysebastia/wget:1.21.3-r2"
     release_yamllint = "ysebastia/yamllint:1.29.0"
@@ -71,7 +71,7 @@ pipeline {
                   }
                   steps {
                     sh 'touch shellcheck.xml'
-                      sh '/usr/local/bin/shellcheck.bash ./src/ | tee -a shellcheck.xml'
+                      sh '/usr/local/bin/shellcheck.bash | tee -a shellcheck.xml'
                   recordIssues(tools: [
                       checkStyle(pattern: 'shellcheck.xml')
                   ])
