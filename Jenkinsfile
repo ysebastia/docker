@@ -7,7 +7,7 @@ pipeline {
     release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.1-slim-5"
     release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.14"
     release_doxygen = "ysebastia/doxygen:1.9.5-2"
-    release_hadolint = "ysebastia/hadolint:2.12.0"
+    release_hadolint = "ysebastia/hadolint:2.12.0-1"
     release_jshint = "ysebastia/jshint:2.13.6"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.14"
     release_phpcs = "ysebastia/phpcs:3.7.1-php8.1.14"
@@ -47,14 +47,15 @@ pipeline {
                   }
                 }
             stage ('hadolint') {
-                agent {
-                    docker {
-                          image 'docker.io/hadolint/hadolint:v2.12.0-alpine'
-                      }
-              }
+                  agent {
+                    dockerfile {
+                        dir 'src/hadolint'
+                        filename 'Dockerfile'
+                     }
+                  }
                 steps {
                     sh 'touch hadolint.json'
-                    sh 'find ./ -iname "dockerfile" | xargs hadolint -f json | tee -a hadolint.json'
+                    sh '/usr/local/bin/hadolint.bash | tee -a hadolint.json'
                   recordIssues( healthy: 1, unhealthy: 2, tools: [
                         hadoLint(pattern: 'hadolint.json')
                     ])

@@ -1,3 +1,3 @@
 #!/bin/sh
-find "${1}" -type f -iname "dockerfile" -print | xargs hadolint -f json
+git ls-files | grep -i dockerfile | xargs hadolint -f json
 exit 0
