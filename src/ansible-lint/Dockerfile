@@ -15,5 +15,5 @@ RUN apk add --no-cache \
   yamllint==1.29.0 \
   && find /usr/lib/ -name '*.pyc' -delete \
   && ansible-galaxy collection install ansible.posix:1.5.1 \
-  && ansible-galaxy collection install community.general:6.2.0
+  && ansible-galaxy collection install community.general:6.3.0
 CMD ["/usr/bin/ansible-lint"]
