@@ -1,6 +1,6 @@
 FROM alpine:20221110
 RUN apk add --no-cache \
-  git=2.39.1-r1 \
+  git=2.39.1-r3 \
   py3-filelock=3.8.2-r0 \
   py3-pip=22.3.1-r2 \
   && mkdir -p /.cache /.ansible \
