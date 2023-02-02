@@ -9,7 +9,7 @@ RUN apk add --no-cache \
   && chmod 777 /.cache /.ansible \
   && python3 -m venv /opt/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN pip install --upgrade pip \
+RUN pip install --no-cache-dir --upgrade pip \
   && pip install --no-cache-dir --use-pep517 \
   ansible-lint-junit==0.17.7 \
   ansible-lint==6.12.0 \
