@@ -5,7 +5,7 @@ RUN apk add --no-cache \
   git=2.39.1-r4 \
   py3-filelock=3.8.2-r0 \
   py3-pip=23.0-r1 \
-  py3-virtualenv=20.18.0-r0 \
+  py3-virtualenv=20.19.0-r0 \
   && mkdir -p /.cache /.ansible \
   && chmod 777 /.cache /.ansible \
   && python3 -m venv /opt/venv
