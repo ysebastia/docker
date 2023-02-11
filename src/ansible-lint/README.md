@@ -21,7 +21,7 @@ Jenkins stage
   stage ('Ansible lint') {
     agent {
       docker {
-        image 'ysebastia/ansible-lint:6.12.1-1'
+        image 'ysebastia/ansible-lint:6.12.2'
       }
     }
     steps {
