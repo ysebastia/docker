@@ -9,6 +9,6 @@ RUN apk add --no-cache \
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==23.0 \
   && pip install --no-cache-dir --use-pep517 \
-  pylint==2.16.1 \
+  pylint==2.16.2 \
   && find /usr/lib/ -name '*.pyc' -delete
 CMD ["/opt/venv/bin/pylint"]
