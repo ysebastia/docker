@@ -2,7 +2,7 @@ FROM alpine:20221110
 ENV VIRTUAL_ENV=/opt/venv
 RUN apk add --no-cache \
   py3-filelock=3.8.2-r0 \
-  py3-pip=23.0-r1 \
+  py3-pip=23.0.1-r0 \
   py3-virtualenv=20.19.0-r0 \
   && python3 -m venv /opt/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
