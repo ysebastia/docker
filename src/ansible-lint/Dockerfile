@@ -1,7 +1,7 @@
 FROM alpine:20221110
 ENV VIRTUAL_ENV=/opt/venv
 RUN apk add --no-cache \
-  curl=7.87.0-r3 \
+  curl=7.88.0-r1 \
   git=2.39.2-r0 \
   py3-filelock=3.8.2-r0 \
   py3-pip=23.0-r1 \
