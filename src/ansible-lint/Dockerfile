@@ -13,14 +13,12 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==23.0 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-lint-junit==0.17.7 \
-  ansible-lint==6.13.0 \
+  ansible-lint==6.13.1 \
   black==23.1.0 \
   jmespath==1.0.1 \
   jsonschema==4.17.3 \
   pytest==7.2.1\
   wcmatch==8.4.1 \
   yamllint==1.29.0 \
-  && find /usr/lib/ -name '*.pyc' -delete \
-  && ansible-galaxy collection install ansible.posix:1.5.1 \
-  && ansible-galaxy collection install community.general:6.3.0
+  && find /usr/lib/ -name '*.pyc' -delete
 CMD ["/opt/venv/bin/ansible-lint"]
