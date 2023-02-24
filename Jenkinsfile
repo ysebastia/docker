@@ -10,7 +10,7 @@ pipeline {
     release_hadolint = "ysebastia/hadolint:2.12.0-1"
     release_jshint = "ysebastia/jshint:2.13.6"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.16"
-    release_phpcs = "ysebastia/phpcs:3.7.1-php8.1.16"
+    release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.16"
     release_phpmd = "ysebastia/phpmd:2.13.0-php8.1.16"
     release_pylint = "ysebastia/pylint:2.16.2"
     release_shellcheck = "ysebastia/shellcheck:0.9.0-2"
