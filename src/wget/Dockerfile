@@ -5,4 +5,4 @@ RUN apk add --no-cache \
   make=4.4-r1 \
   tar=1.34-r1 \
   unzip=6.0-r13 \
-  wget=1.21.3-r2
+  wget=1.21.3-r3
