@@ -1,4 +1,4 @@
-FROM docker.io/ysebastia/wget:1.21.3-r2 as downloader
+FROM docker.io/ysebastia/wget:1.21.3-r3 as downloader
 
 WORKDIR /tmp
 RUN wget -q https://github.com/squizlabs/PHP_CodeSniffer/releases/download/3.7.2/phpcs.phar -O /tmp/phpcs

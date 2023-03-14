@@ -1,4 +1,4 @@
-FROM docker.io/ysebastia/wget:1.21.3-r2 as downloader
+FROM docker.io/ysebastia/wget:1.21.3-r3 as downloader
 
 WORKDIR /tmp
 RUN wget -q https://github.com/phpmd/phpmd/releases/download/2.13.0/phpmd.phar -O /tmp/phpmd

@@ -1,4 +1,4 @@
-FROM docker.io/ysebastia/wget:1.21.3-r2 as downloader
+FROM docker.io/ysebastia/wget:1.21.3-r3 as downloader
 RUN apk add --no-cache \
   curl=7.88.1-r1 \
   bash=5.2.15-r0
