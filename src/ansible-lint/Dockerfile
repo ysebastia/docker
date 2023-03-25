@@ -19,6 +19,6 @@ RUN pip install --no-cache-dir --upgrade pip==23.0 \
   jsonschema==4.17.3 \
   pytest==7.2.2 \
   wcmatch==8.4.1 \
-  yamllint==1.29.0 \
+  yamllint==1.30.0 \
   && find /usr/lib/ -name '*.pyc' -delete
 CMD ["/opt/venv/bin/ansible-lint"]

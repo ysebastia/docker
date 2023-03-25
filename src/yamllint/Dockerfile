@@ -8,7 +8,7 @@ RUN apk add --no-cache \
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==23.0 \
   && pip install --no-cache-dir \
-  yamllint==1.29.0 \
+  yamllint==1.30.0 \
   yamllint-junit==0.10.1 \
   && find /usr/lib/ -name '*.pyc' -delete
 CMD ["/opt/venv/bin/yamllint"]
