@@ -1,4 +1,4 @@
-FROM alpine:20221110
+FROM alpine:20230329
 ENV VIRTUAL_ENV=/opt/venv
 RUN apk add --no-cache \
   py3-filelock=3.8.2-r0 \

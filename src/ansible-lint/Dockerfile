@@ -1,4 +1,4 @@
-FROM alpine:20221110
+FROM alpine:20230329
 ENV VIRTUAL_ENV=/opt/venv
 RUN apk add --no-cache \
   curl=8.0.1-r0 \
