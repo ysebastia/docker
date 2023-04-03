@@ -6,7 +6,7 @@ RUN apk add --no-cache \
   py3-virtualenv=20.21.0-r0 \
   && python3 -m venv /opt/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN pip install --no-cache-dir --upgrade pip==23.0 \
+RUN pip install --no-cache-dir --upgrade pip==23.0.1 \
   && pip install --no-cache-dir \
   yamllint==1.30.0 \
   yamllint-junit==0.10.1 \
