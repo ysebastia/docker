@@ -1,6 +1,14 @@
+def hadolint(quality) {
+  sh 'touch hadolint.json'
+  sh '/usr/local/bin/hadolint.bash | tee -a hadolint.json'
+  recordIssues qualityGates: [[threshold: quality, type: 'TOTAL', unstable: false]], tools: [hadoLint(pattern: 'hadolint.json')]
+  archiveArtifacts artifacts: 'hadolint.json', followSymlinks: false
+  sh 'rm hadolint.json'
+}
 pipeline {
     agent any
     environment {
+    QUALITY_DOCKERFILE = "1"
     release_ansiblelint = "ysebastia/ansible-lint:6.14.6"
     release_cloc = "ysebastia/cloc:1.96"
     release_csslint = "ysebastia/csslint:1.0.5"
@@ -54,13 +62,7 @@ pipeline {
                      }
                   }
                 steps {
-                    sh 'touch hadolint.json'
-                    sh '/usr/local/bin/hadolint.bash | tee -a hadolint.json'
-                  recordIssues( healthy: 1, unhealthy: 2, tools: [
-                        hadoLint(pattern: 'hadolint.json')
-                    ])
-                    archiveArtifacts artifacts: 'hadolint.json', followSymlinks: false
-                    sh 'rm hadolint.json'
+                    hadolint(QUALITY_DOCKERFILE)
                 }
             }
                 stage ('shellcheck') {
