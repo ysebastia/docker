@@ -1,4 +1,4 @@
-FROM docker.io/ysebastia/wget:1.21.3-r3 as downloader
+FROM docker.io/ysebastia/wget:1.21.3-r4 as downloader
 
 WORKDIR /tmp
 RUN wget -q https://github.com/techsneeze/dmarcts-report-viewer/archive/refs/heads/master.zip \
