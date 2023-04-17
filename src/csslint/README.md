@@ -6,7 +6,7 @@ def csslint(src, quality) {
   }
   sh 'touch csslint.xml'
   sh 'csslint --format=lint-xml $SRC_CSS | tee -a csslint.xml'
-  recordIssues qualityGates: [[threshold: quality, type: 'TOTAL', unstable: false]], tools: [cssLint(pattern: 'csslint.xml')]
+  recordIssues enabledForFailure: true, qualityGates: [[threshold: quality, type: 'TOTAL', unstable: false]], tools: [cssLint(pattern: 'csslint.xml')]
   archiveArtifacts artifacts: 'csslint.xml', followSymlinks: false
   sh 'rm csslint.xml'
 }
