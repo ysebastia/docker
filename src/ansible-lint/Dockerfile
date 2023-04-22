@@ -14,7 +14,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==23.1 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-lint-junit==0.17.7 \
-  ansible-lint==6.14.6 \
+  ansible-lint==6.15.0 \
   black==23.3.0 \
   jmespath==1.0.1 \
   jsonschema==4.17.3 \
