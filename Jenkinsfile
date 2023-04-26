@@ -43,6 +43,7 @@ pipeline {
                 stage ('cloc') {
                   agent {
                     dockerfile {
+                      label 'docker'
                         dir 'src/cloc'
                         filename 'Dockerfile'
                      }
@@ -57,6 +58,7 @@ pipeline {
             stage ('hadolint') {
                   agent {
                     dockerfile {
+                      label 'docker'
                         dir 'src/hadolint'
                         filename 'Dockerfile'
                      }
@@ -68,6 +70,7 @@ pipeline {
                 stage ('shellcheck') {
                   agent {
                     dockerfile {
+                      label 'docker'
                         dir 'src/shellcheck'
                         filename 'Dockerfile'
                      }
@@ -87,7 +90,9 @@ pipeline {
         stage('Build #0') {
             parallel {
                 stage('wget') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -101,7 +106,9 @@ pipeline {
         stage('Build #1') {
             parallel {
                 stage('ansible-lint') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -111,7 +118,9 @@ pipeline {
                     }
                 }
                 stage('cloc') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -121,7 +130,9 @@ pipeline {
                     }
                 }
                 stage('csslint') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -131,7 +142,9 @@ pipeline {
                     }
                 }
                 stage('dmarcts-report-parser') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -141,7 +154,9 @@ pipeline {
                     }
                 }
                 stage('dmarcts-report-viewer') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -151,7 +166,9 @@ pipeline {
                     }
                 }
                 stage('doxygen') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -161,7 +178,9 @@ pipeline {
                     }
                 }
                 stage('hadolint') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -171,7 +190,9 @@ pipeline {
                     }
                 }
                 stage('jshint') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -181,7 +202,9 @@ pipeline {
                     }
                 }
                 stage('phpcpd') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -191,7 +214,9 @@ pipeline {
                     }
                 }
                 stage('phpcs') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -201,7 +226,9 @@ pipeline {
                     }
                 }
                 stage('phpmd') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -211,7 +238,9 @@ pipeline {
                     }
                 }
                 stage('pylint') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -221,7 +250,9 @@ pipeline {
                     }
                 }
                 stage('shellcheck') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -231,7 +262,9 @@ pipeline {
                     }
                 }
                 stage('tflint') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -241,7 +274,9 @@ pipeline {
                     }
                 }
                 stage('yamllint') {
-                    agent any
+                    agent {
+                        label 'docker'
+                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
