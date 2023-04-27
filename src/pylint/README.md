@@ -21,7 +21,7 @@ Jenkins stage
   stage ('Pylint') {
     agent {
       docker {
-        image 'ysebastia/pylint:2.17.2'
+        image 'ysebastia/pylint:2.17.3'
       }
     }
     steps {
