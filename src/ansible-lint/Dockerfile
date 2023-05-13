@@ -20,18 +20,16 @@ RUN pip install --no-cache-dir --upgrade pip==23.1.2 \
   pytest==7.3.1 \
   wcmatch==8.4.1 \
   yamllint==1.31.0 \
-  && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
 FROM alpine:20230329
 COPY --from=builder /venv /venv
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN ls -lisah /venv/bin/ansible-lint
 RUN apk add --no-cache \
   curl=8.0.1-r2 \
   git=2.40.1-r0 \
-  python3=3.11.3-r10 \
+  python3=3.11.3-r11 \
   && mkdir -p /.cache /.ansible \
   && chmod 777 /.cache /.ansible
 CMD ["/venv/bin/ansible-lint"]
