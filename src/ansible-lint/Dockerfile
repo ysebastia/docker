@@ -7,7 +7,7 @@ RUN apk add --no-cache \
   py3-pip=23.1.2-r0 \
   py3-virtualenv=20.23.0-r0 \
   py3-wheel=0.40.0-r1 \
-  python3-dev=3.11.3-r10 \
+  python3-dev=3.11.3-r11 \
   && python3 -m venv /venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==23.1.2 \
