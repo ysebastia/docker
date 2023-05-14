@@ -32,5 +32,5 @@ Jenkins stage
 
 Command call
 ```
-$ docker run --rm -t -v "$(pwd)":/app -w /app ysebastia/hadolint:2.12.0-1
+$ docker run --rm -t -v "$(pwd)":/app -w /app docker.io/ysebastia/hadolint:2.12.0-1
 ```
