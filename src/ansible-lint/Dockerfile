@@ -1,7 +1,7 @@
 FROM alpine:20230329 as builder
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
-  gcc=12.2.1_git20220924-r10 \
+  gcc=13.1.1_git20230513-r1 \
   musl-dev=1.2.4-r0 \
   py3-filelock=3.12.0-r1 \
   py3-pip=23.1.2-r0 \
@@ -13,7 +13,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==23.1.2 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-lint-junit==0.17.7 \
-  ansible-lint==6.16.0 \
+  ansible-lint==6.16.1 \
   black==23.3.0 \
   jmespath==1.0.1 \
   jsonschema==4.17.3 \
