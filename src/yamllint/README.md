@@ -18,7 +18,7 @@ Jenkins environment
 
 Jenkins stage
 ```
-  stage ('Yaml lint') {
+  stage ('yamllint') {
     agent {
       docker {
         image 'ysebastia/yamllint:1.31.0'
