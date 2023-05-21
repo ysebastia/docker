@@ -1,7 +1,7 @@
 FROM alpine:20230329 as builder
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
-  gcc=13.1.1_git20230513-r1 \
+  gcc=13.1.1_git20230520-r0 \
   musl-dev=1.2.4-r0 \
   py3-filelock=3.12.0-r1 \
   py3-pip=23.1.2-r0 \
