@@ -15,7 +15,7 @@ pipeline {
     release_csslint = "ysebastia/csslint:1.0.5"
     release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.6-slim"
     release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.18"
-    release_doxygen = "ysebastia/doxygen:1.9.6"
+    release_doxygen = "ysebastia/doxygen:1.9.7"
     release_hadolint = "ysebastia/hadolint:2.12.0-1"
     release_jshint = "ysebastia/jshint:2.13.6"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.18"
