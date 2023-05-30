@@ -1,7 +1,7 @@
 FROM alpine:20230329 as builder
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
-  gcc=13.1.1_git20230520-r0 \
+  gcc=13.1.1_git20230527-r1 \
   musl-dev=1.2.4-r0 \
   py3-filelock=3.12.0-r1 \
   py3-pip=23.1.2-r0 \
@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir --upgrade pip==23.1.2 \
   jsonschema==4.17.3 \
   pytest==7.3.1 \
   wcmatch==8.4.1 \
-  yamllint==1.31.0 \
+  yamllint==1.32.0 \
   && find /usr/lib/ -name '*.pyc' -delete
 
 FROM alpine:20230329
@@ -27,7 +27,7 @@ COPY --from=builder /venv /venv
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN apk add --no-cache \
-  curl=8.1.0-r3 \
+  curl=8.1.2-r0 \
   git=2.40.1-r0 \
   python3=3.11.3-r11 \
   && mkdir -p /.cache /.ansible \
