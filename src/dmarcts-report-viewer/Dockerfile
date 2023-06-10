@@ -4,7 +4,7 @@ WORKDIR /tmp
 RUN wget -q https://github.com/techsneeze/dmarcts-report-viewer/archive/refs/heads/master.zip \
   && unzip -q master.zip
 
-FROM php:8.1.18-apache-bullseye
+FROM php:8.1.20-apache-bullseye
 ARG DEBIAN_FRONTEND=noninteractive
 RUN docker-php-ext-install mysqli
 
