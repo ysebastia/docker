@@ -1,13 +1,13 @@
 FROM alpine:20230329 as builder
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
-  gcc=13.1.1_git20230527-r1 \
-  musl-dev=1.2.4-r0 \
+  gcc=13.1.1_git20230603-r0 \
+  musl-dev=1.2.4-r1 \
   py3-filelock=3.12.0-r1 \
   py3-pip=23.1.2-r0 \
   py3-virtualenv=20.23.0-r0 \
   py3-wheel=0.40.0-r1 \
-  python3-dev=3.11.3-r11 \
+  python3-dev=3.11.4-r0 \
   && python3 -m venv /venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==23.1.2 \
@@ -28,7 +28,7 @@ ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN apk add --no-cache \
   curl=8.1.2-r0 \
-  git=2.40.1-r0 \
+  git=2.41.0-r0 \
   python3=3.11.3-r11 \
   && mkdir -p /.cache /.ansible \
   && chmod 777 /.cache /.ansible
