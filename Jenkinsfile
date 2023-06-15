@@ -19,6 +19,7 @@ pipeline {
     release_hadolint = "ysebastia/hadolint:2.12.0-1"
     release_jest = "ysebastia/jest:29.5.0"
     release_jshint = "ysebastia/jshint:2.13.6"
+    release_make = "ysebastia/make:4.4.1-r1"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.20"
     release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.20"
     release_phpmd = "ysebastia/phpmd:2.13.0-php8.1.20"
@@ -223,6 +224,18 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_jshint}", "src/jshint").push()
+                            }
+                        }
+                    }
+                }
+                stage('make') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_make}", "src/make").push()
                             }
                         }
                     }
