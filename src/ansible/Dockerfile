@@ -8,7 +8,7 @@ RUN apk add --no-cache \
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==23.1.2 \
   && pip install --no-cache-dir --use-pep517 \
-  ansible-core==2.15.0 \
+  ansible-core==2.15.1 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
