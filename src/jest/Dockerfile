@@ -1,6 +1,7 @@
 FROM node:lts-alpine3.18
 RUN npm install -g npm@9.7.1 \
   && npm install -g \
-  jest@29.5.0 \
-  jest-junit@16.0.0
+  @testing-library/jest-dom@5.16.5 \
+  jest-junit@16.0.0 \
+  jest@29.6.1
 CMD ["/usr/local/bin/jest"]
