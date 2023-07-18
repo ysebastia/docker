@@ -1,6 +1,6 @@
 FROM alpine:20230329
 RUN apk add --no-cache \
-  file=5.44-r4 \
+  file=5.44-r5 \
   git=2.41.0-r2 \
   shellcheck=0.9.0-r2 \
   xmlstarlet=1.6.1-r2
