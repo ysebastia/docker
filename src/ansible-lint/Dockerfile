@@ -4,7 +4,7 @@ RUN apk add --no-cache \
   gcc=13.1.1_git20230715-r1 \
   musl-dev=1.2.4-r5 \
   py3-filelock=3.12.2-r0 \
-  py3-pip=23.2-r0 \
+  py3-pip=23.2.1-r0 \
   py3-virtualenv=20.24.0-r0 \
   py3-wheel=0.40.0-r1 \
   python3-dev=3.11.4-r1 \
