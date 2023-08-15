@@ -23,7 +23,7 @@ pipeline {
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.20"
     release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.20"
     release_phpmd = "ysebastia/phpmd:2.13.0-php8.1.20"
-    release_pylint = "ysebastia/pylint:2.17.4"
+    release_pylint = "ysebastia/pylint:2.17.5"
     release_shellcheck = "ysebastia/shellcheck:0.9.0-r3"
     release_tflint = "ysebastia/tflint:0.47.0"
     release_wget = "ysebastia/wget:1.21.4-r0"
