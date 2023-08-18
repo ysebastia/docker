@@ -33,5 +33,5 @@ Jenkins stage
 
 Command call
 ```
-$ docker run --rm -t -v "$(pwd)":/app -w /app docker.io/ysebastia/ansible-lint:6.17.2 ansible-lint -p /app
+$ docker run --rm -t -v "${PWD}":/app -w /app docker.io/ysebastia/ansible-lint:6.17.2 ansible-lint -p /app
 ```
