@@ -17,6 +17,7 @@ pipeline {
     release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.20"
     release_doxygen = "ysebastia/doxygen:1.9.7"
     release_hadolint = "ysebastia/hadolint:2.12.0-1"
+    release_helm = "ysebastia/helm:3.12.3"
     release_jest = "ysebastia/jest:29.6.1"
     release_jshint = "ysebastia/jshint:2.13.6"
     release_make = "ysebastia/make:4.4.1-r1"
@@ -200,6 +201,18 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_hadolint}", "src/hadolint").push()
+                            }
+                        }
+                    }
+                }
+                stage('helm') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_helm}", "src/helm").push()
                             }
                         }
                     }
