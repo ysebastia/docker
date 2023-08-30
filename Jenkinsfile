@@ -11,6 +11,7 @@ pipeline {
     QUALITY_DOCKERFILE = "1"
     release_ansible = "ysebastia/ansible:2.15.3"
     release_ansiblelint = "ysebastia/ansible-lint:6.18.0"
+    release_checkov = "ysebastia/checkov:2.4.14"
     release_cloc = "ysebastia/cloc:1.96"
     release_csslint = "ysebastia/csslint:1.0.5"
     release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.6-slim"
@@ -129,6 +130,18 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_ansiblelint}", "src/ansible-lint").push()
+                            }
+                        }
+                    }
+                }
+                stage('checkov') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_checkov}", "src/checkov").push()
                             }
                         }
                     }
