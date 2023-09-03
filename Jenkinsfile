@@ -12,7 +12,7 @@ pipeline {
     release_ansible = "ysebastia/ansible:2.15.3"
     release_ansiblelint = "ysebastia/ansible-lint:6.18.0"
     release_checkov = "ysebastia/checkov:2.4.22"
-    release_cloc = "ysebastia/cloc:1.96"
+    release_cloc = "ysebastia/cloc:1.98"
     release_csslint = "ysebastia/csslint:1.0.5"
     release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.6-slim"
     release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.20"
