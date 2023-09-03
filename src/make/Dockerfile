@@ -1,3 +1,3 @@
-FROM alpine:20230329
+FROM alpine:20230901
 RUN apk add --no-cache \
-  make=4.4.1-r1
+  make=4.4.1-r2

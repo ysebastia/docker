@@ -21,7 +21,7 @@ pipeline {
     release_helm = "ysebastia/helm:3.12.3"
     release_jest = "ysebastia/jest:29.6.1"
     release_jshint = "ysebastia/jshint:2.13.6"
-    release_make = "ysebastia/make:4.4.1-r1"
+    release_make = "ysebastia/make:4.4.1-r2"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.20"
     release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.20"
     release_phpmd = "ysebastia/phpmd:2.13.0-php8.1.20"
