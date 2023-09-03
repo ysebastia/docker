@@ -1,5 +1,5 @@
-FROM alpine:20230329
+FROM alpine:20230901
 RUN apk add --no-cache \
-  doxygen=1.9.7-r0 \
-  graphviz=8.0.5-r2
+  doxygen=1.9.8-r0 \
+  graphviz=8.1.0-r0
 CMD ["/usr/bin/doxygen"]

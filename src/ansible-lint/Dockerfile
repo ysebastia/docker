@@ -1,13 +1,13 @@
-FROM alpine:20230329 as builder
+FROM alpine:20230901 as builder
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
   gcc=13.1.1_git20230722-r2 \
   musl-dev=1.2.4_git20230717-r2 \
   py3-filelock=3.12.2-r0 \
   py3-pip=23.2.1-r0 \
-  py3-virtualenv=20.24.2-r0 \
+  py3-virtualenv=20.24.4-r0 \
   py3-wheel=0.41.0-r2 \
-  python3-dev=3.11.4-r4 \
+  python3-dev=3.11.5-r0 \
   && python3 -m venv /venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==23.2.1 \
@@ -22,14 +22,14 @@ RUN pip install --no-cache-dir --upgrade pip==23.2.1 \
   yamllint==1.32.0 \
   && find /usr/lib/ -name '*.pyc' -delete
 
-FROM alpine:20230329
+FROM alpine:20230901
 COPY --from=builder /venv /venv
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN apk add --no-cache \
   curl=8.2.1-r0 \
   git=2.42.0-r0 \
-  python3=3.11.4-r4 \
+  python3=3.11.5-r0 \
   && mkdir -p /.cache /.ansible \
   && chmod 777 /.cache /.ansible
 CMD ["/venv/bin/ansible-lint"]

@@ -6,7 +6,7 @@ RUN apk add --no-cache \
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN wget -q https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm
 
-FROM alpine:20230329
+FROM alpine:20230901
 RUN apk add --no-cache \
   bash=5.2.15-r5 \
   git=2.42.0-r0
