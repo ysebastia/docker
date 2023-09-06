@@ -9,5 +9,5 @@ RUN apk add --no-cache \
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==23.2.1 \
   && pip install --no-cache-dir \
-  checkov==2.4.25
+  checkov==2.4.27
 CMD ["/venv/bin/checkov"]
