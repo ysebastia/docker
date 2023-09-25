@@ -1,6 +1,5 @@
-FROM docker.io/ysebastia/wget:1.21.4-r0 as downloader
+FROM docker.io/ysebastia/wget:1.21.4-r0-2 as downloader
 
-WORKDIR /tmp
 RUN wget -q https://github.com/phpmd/phpmd/releases/download/2.13.0/phpmd.phar -O /tmp/phpmd
 
 FROM php:8.1.20-cli-alpine3.18

@@ -1,8 +1,5 @@
-FROM docker.io/ysebastia/wget:1.21.4-r0 as downloader
-RUN apk add --no-cache \
-  curl=8.3.0-r1 \
-  bash=5.2.15-r5
-WORKDIR /tmp
+FROM docker.io/ysebastia/wget:1.21.4-r0-2 as downloader
+
 RUN wget -q https://raw.githubusercontent.com/terraform-linters/tflint/v0.48.0/install_linux.sh \
   && bash /tmp/install_linux.sh
 
