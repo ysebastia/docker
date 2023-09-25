@@ -5,6 +5,13 @@ def hadolint(quality) {
   archiveArtifacts artifacts: 'hadolint.json', followSymlinks: false
   sh 'rm hadolint.json'
 }
+def trivy(image) {
+   script {
+     env.IMAGE = image
+   }
+   sh 'trivy image $IMAGE --severity HIGH,CRITICAL --exit-code 1 --no-progress --format template --template "@/tmp/contrib/junit.tpl" | tee trivy.xml'
+   junit allowEmptyResults: true, skipPublishingChecks: true, testResults: 'trivy.xml'
+}
 pipeline {
     agent any
     environment {
@@ -105,6 +112,7 @@ pipeline {
                                 docker.build("${env.release_wget}", "src/wget").push()
                             }
                         }
+                        trivy("${env.release_wget}")
                     }
                 }
             }
