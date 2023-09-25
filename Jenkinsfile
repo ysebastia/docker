@@ -111,8 +111,8 @@ pipeline {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_wget}", "src/wget").push()
                             }
+                            trivy("${env.release_wget}")
                         }
-                        trivy("${env.release_wget}")
                     }
                 }
             }
