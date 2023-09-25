@@ -8,5 +8,4 @@ RUN apk add --no-cache \
   tar=1.35-r2 \
   unzip=6.0-r14 \
   wget=1.21.4-r0
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 WORKDIR /tmp
