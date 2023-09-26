@@ -372,6 +372,17 @@ pipeline {
                 }
             }
         }
+        stage('Scan') {
+          agent {
+            docker {
+              label 'docker'
+              image 'ysebastia/trivy:0.45.1'
+            }
+          }
+          steps {
+            trivy("${env.release_trivy}")
+          }
+        }
     }
     post {
        always {
