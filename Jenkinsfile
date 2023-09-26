@@ -5,9 +5,9 @@ def hadolint(quality) {
   archiveArtifacts artifacts: 'hadolint.json', followSymlinks: false
   sh 'rm hadolint.json'
 }
-def trivy(image) {
+def trivy(ref) {
    script {
-     env.IMAGE = image
+     env.IMAGE = ref
    }
    sh 'trivy image $IMAGE --severity HIGH,CRITICAL --exit-code 1 --no-progress --format template --template "@/tmp/contrib/junit.tpl" | tee trivy.xml'
    junit allowEmptyResults: true, skipPublishingChecks: true, testResults: 'trivy.xml'
