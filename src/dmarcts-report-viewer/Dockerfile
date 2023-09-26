@@ -3,7 +3,7 @@ FROM docker.io/ysebastia/wget:1.21.4-r0-2 as downloader
 RUN wget -q https://github.com/techsneeze/dmarcts-report-viewer/archive/refs/heads/master.zip \
   && unzip -q master.zip
 
-FROM php:8.1.20-apache-bullseye
+FROM php:8.1.23-apache-bullseye
 ARG DEBIAN_FRONTEND=noninteractive
 RUN docker-php-ext-install mysqli
 
