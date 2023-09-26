@@ -376,7 +376,7 @@ pipeline {
           agent {
             docker {
               label 'docker'
-              image 'ysebastia/trivy:0.45.1'
+              image "${env.release_trivy}"
             }
           }
           steps {
