@@ -372,17 +372,6 @@ pipeline {
                 }
             }
         }
-        stage('Scan') {
-          agent {
-            docker {
-              label 'docker'
-              image "${env.release_trivy}"
-            }
-          }
-          steps {
-            trivy("${env.release_trivy}")
-          }
-        }
     }
     post {
        always {
