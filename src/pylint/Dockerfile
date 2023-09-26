@@ -1,9 +1,19 @@
-FROM alpine:20230901
+FROM alpine:20230901 as builder
+ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
-  py3-filelock=3.12.4-r0 \
   py3-pip=23.2.1-r0 \
   py3-virtualenv=20.24.5-r0 \
-  py3-wheel=0.41.2-r0 \
-  py3-pylint=2.17.5-r0 \
-  && python3 -m venv /opt/venv
-CMD ["/usr/bin/pylint"]
+  && python3 -m venv /venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+RUN pip install --no-cache-dir --upgrade pip==23.2.1 \
+  && pip install --no-cache-dir --use-pep517 \
+  pylint==2.17.6 \
+  && find /usr/lib/ -name '*.pyc' -delete
+
+FROM alpine:20230901
+COPY --from=builder /venv /venv
+ENV VIRTUAL_ENV=/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+RUN apk add --no-cache \
+  python3=3.11.5-r0
+CMD ["/venv/bin/pylint"]
