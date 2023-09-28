@@ -5,12 +5,14 @@ def hadolint(quality) {
   archiveArtifacts artifacts: 'hadolint.json', followSymlinks: false
   sh 'rm hadolint.json'
 }
-def trivy(ref) {
+def runtrivy(image, name) {
    script {
-     env.IMAGE = ref
+     env.IMAGE = image
    }
-   sh 'trivy image $IMAGE --severity HIGH,CRITICAL --exit-code 1 --no-progress --format template --template "@/tmp/contrib/junit.tpl" | tee trivy.xml'
-   junit allowEmptyResults: true, skipPublishingChecks: true, testResults: 'trivy.xml'
+   sh 'touch trivy.xml'
+   sh 'trivy image $IMAGE --scanners vuln --severity CRITICAL --exit-code 1 --no-progress --format template --template "@/tmp/contrib/junit.tpl" --cache-dir /tmp/.cache | tee trivy.xml'
+   recordIssues enabledForFailure: true, tools: [junitParser(id: name, name: name, pattern: 'trivy.xml')]
+   sh 'rm trivy.xml'
 }
 pipeline {
     agent any
@@ -371,6 +373,38 @@ pipeline {
                     }
                 }
             }
+        }
+        stage('Trivy') {
+          agent {
+            docker {
+              label 'docker'
+              image "${env.release_trivy}"
+            }
+          }
+          steps {
+            runtrivy("${env.release_ansible}", "ansible")
+            runtrivy("${env.release_ansiblelint}", "ansible-lint")
+            runtrivy("${env.release_checkov}", "checkov")
+            runtrivy("${env.release_cloc}", "cloc")
+            runtrivy("${env.release_csslint}", "csslint")
+            runtrivy("${env.release_dmarctsreportparser}", "dmarcts-report-parser")
+            runtrivy("${env.release_dmarctsreportviewer}", "dmarcts-report-viewer")
+            runtrivy("${env.release_doxygen}", "doxygen")
+            runtrivy("${env.release_hadolint}", "hadolint")
+            runtrivy("${env.release_helm}", "helm")
+            runtrivy("${env.release_jest}", "jest")
+            runtrivy("${env.release_jshint}", "jshint")
+            runtrivy("${env.release_make}", "make")
+            runtrivy("${env.release_phpcpd}", "phpcpd")
+            runtrivy("${env.release_phpcs}", "phpcs")
+            runtrivy("${env.release_phpmd}", "phpmd")
+            runtrivy("${env.release_pylint}", "pylint")
+            runtrivy("${env.release_shellcheck}", "shellcheck")
+            runtrivy("${env.release_tflint}", "tflint")
+            runtrivy("${env.release_trivy}", "trivy")
+            runtrivy("${env.release_wget}", "wget")
+            runtrivy("${env.release_yamllint}", "yamllint")
+          }
         }
     }
     post {
