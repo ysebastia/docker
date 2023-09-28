@@ -6,4 +6,4 @@ FROM alpine:20230901
 COPY --from=downloader /tmp/trivy /usr/local/bin/trivy
 COPY --from=downloader /tmp/contrib/*.tpl /tmp/contrib/
 RUN chmod +x /usr/local/bin/trivy
-ENTRYPOINT ["/usr/local/bin/trivy"]
+CMD ["/usr/local/bin/trivy"]
