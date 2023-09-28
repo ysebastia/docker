@@ -25,7 +25,7 @@ Jenkins stage
   stage ('CSS lint') {
     agent {
         docker {
-            image 'ysebastia/csslint:1.0.5'
+            image 'ysebastia/csslint:1.0.5-1'
         }
     }
     steps {

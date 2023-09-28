@@ -8,11 +8,10 @@ def hadolint(quality) {
 def runtrivy(image, name) {
    script {
      env.IMAGE = image
-     env.NAME = name
    }
    sh 'touch trivy.xml'
    sh 'trivy image $IMAGE --scanners vuln --severity CRITICAL --no-progress --format template --template "@/tmp/contrib/junit.tpl" --cache-dir /tmp/.cache | tee trivy.xml'
-   recordIssues enabledForFailure: true, tools: [junitParser(id: name, name: 'Trivy for $NAME', pattern: 'trivy.xml')]
+   recordIssues enabledForFailure: true, tools: [junitParser(id: name, name: name, pattern: 'trivy.xml')]
    sh 'rm trivy.xml'
 }
 pipeline {
@@ -23,7 +22,7 @@ pipeline {
     release_ansiblelint = "ysebastia/ansible-lint:6.20.1"
     release_checkov = "ysebastia/checkov:2.4.47"
     release_cloc = "ysebastia/cloc:1.98"
-    release_csslint = "ysebastia/csslint:1.0.5"
+    release_csslint = "ysebastia/csslint:1.0.5-1"
     release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-debian11.6-slim"
     release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.23"
     release_doxygen = "ysebastia/doxygen:1.9.7"
