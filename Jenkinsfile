@@ -8,10 +8,11 @@ def hadolint(quality) {
 def runtrivy(image, name) {
    script {
      env.IMAGE = image
+     env.NAME = name
    }
    sh 'touch trivy.xml'
    sh 'trivy image $IMAGE --scanners vuln --severity CRITICAL --no-progress --format template --template "@/tmp/contrib/junit.tpl" --cache-dir /tmp/.cache | tee trivy.xml'
-   recordIssues enabledForFailure: true, tools: [junitParser(id: name, name: name, pattern: 'trivy.xml')]
+   recordIssues enabledForFailure: true, tools: [junitParser(id: "trivy_${env.NAME}", name: "trivy_${env.NAME}", pattern: 'trivy.xml')]
    sh 'rm trivy.xml'
 }
 pipeline {
