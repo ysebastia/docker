@@ -7,7 +7,7 @@ RUN apk add --no-cache \
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==23.2.1 \
   && pip install --no-cache-dir --use-pep517 \
-  pylint==2.17.6 \
+  pylint==2.17.7 \
   && find /usr/lib/ -name '*.pyc' -delete
 
 FROM alpine:20230901
