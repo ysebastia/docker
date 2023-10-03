@@ -35,7 +35,7 @@ pipeline {
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.24"
     release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.24"
     release_phpmd = "ysebastia/phpmd:2.14.1-php8.1.24"
-    release_pylint = "ysebastia/pylint:2.17.7"
+    release_pylint = "ysebastia/pylint:3.0.0"
     release_shellcheck = "ysebastia/shellcheck:0.9.0-r3"
     release_tflint = "ysebastia/tflint:0.48.0"
     release_trivy = "ysebastia/trivy:0.45.1-1"
