@@ -21,7 +21,7 @@ pipeline {
     QUALITY_DOCKERFILE = "1"
     release_ansible = "ysebastia/ansible:2.15.5"
     release_ansiblelint = "ysebastia/ansible-lint:6.20.3"
-    release_checkov = "ysebastia/checkov:2.5.6"
+    release_checkov = "ysebastia/checkov:2.5.8"
     release_cloc = "ysebastia/cloc:1.98"
     release_csslint = "ysebastia/csslint:1.0.5-1"
     release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-bookworm-slim"
