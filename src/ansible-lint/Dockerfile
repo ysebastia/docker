@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir --upgrade pip==23.3 \
   black==23.10.0 \
   jmespath==1.0.1 \
   jsonschema==4.19.1 \
-  pytest==7.3.1 \
+  pytest==7.4.2 \
   wcmatch==8.4.1 \
   yamllint==1.32.0 \
   && find /usr/lib/ -name '*.pyc' -delete
