@@ -8,7 +8,7 @@ RUN apk add --no-cache \
   py3-wheel=0.41.2-r0 \
   && python3 -m venv /venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN pip install --no-cache-dir --upgrade pip==23.2.1 \
+RUN pip install --no-cache-dir --upgrade pip==23.3 \
   && pip install --no-cache-dir \
-  checkov==2.5.8
+  checkov==2.5.3
 CMD ["/venv/bin/checkov"]

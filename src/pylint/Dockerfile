@@ -5,7 +5,7 @@ RUN apk add --no-cache \
   py3-virtualenv=20.24.5-r0 \
   && python3 -m venv /venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN pip install --no-cache-dir --upgrade pip==23.2.1 \
+RUN pip install --no-cache-dir --upgrade pip==23.3 \
   && pip install --no-cache-dir --use-pep517 \
   pylint==3.0.1 \
   && find /usr/lib/ -name '*.pyc' -delete

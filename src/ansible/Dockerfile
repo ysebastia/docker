@@ -6,7 +6,7 @@ RUN apk add --no-cache \
   py3-wheel=0.41.2-r0 \
   && python3 -m venv /venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN pip install --no-cache-dir --upgrade pip==23.2.1 \
+RUN pip install --no-cache-dir --upgrade pip==23.3 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-core==2.15.5 \
   && pip list -o \

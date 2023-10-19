@@ -10,7 +10,7 @@ RUN apk add --no-cache \
   python3-dev=3.11.6-r0 \
   && python3 -m venv /venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN pip install --no-cache-dir --upgrade pip==23.2.1 \
+RUN pip install --no-cache-dir --upgrade pip==23.3 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-lint-junit==0.17.7 \
   ansible-lint==6.20.3 \
