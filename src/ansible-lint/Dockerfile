@@ -14,12 +14,13 @@ RUN pip install --no-cache-dir --upgrade pip==23.3.1 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-lint-junit==0.17.7 \
   ansible-lint==6.21.1 \
-  black==23.10.0 \
+  black==23.10.1 \
   jmespath==1.0.1 \
   jsonschema==4.19.1 \
   pytest==7.4.2 \
   wcmatch==8.5 \
   yamllint==1.32.0 \
+  && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
 FROM alpine:20230901
