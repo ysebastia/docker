@@ -11,7 +11,7 @@ def runtrivy(image, name) {
      env.NAME = name
    }
    sh 'touch trivy.xml'
-   sh 'trivy image --skip-update $IMAGE --scanners vuln --severity CRITICAL --no-progress --format template --template "@/tmp/contrib/junit.tpl" --cache-dir /tmp/.cache | tee trivy.xml'
+   sh 'trivy image $IMAGE --skip-db-update --cache-dir /opt/trivy/.cache/ --scanners vuln --severity CRITICAL --no-progress --format template --template "@/tmp/contrib/junit.tpl" --cache-dir /tmp/.cache | tee trivy.xml'
    recordIssues enabledForFailure: true, tools: [junitParser(id: "trivy_${env.NAME}", name: "trivy_${env.NAME}", pattern: 'trivy.xml')]
    sh 'rm trivy.xml'
 }
@@ -38,7 +38,7 @@ pipeline {
     release_pylint = "ysebastia/pylint:3.0.2"
     release_shellcheck = "ysebastia/shellcheck:0.9.0-r3"
     release_tflint = "ysebastia/tflint:0.48.0"
-    release_trivy = "ysebastia/trivy:0.46.1"
+    release_trivy = "ysebastia/trivy:0.46.1-2"
     release_wget = "ysebastia/wget:1.21.4-r0-2"
     release_yamllint = "ysebastia/yamllint:1.32.0"
     }
