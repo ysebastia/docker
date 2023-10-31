@@ -10,5 +10,7 @@ RUN apk add --no-cache \
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==23.3.1 \
   && pip install --no-cache-dir \
-  checkov==2.5.15
+  checkov==3.0.14 \
+  && pip list -o \
+  && find /usr/lib/ -name '*.pyc' -delete
 CMD ["/venv/bin/checkov"]
