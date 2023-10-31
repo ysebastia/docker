@@ -6,5 +6,6 @@ FROM alpine:20230901
 COPY --from=downloader /tmp/trivy /usr/local/bin/trivy
 COPY --from=downloader /tmp/contrib/*.tpl /tmp/contrib/
 RUN chmod +x /usr/local/bin/trivy \
-    && trivy image --download-db-only --cache-dir /tmp/.cache
+    && trivy image --download-db-only --cache-dir /tmp/.cache \
+    && chmod -R 777 /tmp/.cache
 CMD ["/usr/local/bin/trivy"]
