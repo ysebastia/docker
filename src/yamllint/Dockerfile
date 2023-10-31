@@ -11,5 +11,6 @@ RUN pip install --no-cache-dir --upgrade pip==23.3.1 \
   && pip install --no-cache-dir \
   yamllint==1.32.0 \
   yamllint-junit==0.10.1 \
+  && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 CMD ["/venv/bin/yamllint"]
