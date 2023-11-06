@@ -19,7 +19,7 @@ pipeline {
     agent any
     environment {
     QUALITY_DOCKERFILE = "1"
-    release_ansible = "ysebastia/ansible:2.15.5"
+    release_ansible = "ysebastia/ansible:2.15.6"
     release_ansiblelint = "ysebastia/ansible-lint:6.21.1"
     release_checkov = "ysebastia/checkov:3.0.21"
     release_cloc = "ysebastia/cloc:1.98"
