@@ -2,11 +2,11 @@ FROM alpine:20230901 as builder
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
   gcc=13.2.1_git20231014-r0 \
-  musl-dev=1.2.4_git20230717-r3 \
+  musl-dev=1.2.4_git20230717-r4 \
   py3-filelock=3.12.4-r0 \
   py3-pip=23.3.1-r0 \
   py3-virtualenv=20.24.6-r0 \
-  py3-wheel=0.41.2-r0 \
+  py3-wheel=0.41.3-r0 \
   python3-dev=3.11.6-r1 \
   && python3 -m venv /venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
