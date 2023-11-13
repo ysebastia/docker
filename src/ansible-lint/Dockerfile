@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir --upgrade pip==23.3.1 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-lint-junit==0.17.8 \
   ansible-lint==6.22.0 \
-  black==23.10.1 \
+  black==23.11.0 \
   jmespath==1.0.1 \
   jsonschema==4.19.2 \
   pytest==7.4.3 \
