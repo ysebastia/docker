@@ -12,7 +12,7 @@ RUN apk add --no-cache \
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==23.3.1 \
   && pip install --no-cache-dir --use-pep517 \
-  ansible-lint-junit==0.17.7 \
+  ansible-lint-junit==0.17.8 \
   ansible-lint==6.22.0 \
   black==23.10.1 \
   jmespath==1.0.1 \
