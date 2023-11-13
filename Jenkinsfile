@@ -40,7 +40,7 @@ pipeline {
     release_tflint = "ysebastia/tflint:0.48.0"
     release_trivy = "ysebastia/trivy:0.47.0"
     release_wget = "ysebastia/wget:1.21.4-r0-2"
-    release_yamllint = "ysebastia/yamllint:1.32.0"
+    release_yamllint = "ysebastia/yamllint:1.33.0"
     }
     stages {
         stage ('Checkout') {

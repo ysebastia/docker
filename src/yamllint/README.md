@@ -21,7 +21,7 @@ Jenkins stage
   stage ('yamllint') {
     agent {
       docker {
-        image 'ysebastia/yamllint:1.32.0'
+        image 'ysebastia/yamllint:1.33.0'
       }
     }
     steps {
