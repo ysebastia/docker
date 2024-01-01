@@ -1,7 +1,7 @@
 Jenkins definition
 ```
 def ansiblelint(quality) {
-  sh '[[ -f requirements.yml ]] && ansible-galaxy install -r requirements.yml'
+  sh 'find . -name requirements.yml -exec ansible-galaxy install -r {} --ignore-certs --force \\;'
   sh 'touch ansible-lint.txt'
   sh 'ansible-lint -p --exclude ansible_collections | tee -a ansible-lint.txt'
   recordIssues enabledForFailure: true, qualityGates: [[threshold: quality, type: 'TOTAL', unstable: false]],  tools: [ansibleLint(id: 'ansibleLint', name: 'Ansible Lint', pattern: 'ansible-lint.txt')]
