@@ -1,7 +1,7 @@
 FROM alpine:20230901
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
-  py3-filelock=3.12.4-r0 \
+  py3-filelock=3.13.1-r0 \
   py3-pip=23.3.2-r0 \
   py3-setuptools-rust=1.6.0-r1 \
   py3-virtualenv=20.25.0-r0 \
