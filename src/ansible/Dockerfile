@@ -1,12 +1,12 @@
 FROM alpine:20230901 as builder
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
-  py3-pip=23.3.1-r0 \
+  py3-pip=23.3.2-r0 \
   py3-virtualenv=20.24.6-r0 \
   py3-wheel=0.42.0-r0 \
   && python3 -m venv /venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN pip install --no-cache-dir --upgrade pip==23.3.1 \
+RUN pip install --no-cache-dir --upgrade pip==23.3.2 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-core==2.16.2 \
   && pip list -o \
