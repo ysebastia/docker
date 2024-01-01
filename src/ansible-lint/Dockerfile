@@ -3,7 +3,7 @@ ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
   gcc=13.2.1_git20231014-r0 \
   musl-dev=1.2.4_git20230717-r4 \
-  py3-filelock=3.12.4-r0 \
+  py3-filelock=3.13.1-r0 \
   py3-pip=23.3.2-r0 \
   py3-virtualenv=20.25.0-r0 \
   py3-wheel=0.42.0-r0 \
