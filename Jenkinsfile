@@ -30,6 +30,7 @@ pipeline {
     release_hadolint = "ysebastia/hadolint:2.12.0-1"
     release_helm = "ysebastia/helm:3.14.0"
     release_jest = "ysebastia/jest:29.7.0"
+    release_jscpd = "ysebastia/jscpd:3.5.10"
     release_jshint = "ysebastia/jshint:2.13.6"
     release_make = "ysebastia/make:4.4.1-r2"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.26"
@@ -253,6 +254,18 @@ pipeline {
                         }
                     }
                 }
+                stage('jscpd') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_jscpd}", "src/jscpd").push()
+                            }
+                        }
+                    }
+                }                
                 stage('jshint') {
                     agent {
                         label 'docker'
@@ -394,6 +407,7 @@ pipeline {
             runtrivy("${env.release_hadolint}", "hadolint")
             runtrivy("${env.release_helm}", "helm")
             runtrivy("${env.release_jest}", "jest")
+            runtrivy("${env.release_jscpd}", "jscpd")
             runtrivy("${env.release_jshint}", "jshint")
             runtrivy("${env.release_make}", "make")
             runtrivy("${env.release_phpcpd}", "phpcpd")
