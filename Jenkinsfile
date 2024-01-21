@@ -30,7 +30,7 @@ pipeline {
     release_hadolint = "ysebastia/hadolint:2.12.0-1"
     release_helm = "ysebastia/helm:3.14.0"
     release_jest = "ysebastia/jest:29.7.0"
-    release_jscpd = "ysebastia/jscpd:3.5.10"
+    release_jscpd = "ysebastia/jscpd:3.5.10-1"
     release_jshint = "ysebastia/jshint:2.13.6"
     release_make = "ysebastia/make:4.4.1-r2"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.26"
