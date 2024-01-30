@@ -18,7 +18,7 @@ ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN apk add --no-cache \
   curl=8.5.0-r1 \
-  git=2.43.0-r0 \
+  git=2.43.0-r2 \
   python3=3.11.6-r1 \
   && mkdir -p /.cache /.ansible \
   && chmod 777 /.cache /.ansible
