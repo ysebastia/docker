@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir --upgrade pip==24.0 \
   ansible-lint==6.22.2 \
   black==24.1.1 \
   jmespath==1.0.1 \
-  jsonschema==4.20.0 \
+  jsonschema==4.21.1 \
   pytest==8.0.0 \
   setuptools==69.0.3 \
   wcmatch==8.5 \
