@@ -21,7 +21,7 @@ Jenkins stage
   stage ('Tflint') {
     agent {
       docker {
-        image 'ysebastia/tflint:0.50.1'
+        image 'ysebastia/tflint:0.50.2'
       }
     }
     steps {
@@ -32,5 +32,5 @@ Jenkins stage
 
 Command call
 ```
-docker run --rm -t -v "${PWD}":/app -w /app docker.io/ysebastia/tflint:0.50.1 tflint --recursive
+docker run --rm -t -v "${PWD}":/app -w /app docker.io/ysebastia/tflint:0.50.2 tflint --recursive
 ```
