@@ -1,3 +1,7 @@
+# YAMLLINT
+
+## Jenkins
+
 Jenkins definition
 ```
 def yamllint(quality) {
@@ -28,4 +32,26 @@ Jenkins stage
       yamllint(QUALITY_YAML)
     }
   }
+```
+
+## Gitlab-CI
+
+```yaml
+# Analyse yamllint du code YAML
+
+yamllint:
+  image: docker.io/ysebastia/yamllint:1.33.0
+  stage: test
+  tags:
+    - docker
+  script:
+    - yamllint -f parsable .
+      | yamllint-junit -o yamllint.xml
+  # Publication du résultat de l'analyse au format junit
+  artifacts:
+    when: always
+    reports:
+      junit: yamllint.xml
+  rules:
+    - when: on_success
 ```

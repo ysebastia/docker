@@ -1,3 +1,14 @@
+# TFLINT
+
+## Cli
+
+Command call
+```
+docker run --rm -t -v "${PWD}":/app -w /app docker.io/ysebastia/tflint:0.50.2 tflint --recursive
+```
+
+## Jenkins
+
 Jenkins definition
 ```
 def tflint(quality) {
@@ -30,7 +41,24 @@ Jenkins stage
   }
 ```
 
-Command call
-```
-docker run --rm -t -v "${PWD}":/app -w /app docker.io/ysebastia/tflint:0.50.2 tflint --recursive
+
+
+## Gitlab-CI
+
+```yaml
+# Extensions de tests Tflint
+
+# Un runner docker est utilisé pour l'exécution des jobs
+# Les résultats des tests sont publiés au format Junit
+.tflint:
+  image: docker.io/ysebastia/tflint:0.50.2
+  stage: test
+  tags:
+    - docker
+  script:
+    - tflint --recursive --format=junit | tee tflint.xml
+  artifacts:
+    when: always
+    reports:
+      junit: tflint.xml
 ```
