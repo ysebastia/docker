@@ -25,7 +25,7 @@ Jenkins stage
   stage ('yamllint') {
     agent {
       docker {
-        image 'ysebastia/yamllint:1.33.0'
+        image 'ysebastia/yamllint:1.34.0'
       }
     }
     steps {
@@ -40,7 +40,7 @@ Jenkins stage
 # Analyse yamllint du code YAML
 
 yamllint:
-  image: docker.io/ysebastia/yamllint:1.33.0
+  image: docker.io/ysebastia/yamllint:1.34.0
   stage: test
   tags:
     - docker

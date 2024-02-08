@@ -20,7 +20,7 @@ RUN pip install --no-cache-dir --upgrade pip==24.0 \
   pytest==8.0.0 \
   setuptools==69.0.3 \
   wcmatch==8.5 \
-  yamllint==1.33.0 \
+  yamllint==1.34.0 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
