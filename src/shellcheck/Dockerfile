@@ -1,7 +1,7 @@
 FROM alpine:20230901
 RUN apk add --no-cache \
   file=5.45-r1 \
-  git=2.43.0-r2 \
+  git=2.43.0-r3 \
   shellcheck=0.9.0-r5 \
   xmlstarlet=1.6.1-r2
 COPY checkstyle2junit.xslt /usr/local/share/
