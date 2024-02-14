@@ -20,9 +20,9 @@ def dockerbuild(image, path) {
      env.IMAGE = image
      env.PATH = path
    }
-   sh "docker build --no-cache --force-rm -t ${IMAGE} ${PATH}"
+   sh "docker build --no-cache --force-rm -t ${$IMAGE} ${$PATH}"
    sh "docker login --username $docker_creds_USR --password $docker_creds_PSW"
-   sh "docker push ${IMAGE}"
+   sh "docker push ${$IMAGE}"
    sh "docker logout"
 }
 
