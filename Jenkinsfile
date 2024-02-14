@@ -15,9 +15,21 @@ def runtrivy(image, name) {
    recordIssues enabledForFailure: true, tools: [junitParser(id: "trivy_${env.NAME}", name: "trivy_${env.NAME}", pattern: 'trivy.xml')]
    sh 'rm trivy.xml'
 }
+def dockerbuild(image, path) {
+   script {
+     env.IMAGE = image
+     env.PATH = path
+   }
+   sh "docker build --no-cache --force-rm -t ${$IMAGE} ${$PATH}"
+   sh "docker login --username $docker_creds_USR --password $docker_creds_PSW"
+   sh "docker push ${$IMAGE}"
+   sh "docker logout"
+}
+
 pipeline {
     agent any
     environment {
+    docker_creds = credentials('docker')    
     QUALITY_DOCKERFILE = "1"
     release_ansible = "ysebastia/ansible:2.16.3"
     release_ansiblelint = "ysebastia/ansible-lint:24.2.0"
@@ -111,11 +123,7 @@ pipeline {
                         label 'docker'
                     }
                     steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_wget}", "src/wget").push()
-                            }
-                        }
+                        dockerbuild("${env.release_wget}", "src/wget")
                     }
                 }
             }
