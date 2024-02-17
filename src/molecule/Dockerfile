@@ -23,6 +23,7 @@ RUN apk add --no-cache \
   bash=5.2.26-r0 \
   curl=8.6.0-r0 \
   docker=25.0.3-r0 \
+  docker-cli=25.0.3-r0 \
   git=2.43.1-r0 \
   py3-docker-py=7.0.0-r0 \
   python3=3.11.7-r1 \
