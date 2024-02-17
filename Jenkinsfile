@@ -34,6 +34,7 @@ pipeline {
     release_jshint = "ysebastia/jshint:2.13.6"
     release_make = "ysebastia/make:4.4.1-r2"
     release_molecule = "ysebastia/molecule:24.2.0"
+    release_molecule_debian = "ysebastia/molecule:debian-12.5"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.27"
     release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.27"
     release_phpmd = "ysebastia/phpmd:2.15.0-php8.1.27"
@@ -302,7 +303,19 @@ pipeline {
                             }
                         }
                     }
-                }                
+                }
+                stage('molecule_debian') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_molecule_debian}", "src/molecule-debian").push()
+                            }
+                        }
+                    }
+                }
                 stage('phpcpd') {
                     agent {
                         label 'docker'
@@ -424,6 +437,7 @@ pipeline {
             runtrivy("${env.release_jshint}", "jshint")
             runtrivy("${env.release_make}", "make")
             runtrivy("${env.release_molecule}", "molecule")
+            runtrivy("${env.release_molecule_debian}", "molecule-debian")
             runtrivy("${env.release_phpcpd}", "phpcpd")
             runtrivy("${env.release_phpcs}", "phpcs")
             runtrivy("${env.release_phpmd}", "phpmd")
