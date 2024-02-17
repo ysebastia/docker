@@ -20,6 +20,7 @@ COPY requirements.yml /root/requirements.yml
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN apk add --no-cache \
+  bash=5.2.26-r0 \
   curl=8.6.0-r0 \
   docker=25.0.3-r0 \
   git=2.43.1-r0 \
