@@ -1,4 +1,4 @@
-FROM debian:12.5-slim
+FROM debian:12.5
 ARG DEBIAN_FRONTEND=noninteractive
 
 # hadolint ignore=DL3008
