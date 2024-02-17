@@ -13,6 +13,7 @@ RUN apt-get update \
   python3-apt \
   python3-jmespath \
   python3-pip \
+  ssh \
   sudo \
   systemd-cron \
   systemd-sysv \
