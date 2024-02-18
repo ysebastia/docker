@@ -64,6 +64,6 @@ done
 dir_role="$(find . -name galaxy.yml -exec dirname {} \;)"
 cd "${dir_role}" || exit 2
 
-run_test ${target} ${message}
+run_test "${target}" "${message}"
 
 exit 0
