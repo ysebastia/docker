@@ -10,7 +10,7 @@ RUN apk add --no-cache \
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==24.0 \
   && pip install --no-cache-dir \
-  checkov==3.2.7 \
+  checkov==3.2.22 \
   setuptools==69.1.0 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
