@@ -9,7 +9,7 @@ find . -name molecule.yml -print0 |
         dir_role=$(dirname "${line}")
 		echo -e "| ${GREEN}Test ${roledir}${NOCOLOR}"
         pushd "${dir_role}/../../" || exit 2
-        molecule list
+        molecule test
         popd || exit 2
     done
 
