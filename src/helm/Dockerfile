@@ -7,7 +7,7 @@ FROM alpine:20230901
 
 RUN apk add --no-cache \
   bash=5.2.26-r0 \
-  git=2.43.1-r0
+  git=2.43.2-r0
 COPY --from=downloader /usr/local/bin/helm /usr/local/bin/helm
 RUN chmod +x /usr/local/bin/helm \
   && helm repo add "stable" "https://charts.helm.sh/stable" --force-update \
