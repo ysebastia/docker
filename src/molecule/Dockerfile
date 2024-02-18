@@ -16,9 +16,10 @@ RUN pip install --no-cache-dir --upgrade pip==24.0 \
 
 FROM alpine:20230901
 COPY --from=builder /venv /venv
-COPY requirements.yml /root/requirements.yml
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+COPY requirements.yml /root/
+COPY run_molecule.bash /usr/local/bin/
 RUN apk add --no-cache \
   bash=5.2.26-r0 \
   curl=8.6.0-r0 \
@@ -32,4 +33,5 @@ RUN apk add --no-cache \
   sudo=1.9.15_p5-r0 \
   && mkdir -p /.cache /.ansible /.ansible_async \
   && chmod 777 /.cache /.ansible /.ansible_async \
-  && ansible-galaxy collection install -r /root/requirements.yml --collections-path "/usr/share/ansible/collections"
+  && ansible-galaxy collection install -r /root/requirements.yml --collections-path "/usr/share/ansible/collections" \
+  && chmod +x /usr/local/bin/*.bash
