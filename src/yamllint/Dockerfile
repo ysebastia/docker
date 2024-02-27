@@ -9,7 +9,7 @@ RUN apk add --no-cache \
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==24.0 \
   && pip install --no-cache-dir \
-  setuptools==69.1.0 \
+  setuptools==69.1.1 \
   yamllint-junit==0.10.1 \
   yamllint==1.35.1 \
   && pip list -o \
