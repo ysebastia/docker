@@ -34,6 +34,7 @@ pipeline {
     release_jshint = "ysebastia/jshint:2.13.6"
     release_make = "ysebastia/make:4.4.1-r2"
     release_molecule = "ysebastia/molecule:24.2.0"
+    release_molecule_alma = "ysebastia/molecule:alma-9.3"
     release_molecule_debian = "ysebastia/molecule:debian-12.5"
     release_molecule_ubuntu = "ysebastia/molecule:ubuntu-mantic"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.27"
@@ -300,31 +301,10 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_molecule}", "src/molecule").push()
-                            }
-                        }
-                    }
-                }
-                stage('molecule_debian') {
-                    agent {
-                        label 'docker'
-                    }
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_molecule_alma}", "src/molecule-alma").push()
                                 docker.build("${env.release_molecule_debian}", "src/molecule-debian").push()
-                            }
-                        }
-                    }
-                }
-                stage('molecule_ubuntu') {
-                    agent {
-                        label 'docker'
-                    }
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_molecule_ubuntu}", "src/molecule-ubuntu").push()
+                                docker.build("${env.release_molecule}", "src/molecule").push()
                             }
                         }
                     }
