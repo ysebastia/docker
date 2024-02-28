@@ -7,7 +7,7 @@ RUN dnf update -y \
   kmod \
   python3-jmespath \
   python3-pip \
-  openssh \
+  openssh-server \
   sudo \
   systemd-sysv \
   && dnf clean all && rm -rf /tmp/* /var/tmp/*
