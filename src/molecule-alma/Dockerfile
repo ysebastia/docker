@@ -4,10 +4,11 @@ FROM almalinux:9.3
 RUN dnf update -y \
   && dnf -y install \
   git \
+  iproute \
   kmod \
+  openssh-server \
   python3-jmespath \
   python3-pip \
-  openssh-server \
   sudo \
   systemd-sysv \
   && ssh-keygen -q -t rsa -b 2048 -f /etc/ssh/ssh_host_rsa_key -N '' \

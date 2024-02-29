@@ -7,6 +7,7 @@ RUN apt-get update \
   curl \
   git \
   grub-common \
+  iproute2 \
   kmod \
   locales \
   python-is-python3 \
