@@ -3,6 +3,7 @@ FROM almalinux:9.3
 # hadolint ignore=DL3041
 RUN dnf update -y \
   && dnf -y install \
+  NetworkManager\
   git \
   iproute \
   kmod \
