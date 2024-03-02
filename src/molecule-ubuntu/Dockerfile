@@ -1,5 +1,8 @@
 FROM ubuntu:mantic
 ARG DEBIAN_FRONTEND=noninteractive
+ENV ANSIBLE_USER=ansible
+ENV DEPLOY_GROUP=deployer
+ENV SUDO_GROUP=sudo
 
 # hadolint ignore=DL3008
 RUN apt-get update \
@@ -27,6 +30,15 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
     /lib/systemd/system/sockets.target.wants/*initctl* \
     /lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup* \
     /lib/systemd/system/systemd-update-utmp*
+
+# https://ansible.readthedocs.io/projects/molecule/guides/docker-rootless/#docker-with-non-privileged-user
+RUN set -xe \
+  && groupadd -r ${ANSIBLE_USER} \
+  && groupadd -r ${DEPLOY_GROUP} \
+  && useradd -m -g ${ANSIBLE_USER} ${ANSIBLE_USER} \
+  && usermod -aG ${SUDO_GROUP} ${ANSIBLE_USER} \
+  && usermod -aG ${DEPLOY_GROUP} ${ANSIBLE_USER} \
+  && sed -i "/^%${SUDO_GROUP}/s/ALL\$/NOPASSWD:ALL/g" /etc/sudoers
 
 VOLUME [ "/sys/fs/cgroup", "/tmp", "/run" ]
 
