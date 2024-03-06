@@ -37,6 +37,6 @@ RUN set -xe \
   && usermod -aG ${DEPLOY_GROUP} ${ANSIBLE_USER} \
   && sed -i "/^%${SUDO_GROUP}/s/ALL\$/NOPASSWD:ALL/g" /etc/sudoers
 
-VOLUME [ "/sys/fs/cgroup", "/tmp", "/run" ]
+VOLUME [ "/sys/fs/cgroup" ]
 
 CMD [ "/lib/systemd/systemd" ]
