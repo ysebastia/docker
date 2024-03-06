@@ -20,6 +20,7 @@ RUN dnf update -y \
   && ssh-keygen -t dsa -f /etc/ssh/ssh_host_ed25519_key  -N '' \
   && dnf clean all && rm -rf /tmp/* /var/tmp/*
 
+# https://hub.docker.com/_/centos/
 RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
     /etc/systemd/system/*.wants/* \
     /lib/systemd/system/local-fs.target.wants/* \
