@@ -20,7 +20,7 @@ pipeline {
     environment {
     QUALITY_DOCKERFILE = "1"
     release_ansible = "ysebastia/ansible:2.16.4"
-    release_ansiblelint = "ysebastia/ansible-lint:24.2.0"
+    release_ansiblelint = "ysebastia/ansible-lint:24.2.1"
     release_checkov = "ysebastia/checkov:3.2.26"
     release_cloc = "ysebastia/cloc:2.00"
     release_csslint = "ysebastia/csslint:1.0.5-1"
