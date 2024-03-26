@@ -24,8 +24,8 @@ COPY run_molecule.bash /usr/local/bin/
 RUN apk add --no-cache \
   bash=5.2.26-r0 \
   curl=8.6.0-r0 \
-  docker=25.0.4-r1 \
-  docker-cli=25.0.4-r1 \
+  docker=26.0.0-r0 \
+  docker-cli=26.0.0-r0 \
   git=2.44.0-r0 \
   py3-docker-py=7.0.0-r0 \
   python3=3.11.8-r0 \
