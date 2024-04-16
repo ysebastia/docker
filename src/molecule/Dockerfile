@@ -11,7 +11,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==24.0 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-core==2.16.6 \
-  molecule==24.2.0 \
+  molecule==24.2.1 \
   molecule-plugins[docker]==23.5.3 \
   setuptools==69.5.1 \
   && pip list -o \
@@ -26,10 +26,12 @@ COPY run_molecule.bash /usr/local/bin/
 RUN apk add --no-cache \
   bash=5.2.26-r0 \
   curl=8.7.1-r0 \
-  docker=26.0.1-r0 \
   docker-cli=26.0.1-r0 \
+  docker=26.0.1-r0 \
   git=2.44.0-r2 \
+  openssl=3.3.0-r0 \
   py3-docker-py=7.0.0-r1 \
+  py3-openssl=24.1.0-r1 \
   python3=3.12.3-r0 \
   rsync=3.3.0-r0 \ 
   sshpass=1.10-r0 \
