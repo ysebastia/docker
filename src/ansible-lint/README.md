@@ -6,7 +6,7 @@
 Command call
 
 ```bash
-docker run --rm -t -v "${PWD}":/app -w /app docker.io/ysebastia/ansible-lint:24.2.1 ansible-lint -p /app
+docker run --rm -t -v "${PWD}":/app -w /app docker.io/ysebastia/ansible-lint:24.2.2 ansible-lint -p /app
 ```
 
 ## Jenkins
@@ -37,7 +37,7 @@ Jenkins stage
   stage ('Ansible lint') {
     agent {
       docker {
-        image 'ysebastia/ansible-lint:24.2.1'
+        image 'ysebastia/ansible-lint:24.2.2'
       }
     }
     steps {
@@ -52,7 +52,7 @@ Jenkins stage
 # Analyse ansible-lint du code Ansible
 
 ansible-lint:
-  image: docker.io/ysebastia/ansible-lint:24.2.1
+  image: docker.io/ysebastia/ansible-lint:24.2.2
   stage: test
   tags:
     - docker
