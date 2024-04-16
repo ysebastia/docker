@@ -1,4 +1,4 @@
-FROM alpine:20230901
+FROM alpine:20240329
 RUN apk add --no-cache \
   file=5.45-r1 \
   git=2.44.0-r0 \

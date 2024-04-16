@@ -1,4 +1,4 @@
-FROM alpine:20230901
+FROM alpine:20240329
 RUN apk add --no-cache \
   bash=5.2.26-r0 \
   ca-certificates=20230506-r1 \
