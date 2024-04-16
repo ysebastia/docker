@@ -31,7 +31,7 @@ RUN apk add --no-cache \
   git=2.44.0-r2 \
   py3-docker-py=7.0.0-r1 \
   python3=3.12.3-r0 \
-  rsync=3.2.7-r4 \ 
+  rsync=3.3.0-r0 \ 
   sshpass=1.10-r0 \
   sudo=1.9.15_p5-r0 \
   && mkdir -p /.cache /.ansible /.ansible_async \
