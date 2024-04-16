@@ -2,7 +2,7 @@ FROM alpine:20230901 as builder
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
   py3-pip=24.0-r2 \
-  py3-virtualenv=20.25.1-r0 \
+  py3-virtualenv=20.25.1-r1 \
   py3-wheel=0.42.0-r0 \
   && python3 -m venv /venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
