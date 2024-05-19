@@ -1,4 +1,4 @@
-FROM almalinux:9.3
+FROM almalinux:9.4
 ENV ANSIBLE_USER=ansible
 ENV DEPLOY_GROUP=deployer
 ENV SUDO_GROUP=wheel
