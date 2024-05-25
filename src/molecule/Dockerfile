@@ -10,7 +10,7 @@ RUN apk add --no-cache \
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==24.0 \
   && pip install --no-cache-dir --use-pep517 \
-  ansible-core==2.16.6 \
+  ansible-core==2.17.0 \
   molecule==24.2.1 \
   molecule-plugins[docker]==23.5.3 \
   setuptools==69.5.1 \
