@@ -28,7 +28,7 @@ RUN apk add --no-cache \
   curl=8.8.0-r0 \
   docker-cli=26.1.3-r0 \
   docker=26.1.3-r0 \
-  git=2.45.2-r0 \
+  git=2.45.2-r1 \
   openssl=3.3.1-r0 \
   py3-docker-py=7.0.0-r1 \
   py3-openssl=24.1.0-r1 \
