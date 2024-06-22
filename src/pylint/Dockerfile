@@ -10,7 +10,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==24.1 \
   && pip install --no-cache-dir --use-pep517 \
   pylint==3.2.3 \
-  setuptools==70.0.0 \
+  setuptools==70.1.0 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
