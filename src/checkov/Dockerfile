@@ -10,7 +10,7 @@ RUN apk add --no-cache \
   py3-wheel=0.42.0-r1 \
   && python3 -m venv /venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN pip install --no-cache-dir --upgrade pip==24.0 \
+RUN pip install --no-cache-dir --upgrade pip==24.1 \
   && pip install --no-cache-dir \
   checkov==3.2.70 \
   setuptools==70.0.0 \
