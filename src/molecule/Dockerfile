@@ -23,6 +23,7 @@ ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY requirements.yml /root/
 COPY run_molecule.bash /usr/local/bin/
+COPY coverage.bash /usr/local/bin/
 RUN apk add --no-cache \
   bash=5.2.26-r0 \
   curl=8.8.0-r0 \
