@@ -4,6 +4,7 @@ set -e
 NOCOLOR='\033[0m'
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
 
 for arg in "$@" ; do
    shift
@@ -62,7 +63,11 @@ function fake_coverage()
 
 while IFS= read -r -d '' line; do 
     dir_collection=$(dirname "${line}")
-    fake_coverage
+    if [ -d "${dir_collection}/${molecule}/" ]; then
+        fake_coverage
+    else
+        echo -e "${ORANGE}Missing directory ${dir_collection}/${molecule}${NOCOLOR}"
+    fi    
 done < <(find . -name galaxy.yml -print0)
 
 overall_coverage=$(echo "scale=0;$sum_coverage / $nb_collection" | bc)
