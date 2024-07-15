@@ -27,8 +27,8 @@ COPY coverage.bash /usr/local/bin/
 RUN apk add --no-cache \
   bash=5.2.26-r0 \
   curl=8.8.0-r0 \
-  docker-cli=26.1.4-r1 \
-  docker=26.1.4-r1 \
+  docker-cli=27.0.3-r1 \
+  docker=27.0.3-r1 \
   git=2.45.2-r1 \
   openssl=3.3.1-r3 \
   py3-docker-py=7.0.0-r1 \
