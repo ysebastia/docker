@@ -1,4 +1,4 @@
-FROM alpine:20240329 as builder
+FROM alpine:20240329 AS builder
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
   openssl=3.3.1-r3 \
@@ -9,7 +9,7 @@ RUN apk add --no-cache \
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==24.1.2 \
   && pip install --no-cache-dir --use-pep517 \
-  pylint==3.2.3 \
+  pylint==3.2.5 \
   setuptools==70.1.0 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
