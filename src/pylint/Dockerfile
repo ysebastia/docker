@@ -7,7 +7,7 @@ RUN apk add --no-cache \
   py3-virtualenv=20.26.3-r0 \
   && python3 -m venv /venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN pip install --no-cache-dir --upgrade pip==24.1.2 \
+RUN pip install --no-cache-dir --upgrade pip==24.2 \
   && pip install --no-cache-dir --use-pep517 \
   pylint==3.2.5 \
   setuptools==70.1.0 \
