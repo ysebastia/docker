@@ -6,6 +6,6 @@ RUN apk add --no-cache \
   gzip=1.13-r0 \
   make=4.4.1-r2 \
   tar=1.35-r2 \
-  unzip=6.0-r14 \
+  unzip=6.0-r15 \
   wget=1.24.5-r0
 WORKDIR /tmp
