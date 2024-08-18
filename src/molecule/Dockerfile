@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir --upgrade pip==24.2 \
   ansible-core==2.17.3 \
   molecule==24.8.0 \
   molecule-plugins[docker]==23.5.3 \
-  setuptools==70.1.0 \
+  setuptools==72.2.0 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 

@@ -13,7 +13,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==24.2 \
   && pip install --no-cache-dir \
   checkov==3.2.70 \
-  setuptools==70.1.0 \
+  setuptools==72.2.0 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 CMD ["/venv/bin/checkov"]
