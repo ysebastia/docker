@@ -3,7 +3,7 @@ ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
   openssl=3.3.1-r3 \
   py3-openssl=24.1.0-r1 \
-  py3-pip=24.1.2-r0 \
+  py3-pip=24.2-r0 \
   py3-virtualenv=20.26.3-r0 \
   py3-wheel=0.42.0-r1 \
   && python3 -m venv /venv
