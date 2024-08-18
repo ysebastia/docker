@@ -6,7 +6,7 @@ RUN wget -q https://get.helm.sh/helm-v3.15.4-linux-amd64.tar.gz -O - | tar -xzO 
 FROM alpine:20240329
 
 RUN apk add --no-cache \
-  bash=5.2.26-r0 \
+  bash=5.2.32-r0 \
   git=2.46.0-r0
 COPY --from=downloader /usr/local/bin/helm /usr/local/bin/helm
 RUN chmod +x /usr/local/bin/helm \
