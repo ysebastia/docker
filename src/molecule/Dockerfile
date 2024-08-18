@@ -31,7 +31,7 @@ RUN apk add --no-cache \
   docker=27.1.2-r0 \
   git=2.46.0-r0 \
   openssl=3.3.1-r3 \
-  py3-docker-py=7.0.0-r1 \
+  py3-docker-py=7.1.0-r0 \
   py3-openssl=24.1.0-r1 \
   python3=3.12.5-r0\
   rsync=3.3.0-r0 \ 
