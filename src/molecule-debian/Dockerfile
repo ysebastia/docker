@@ -1,4 +1,4 @@
-FROM debian:12.6
+FROM debian:12.7
 ARG DEBIAN_FRONTEND=noninteractive
 ENV ANSIBLE_USER=ansible
 ENV DEPLOY_GROUP=deployer

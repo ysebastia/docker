@@ -3,7 +3,7 @@ FROM docker.io/ysebastia/wget:1.24.5-r0 AS downloader
 RUN wget -q https://github.com/techsneeze/dmarcts-report-parser/archive/refs/heads/master.zip \
   && unzip -q master.zip
 
-FROM debian:12.6-slim
+FROM debian:12.7-slim
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
