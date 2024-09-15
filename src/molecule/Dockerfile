@@ -11,7 +11,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==24.2 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-core==2.17.4 \
-  molecule==24.8.0 \
+  molecule==24.9.0 \
   molecule-plugins[docker]==23.5.3 \
   setuptools==72.2.0 \
   && pip list -o \

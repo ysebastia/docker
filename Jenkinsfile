@@ -33,7 +33,7 @@ pipeline {
     release_jscpd = "ysebastia/jscpd:3.5.10-1"
     release_jshint = "ysebastia/jshint:2.13.6"
     release_make = "ysebastia/make:4.4.1-r2"
-    release_molecule = "ysebastia/molecule:24.8.0"
+    release_molecule = "ysebastia/molecule:24.9.0"
     release_molecule_alma = "ysebastia/molecule:alma-9.4"
     release_molecule_debian = "ysebastia/molecule:debian-12.7"
     release_molecule_ubuntu = "ysebastia/molecule:ubuntu-mantic"
