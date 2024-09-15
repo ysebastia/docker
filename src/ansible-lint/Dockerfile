@@ -3,7 +3,7 @@ ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
   gcc=14.2.0-r1 \
   musl-dev=1.2.5-r2 \
-  openssl=3.3.1-r3 \
+  openssl=3.3.2-r0 \
   py3-filelock=3.13.1-r1 \
   py3-openssl=24.1.0-r1 \
   py3-pip=24.2-r0 \
@@ -33,7 +33,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN apk add --no-cache \
   curl=8.9.1-r2 \
   git=2.46.1-r0 \
-  openssl=3.3.1-r3 \
+  openssl=3.3.2-r0 \
   py3-openssl=24.1.0-r1 \
   python3=3.12.5-r0\
   && mkdir -p /.cache /.ansible \
