@@ -1,7 +1,11 @@
 FROM almalinux:9.4
+ARG HTTPS_PROXY
+ARG HTTP_PROXY
 ENV ANSIBLE_USER=ansible
 ENV DEPLOY_GROUP=deployer
 ENV SUDO_GROUP=wheel
+ENV http_proxy=$HTTP_PROXY
+ENV https_proxy=$HTTPS_PROXY
 
 # hadolint ignore=DL3041
 RUN dnf update -y \
