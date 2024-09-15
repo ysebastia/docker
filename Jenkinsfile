@@ -304,7 +304,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_molecule_alma}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule-alma").push()
+                                docker.build("${env.release_molecule_alma}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-alma").push()
                                 docker.build("${env.release_molecule_debian}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule-debian").push()
                                 docker.build("${env.release_molecule_ubuntu}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule-ubuntu").push()
                                 docker.build("${env.release_molecule}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule").push()
