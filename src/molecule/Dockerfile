@@ -26,7 +26,7 @@ COPY run_molecule.bash /usr/local/bin/
 COPY coverage.bash /usr/local/bin/
 RUN apk add --no-cache \
   bash=5.2.32-r0 \
-  curl=8.9.1-r1 \
+  curl=8.9.1-r2 \
   docker-cli=27.1.2-r0 \
   docker=27.1.2-r0 \
   git=2.46.0-r0 \
