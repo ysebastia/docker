@@ -5,6 +5,10 @@ RUN wget -q https://github.com/techsneeze/dmarcts-report-parser/archive/refs/hea
 
 FROM debian:12.7-slim
 ARG DEBIAN_FRONTEND=noninteractive
+ARG HTTPS_PROXY
+ARG HTTP_PROXY
+ENV http_proxy=$HTTP_PROXY
+ENV https_proxy=$HTTPS_PROXY
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     libclass-dbi-mysql-perl=1.00-5 \
