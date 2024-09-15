@@ -1,8 +1,12 @@
 FROM debian:12.7
 ARG DEBIAN_FRONTEND=noninteractive
+ARG HTTPS_PROXY
+ARG HTTP_PROXY
 ENV ANSIBLE_USER=ansible
 ENV DEPLOY_GROUP=deployer
 ENV SUDO_GROUP=sudo
+ENV http_proxy=$HTTP_PROXY
+ENV https_proxy=$HTTPS_PROXY
 
 # hadolint ignore=DL3008
 RUN apt-get update \
