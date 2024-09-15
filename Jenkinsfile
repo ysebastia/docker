@@ -67,6 +67,7 @@ pipeline {
                       label 'docker'
                         dir 'src/cloc'
                         filename 'Dockerfile'
+                        additionalBuildArgs "--build-arg https_proxy=$HTTPS_PROXY"
                      }
                   }
                   steps {
@@ -95,6 +96,7 @@ pipeline {
                       label 'docker'
                         dir 'src/shellcheck'
                         filename 'Dockerfile'
+                        additionalBuildArgs "--build-arg https_proxy=$HTTPS_PROXY"
                      }
                   }
                   steps {
@@ -118,7 +120,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_wget}", "src/wget").push()
+                                docker.build("${env.release_wget}", "--build-arg https_proxy=$HTTPS_PROXY src/wget").push()
                             }
                         }
                     }
@@ -134,7 +136,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_ansible}", "src/ansible").push()
+                                docker.build("${env.release_ansible}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible").push()
                             }
                         }
                     }
@@ -146,7 +148,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_ansiblelint}", "src/ansible-lint").push()
+                                docker.build("${env.release_ansiblelint}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible-lint").push()
                             }
                         }
                     }
@@ -158,7 +160,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_checkov}", "src/checkov").push()
+                                docker.build("${env.release_checkov}", "--build-arg https_proxy=$HTTPS_PROXY src/checkov").push()
                             }
                         }
                     }
@@ -170,7 +172,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_cloc}", "src/cloc").push()
+                                docker.build("${env.release_cloc}", "--build-arg https_proxy=$HTTPS_PROXY src/cloc").push()
                             }
                         }
                     }
@@ -182,7 +184,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_csslint}", "src/csslint").push()
+                                docker.build("${env.release_csslint}", "--build-arg https_proxy=$HTTPS_PROXY src/csslint").push()
                             }
                         }
                     }
@@ -194,7 +196,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_dmarctsreportparser}", "src/dmarcts-report-parser").push()
+                                docker.build("${env.release_dmarctsreportparser}", "--build-arg https_proxy=$HTTPS_PROXY src/dmarcts-report-parser").push()
                             }
                         }
                     }
@@ -206,7 +208,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_dmarctsreportviewer}", "src/dmarcts-report-viewer").push()
+                                docker.build("${env.release_dmarctsreportviewer}", "--build-arg https_proxy=$HTTPS_PROXY src/dmarcts-report-viewer").push()
                             }
                         }
                     }
@@ -218,7 +220,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_doxygen}", "src/doxygen").push()
+                                docker.build("${env.release_doxygen}", "--build-arg https_proxy=$HTTPS_PROXY src/doxygen").push()
                             }
                         }
                     }
@@ -230,7 +232,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_hadolint}", "src/hadolint").push()
+                                docker.build("${env.release_hadolint}", "--build-arg https_proxy=$HTTPS_PROXY src/hadolint").push()
                             }
                         }
                     }
@@ -242,7 +244,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_helm}", "src/helm").push()
+                                docker.build("${env.release_helm}", "--build-arg https_proxy=$HTTPS_PROXY src/helm").push()
                             }
                         }
                     }
@@ -254,7 +256,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_jest}", "src/jest").push()
+                                docker.build("${env.release_jest}", "--build-arg https_proxy=$HTTPS_PROXY src/jest").push()
                             }
                         }
                     }
@@ -266,7 +268,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_jscpd}", "src/jscpd").push()
+                                docker.build("${env.release_jscpd}", "--build-arg https_proxy=$HTTPS_PROXY src/jscpd").push()
                             }
                         }
                     }
@@ -278,7 +280,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_jshint}", "src/jshint").push()
+                                docker.build("${env.release_jshint}", "--build-arg https_proxy=$HTTPS_PROXY src/jshint").push()
                             }
                         }
                     }
@@ -290,7 +292,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_make}", "src/make").push()
+                                docker.build("${env.release_make}", "--build-arg https_proxy=$HTTPS_PROXY src/make").push()
                             }
                         }
                     }
@@ -302,10 +304,10 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_molecule_alma}", "src/molecule-alma").push()
-                                docker.build("${env.release_molecule_debian}", "src/molecule-debian").push()
-                                docker.build("${env.release_molecule_ubuntu}", "src/molecule-ubuntu").push()
-                                docker.build("${env.release_molecule}", "src/molecule").push()
+                                docker.build("${env.release_molecule_alma}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule-alma").push()
+                                docker.build("${env.release_molecule_debian}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule-debian").push()
+                                docker.build("${env.release_molecule_ubuntu}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule-ubuntu").push()
+                                docker.build("${env.release_molecule}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule").push()
                             }
                         }
                     }
@@ -317,7 +319,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_phpcpd}", "src/phpcpd").push()
+                                docker.build("${env.release_phpcpd}", "--build-arg https_proxy=$HTTPS_PROXY src/phpcpd").push()
                             }
                         }
                     }
@@ -329,7 +331,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_phpcs}", "src/phpcs").push()
+                                docker.build("${env.release_phpcs}", "--build-arg https_proxy=$HTTPS_PROXY src/phpcs").push()
                             }
                         }
                     }
@@ -341,7 +343,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_phpmd}", "src/phpmd").push()
+                                docker.build("${env.release_phpmd}", "--build-arg https_proxy=$HTTPS_PROXY src/phpmd").push()
                             }
                         }
                     }
@@ -353,7 +355,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_pylint}", "src/pylint").push()
+                                docker.build("${env.release_pylint}", "--build-arg https_proxy=$HTTPS_PROXY src/pylint").push()
                             }
                         }
                     }
@@ -365,7 +367,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_shellcheck}", "src/shellcheck").push()
+                                docker.build("${env.release_shellcheck}", "--build-arg https_proxy=$HTTPS_PROXY src/shellcheck").push()
                             }
                         }
                     }
@@ -377,7 +379,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_tflint}", "src/tflint").push()
+                                docker.build("${env.release_tflint}", "--build-arg https_proxy=$HTTPS_PROXY src/tflint").push()
                             }
                         }
                     }
@@ -389,7 +391,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_trivy}", "src/trivy").push()
+                                docker.build("${env.release_trivy}", "--build-arg https_proxy=$HTTPS_PROXY src/trivy").push()
                             }
                         }
                     }
@@ -401,7 +403,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_yamllint}", "src/yamllint").push()
+                                docker.build("${env.release_yamllint}", "--build-arg https_proxy=$HTTPS_PROXY src/yamllint").push()
                             }
                         }
                     }
