@@ -1,4 +1,4 @@
-FROM alpine:20240329 AS builder
+FROM alpine:20240807 AS builder
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
   gcc=14.2.0-r2 \
@@ -26,7 +26,7 @@ RUN pip install --no-cache-dir --upgrade pip==24.2 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
-FROM alpine:20240329
+FROM alpine:20240807
 COPY --from=builder /venv /venv
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"

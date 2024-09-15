@@ -3,7 +3,7 @@ FROM docker.io/ysebastia/wget:1.24.5-r0 AS downloader
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN wget -q https://get.helm.sh/helm-v3.16.1-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm
 
-FROM alpine:20240329
+FROM alpine:20240807
 ARG HTTPS_PROXY
 ARG HTTP_PROXY
 ENV http_proxy=$HTTP_PROXY
