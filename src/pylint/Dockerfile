@@ -19,5 +19,5 @@ COPY --from=builder /venv /venv
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN apk add --no-cache \
-  python3=3.12.5-r0
+  python3=3.12.6-r0
 CMD ["/venv/bin/pylint"]
