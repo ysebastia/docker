@@ -80,8 +80,9 @@ pipeline {
                   agent {
                     dockerfile {
                       label 'docker'
-                        dir 'src/hadolint'
-                        filename 'Dockerfile'
+                      dir 'src/hadolint'
+                      filename 'Dockerfile'
+                      additionalBuildArgs "--build-arg http_proxy=$HTTPS_PROXY"
                      }
                   }
                 steps {
