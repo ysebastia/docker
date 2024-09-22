@@ -36,7 +36,7 @@ pipeline {
     release_molecule = "ysebastia/molecule:24.9.0"
     release_molecule_alma = "ysebastia/molecule:alma-9.4"
     release_molecule_debian = "ysebastia/molecule:debian-12.7"
-    release_molecule_ubuntu = "ysebastia/molecule:ubuntu-mantic"
+    release_molecule_ubuntu = "ysebastia/molecule:ubuntu-noble"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.27"
     release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.27"
     release_phpmd = "ysebastia/phpmd:2.15.0-php8.1.27"
