@@ -11,7 +11,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==24.3.1 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-core==2.17.5 \
-  setuptools==72.2.0 \
+  setuptools==75.3.0 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
