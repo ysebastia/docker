@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir --upgrade pip==24.3.1 \
   black==24.10.0 \
   jmespath==1.0.1 \
   jsonschema==4.23.0 \
-  pytest==8.3.2 \
+  pytest==8.3.3 \
   setuptools==72.2.0 \
   wcmatch==9.0 \
   yamllint==1.35.1 \
