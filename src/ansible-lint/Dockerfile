@@ -1,7 +1,7 @@
 FROM alpine:20240807 AS builder
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
-  gcc=14.2.0-r2 \
+  gcc=14.2.0-r4 \
   musl-dev=1.2.5-r2 \
   openssl=3.3.2-r3 \
   py3-filelock=3.13.1-r1 \
