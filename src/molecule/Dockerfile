@@ -33,7 +33,7 @@ RUN apk add --no-cache \
   openssl=3.3.2-r1 \
   py3-docker-py=7.1.0-r0 \
   py3-openssl=24.1.0-r1 \
-  python3=3.12.6-r0\
+  python3=3.12.7-r1 \
   rsync=3.3.0-r0 \ 
   sshpass=1.10-r0 \
   sudo=1.9.16-r0 \
