@@ -32,7 +32,7 @@ ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN apk add --no-cache \
   curl=8.9.1-r2 \
-  git=2.46.1-r0 \
+  git=2.46.2-r0 \
   openssl=3.3.2-r1 \
   py3-openssl=24.1.0-r1 \
   python3=3.12.6-r0\
