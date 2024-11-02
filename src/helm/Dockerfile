@@ -12,7 +12,7 @@ ENV HTTP_PROXY=$HTTP_PROXY
 ENV HTTPS_PROXY=$HTTPS_PROXY
 
 RUN apk add --no-cache \
-  bash=5.2.32-r0 \
+  bash=5.2.37-r0 \
   git=2.46.2-r0 \
   wget=1.24.5-r0
 COPY --from=downloader /usr/local/bin/helm /usr/local/bin/helm

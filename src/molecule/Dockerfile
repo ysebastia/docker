@@ -25,7 +25,7 @@ COPY requirements.yml /root/
 COPY run_molecule.bash /usr/local/bin/
 COPY coverage.bash /usr/local/bin/
 RUN apk add --no-cache \
-  bash=5.2.32-r0 \
+  bash=5.2.37-r0 \
   curl=8.10.1-r0 \
   docker-cli=27.3.0-r0 \
   docker=27.3.0-r0 \
