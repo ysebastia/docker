@@ -7,7 +7,7 @@ RUN apk add --no-cache \
   py3-filelock=3.13.1-r1 \
   py3-openssl=24.1.0-r1 \
   py3-pip=24.3-r0 \
-  py3-virtualenv=20.27.0-r0 \
+  py3-virtualenv=20.27.1-r0 \
   py3-wheel=0.43.0-r0 \
   python3-dev=3.12.7-r1 \
   && python3 -m venv /venv
