@@ -31,7 +31,7 @@ COPY --from=builder /venv /venv
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN apk add --no-cache \
-  curl=8.10.1-r0 \
+  curl=8.11.0-r2 \
   git=2.47.0-r0 \
   openssl=3.3.2-r3 \
   py3-openssl=24.1.0-r1 \
