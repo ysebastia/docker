@@ -1,7 +1,7 @@
 FROM alpine:20240923
 RUN apk add --no-cache \
   bash=5.2.37-r0 \
-  ca-certificates=20240705-r0 \
+  ca-certificates=20241010-r0 \
   curl=8.11.0-r2 \
   gzip=1.13-r0 \
   make=4.4.1-r2 \
