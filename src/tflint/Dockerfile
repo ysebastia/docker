@@ -1,4 +1,4 @@
-FROM docker.io/ysebastia/wget:1.24.5-r0 AS downloader
+FROM docker.io/ysebastia/wget:1.25.0-r0 AS downloader
 
 RUN wget -q https://raw.githubusercontent.com/terraform-linters/tflint/v0.53.0/install_linux.sh \
   && bash /tmp/install_linux.sh

@@ -1,4 +1,4 @@
-FROM docker.io/ysebastia/wget:1.24.5-r0 AS downloader
+FROM docker.io/ysebastia/wget:1.25.0-r0 AS downloader
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN wget -q https://get.helm.sh/helm-v3.16.3-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm
@@ -14,7 +14,7 @@ ENV HTTPS_PROXY=$HTTPS_PROXY
 RUN apk add --no-cache \
   bash=5.2.37-r0 \
   git=2.47.1-r0 \
-  wget=1.24.5-r0
+  wget=1.25.0-r0
 COPY --from=downloader /usr/local/bin/helm /usr/local/bin/helm
 RUN chmod +x /usr/local/bin/helm \
   && helm repo add "stable" "https://charts.helm.sh/stable" --force-update \

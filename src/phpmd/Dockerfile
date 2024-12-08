@@ -1,4 +1,4 @@
-FROM docker.io/ysebastia/wget:1.24.5-r0 as downloader
+FROM docker.io/ysebastia/wget:1.25.0-r0 AS downloader
 
 RUN wget -q https://github.com/phpmd/phpmd/releases/download/2.15.0/phpmd.phar -O /tmp/phpmd
 

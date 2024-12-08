@@ -1,4 +1,4 @@
-FROM docker.io/ysebastia/wget:1.24.5-r0 as downloader
+FROM docker.io/ysebastia/wget:1.25.0-r0 AS downloader
 
 RUN wget -q https://phar.phpunit.de/phpcpd-6.0.3.phar -O /tmp/phpcpd
 
