@@ -6,7 +6,7 @@ RUN apk add --no-cache \
   py3-openssl=24.1.0-r1 \
   py3-pip=24.3.1-r0 \
   py3-setuptools-rust=1.10.2-r0 \
-  py3-virtualenv=20.27.1-r0 \
+  py3-virtualenv=20.28.0-r0 \
   py3-wheel=0.43.0-r0 \
   && python3 -m venv /venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
