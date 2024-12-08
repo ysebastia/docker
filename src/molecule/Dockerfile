@@ -1,4 +1,4 @@
-FROM alpine:20240807 AS builder
+FROM alpine:20240923 AS builder
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
   openssl=3.3.2-r4 \
@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir --upgrade pip==24.3.1 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
-FROM alpine:20240807
+FROM alpine:20240923
 COPY --from=builder /venv /venv
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
