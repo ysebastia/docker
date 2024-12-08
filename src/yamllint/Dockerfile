@@ -2,7 +2,7 @@ FROM alpine:20240923
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
   openssl=3.3.2-r4 \
-  py3-filelock=3.13.1-r1 \
+  py3-filelock=3.16.1-r0 \
   py3-openssl=24.1.0-r1 \
   py3-pip=24.3.1-r0 \
   py3-virtualenv=20.28.0-r0 \
