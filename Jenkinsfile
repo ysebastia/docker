@@ -40,7 +40,7 @@ pipeline {
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.31"
     release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.31"
     release_phpmd = "ysebastia/phpmd:2.15.0-php8.1.31"
-    release_pylint = "ysebastia/pylint:3.3.1"
+    release_pylint = "ysebastia/pylint:3.3.2"
     release_shellcheck = "ysebastia/shellcheck:0.10.0"
     release_tflint = "ysebastia/tflint:0.53.0"
     release_trivy = "ysebastia/trivy:0.57.0"
