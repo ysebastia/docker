@@ -1,4 +1,4 @@
-FROM node:lts-alpine3.19
+FROM node:lts-alpine3.20
 RUN npm install -g npm@10.2.5 \
   && npm install -g \
   jshint@2.13.6 \
