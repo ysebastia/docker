@@ -12,6 +12,7 @@ ENV https_proxy=$HTTPS_PROXY
 RUN apt-get update \
   && apt-get -y --no-install-recommends -o APT::Get::AllowUnauthenticated=true install \
   curl \
+  firewalld \
   git \
   grub-common \
   iproute2 \
