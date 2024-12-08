@@ -1,4 +1,4 @@
-FROM almalinux:9.4
+FROM almalinux:9.5
 ARG HTTPS_PROXY
 ARG HTTP_PROXY
 ENV ANSIBLE_USER=ansible
@@ -11,6 +11,7 @@ ENV https_proxy=$HTTPS_PROXY
 RUN dnf update -y \
   && dnf -y install \
   NetworkManager\
+  firewalld \
   git \
   iproute \
   kmod \
