@@ -35,7 +35,7 @@ RUN apk add --no-cache \
   git=2.47.1-r0 \
   openssl=3.3.2-r4 \
   py3-openssl=24.1.0-r1 \
-  python3=3.12.7-r1 \
+  python3=3.12.8-r1 \
   && mkdir -p /.cache /.ansible \
   && chmod 777 /.cache /.ansible
 CMD ["/venv/bin/ansible-lint"]
