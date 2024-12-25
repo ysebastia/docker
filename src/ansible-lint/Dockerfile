@@ -1,18 +1,8 @@
-FROM alpine:20240923 AS builder
-ENV VIRTUAL_ENV=/venv
+FROM ysebastia/pip-venv:24.3.1 AS builder
 RUN apk add --no-cache \
   gcc=14.2.0-r4 \
   musl-dev=1.2.5-r8 \
-  openssl=3.3.2-r4 \
-  py3-filelock=3.16.1-r0 \
-  py3-openssl=24.3.0-r0 \
-  py3-pip=24.3.1-r0 \
-  py3-virtualenv=20.28.0-r0 \
-  py3-wheel=0.43.0-r0 \
   python3-dev=3.12.8-r1 \
-  && python3 -m venv /venv
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN pip install --no-cache-dir --upgrade pip==24.3.1 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-lint-junit==0.17.8 \
   ansible-lint==24.12.2 \
@@ -20,7 +10,6 @@ RUN pip install --no-cache-dir --upgrade pip==24.3.1 \
   jmespath==1.0.1 \
   jsonschema==4.23.0 \
   pytest==8.3.4 \
-  setuptools==75.5.0 \
   wcmatch==10.0 \
   yamllint==1.35.1 \
   && pip list -o \
