@@ -42,6 +42,7 @@ pipeline {
     release_phpmd = "ysebastia/phpmd:2.15.0-php8.1.31"
     release_pip_venv = "ysebastia/pip-venv:24.3.1"
     release_pylint = "ysebastia/pylint:3.3.3"
+    release_python = "ysebastia/python:3.12.8"
     release_shellcheck = "ysebastia/shellcheck:0.10.0"
     release_tflint = "ysebastia/tflint:0.54.0"
     release_trivy = "ysebastia/trivy:0.58.1"
@@ -369,6 +370,18 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_pylint}", "--build-arg https_proxy=$HTTPS_PROXY src/pylint").push()
+                            }
+                        }
+                    }
+                }
+                stage('python') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_python}", "--build-arg https_proxy=$HTTPS_PROXY src/python").push()
                             }
                         }
                     }
