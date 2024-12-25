@@ -40,6 +40,7 @@ pipeline {
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.31"
     release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.31"
     release_phpmd = "ysebastia/phpmd:2.15.0-php8.1.31"
+    release_pip_venv = "ysebastia/pip-venv:24.3.1"
     release_pylint = "ysebastia/pylint:3.3.3"
     release_shellcheck = "ysebastia/shellcheck:0.10.0"
     release_tflint = "ysebastia/tflint:0.54.0"
@@ -344,6 +345,18 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_phpmd}", "--build-arg https_proxy=$HTTPS_PROXY src/phpmd").push()
+                            }
+                        }
+                    }
+                }
+                stage('pip-venv') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_pip_venv}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv").push()
                             }
                         }
                     }
