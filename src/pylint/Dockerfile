@@ -9,7 +9,7 @@ RUN apk add --no-cache \
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==24.3.1 \
   && pip install --no-cache-dir --use-pep517 \
-  pylint==3.3.2 \
+  pylint==3.3.3 \
   setuptools==75.5.0 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
