@@ -20,6 +20,7 @@ pipeline {
     environment {
     QUALITY_DOCKERFILE = "1"
     release_ansible = "ysebastia/ansible:2.18.1"
+    release_ansiblebuilder = "ysebastia/ansible-builder:3.1.0"
     release_ansiblelint = "ysebastia/ansible-lint:24.12.2"
     release_checkov = "ysebastia/checkov:3.2.344"
     release_cloc = "ysebastia/cloc:2.02"
@@ -139,6 +140,18 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_ansible}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible").push()
+                            }
+                        }
+                    }
+                }
+                stage('ansible-builder') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_ansiblebuilder}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible-builder").push()
                             }
                         }
                     }
