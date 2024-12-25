@@ -41,7 +41,9 @@ pipeline {
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.31"
     release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.31"
     release_phpmd = "ysebastia/phpmd:2.15.0-php8.1.31"
-    release_pip_venv = "ysebastia/pip-venv:24.3.1"
+    release_pip_venv_alpine = "ysebastia/pip-venv:24.3.1-alpine"
+    release_pip_venv_centos = "ysebastia/pip-venv:24.3.1-centos"
+    release_pip_venv_debian = "ysebastia/pip-venv:24.3.1-debian"
     release_pylint = "ysebastia/pylint:3.3.3"
     release_python = "ysebastia/python:3.12.8"
     release_shellcheck = "ysebastia/shellcheck:0.10.0"
@@ -370,7 +372,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_pip_venv}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv").push()
+                                docker.build("${env.release_pip_venv_alpine}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv/alpine").push()
                             }
                         }
                     }
