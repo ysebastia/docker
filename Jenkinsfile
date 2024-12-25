@@ -28,7 +28,7 @@ pipeline {
     release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.31-bookworm"
     release_doxygen = "ysebastia/doxygen:1.12.0"
     release_hadolint = "ysebastia/hadolint:2.12.0-1"
-    release_helm = "ysebastia/helm:3.16.3"
+    release_helm = "ysebastia/helm:3.16.4"
     release_jest = "ysebastia/jest:29.7.0"
     release_jscpd = "ysebastia/jscpd:3.5.10-1"
     release_jshint = "ysebastia/jshint:2.13.6"
