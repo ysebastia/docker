@@ -15,16 +15,11 @@ RUN apk add --no-cache \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
-FROM alpine:20240923
+FROM ysebastia/python:3.12.8
 COPY --from=builder /venv /venv
-ENV VIRTUAL_ENV=/venv
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN apk add --no-cache \
-  curl=8.11.1-r0 \
-  git=2.47.1-r0 \
   openssl=3.3.2-r4 \
   py3-openssl=24.3.0-r0 \
-  python3=3.12.8-r1 \
   && mkdir -p /.cache /.ansible \
   && chmod 777 /.cache /.ansible
 CMD ["/venv/bin/ansible-lint"]

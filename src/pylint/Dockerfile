@@ -4,10 +4,6 @@ RUN pip install --no-cache-dir --use-pep517 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
-FROM alpine:20240923
+FROM ysebastia/python:3.12.8
 COPY --from=builder /venv /venv
-ENV VIRTUAL_ENV=/venv
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN apk add --no-cache \
-  python3=3.12.8-r1
 CMD ["/venv/bin/pylint"]
