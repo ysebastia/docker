@@ -2,7 +2,7 @@ FROM alpine:20240923 AS builder
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
   openssl=3.3.2-r4 \
-  py3-openssl=24.1.0-r1 \
+  py3-openssl=24.3.0-r0 \
   py3-pip=24.3.1-r0 \
   py3-virtualenv=20.28.0-r0 \
   py3-wheel=0.43.0-r0 \
@@ -32,7 +32,7 @@ RUN apk add --no-cache \
   git=2.47.1-r0 \
   openssl=3.3.2-r4 \
   py3-docker-py=7.1.0-r0 \
-  py3-openssl=24.1.0-r1 \
+  py3-openssl=24.3.0-r0 \
   python3=3.12.8-r1 \
   rsync=3.3.0-r0 \ 
   sshpass=1.10-r0 \

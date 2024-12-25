@@ -5,7 +5,7 @@ RUN apk add --no-cache \
   musl-dev=1.2.5-r8 \
   openssl=3.3.2-r4 \
   py3-filelock=3.16.1-r0 \
-  py3-openssl=24.1.0-r1 \
+  py3-openssl=24.3.0-r0 \
   py3-pip=24.3.1-r0 \
   py3-virtualenv=20.28.0-r0 \
   py3-wheel=0.43.0-r0 \
@@ -34,7 +34,7 @@ RUN apk add --no-cache \
   curl=8.11.0-r2 \
   git=2.47.1-r0 \
   openssl=3.3.2-r4 \
-  py3-openssl=24.1.0-r1 \
+  py3-openssl=24.3.0-r0 \
   python3=3.12.8-r1 \
   && mkdir -p /.cache /.ansible \
   && chmod 777 /.cache /.ansible
