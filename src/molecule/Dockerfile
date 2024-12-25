@@ -1,6 +1,5 @@
-FROM ysebastia/pip-venv:24.3.1 AS builder
+FROM ysebastia/ansible:2.18.1 AS builder
 RUN pip install --no-cache-dir --use-pep517 \
-  ansible-core==2.18.1 \
   molecule==24.12.0 \
   molecule-plugins[docker]==23.6.0 \
   && pip list -o \
