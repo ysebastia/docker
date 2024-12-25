@@ -1,4 +1,4 @@
-FROM ysebastia/pip-venv:24.3.1 AS builder
+FROM ysebastia/pip-venv:24.3.1-alpine AS builder
 RUN apk add --no-cache \
   py3-setuptools-rust=1.10.2-r0 \
   && pip install --no-cache-dir \

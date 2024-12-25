@@ -1,4 +1,4 @@
-FROM ysebastia/pip-venv:24.3.1 AS builder
+FROM ysebastia/pip-venv:24.3.1-alpine AS builder
 RUN pip install --no-cache-dir --use-pep517 \
   pylint==3.3.3 \
   && pip list -o \
