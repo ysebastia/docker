@@ -373,6 +373,7 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_pip_venv_alpine}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv/alpine").push()
+                                docker.build("${env.release_pip_venv_centos}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv/centos").push()
                             }
                         }
                     }
@@ -459,6 +460,7 @@ pipeline {
             }
           }
           steps {
+            runtrivy("${env.release_ansiblebuilder}", "ansible-builder")
             runtrivy("${env.release_ansiblelint}", "ansible-lint")
             runtrivy("${env.release_ansible}", "ansible")
             runtrivy("${env.release_checkov}", "checkov")
@@ -473,12 +475,17 @@ pipeline {
             runtrivy("${env.release_jscpd}", "jscpd")
             runtrivy("${env.release_jshint}", "jshint")
             runtrivy("${env.release_make}", "make")
-            runtrivy("${env.release_molecule}", "molecule")
+            runtrivy("${env.release_molecule_alma}", "molecule-alma")
             runtrivy("${env.release_molecule_debian}", "molecule-debian")
+            runtrivy("${env.release_molecule_ubuntu}", "molecule-ubuntu")
+            runtrivy("${env.release_molecule}", "molecule")
             runtrivy("${env.release_phpcpd}", "phpcpd")
             runtrivy("${env.release_phpcs}", "phpcs")
             runtrivy("${env.release_phpmd}", "phpmd")
+            runtrivy("${env.release_pip_venv_alpine}", "pip-venv-alpine")
+            runtrivy("${env.release_pip_venv_cenots}", "pip-venv-centos")
             runtrivy("${env.release_pylint}", "pylint")
+            runtrivy("${env.release_python}", "python")
             runtrivy("${env.release_shellcheck}", "shellcheck")
             runtrivy("${env.release_tflint}", "tflint")
             runtrivy("${env.release_trivy}", "trivy")
