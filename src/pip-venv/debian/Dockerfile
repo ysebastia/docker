@@ -9,7 +9,7 @@ ENV http_proxy=$HTTPS_PROXY
 ENV https_proxy=$HTTPS_PROXY
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 # hadolint ignore=DL3008
-RUN apt-get update \
+RUN https_proxy=$HTTPS_PROXY apt-get update \
   && apt-get -y --no-install-recommends -o APT::Get::AllowUnauthenticated=true install \
   git \
   python3 \
