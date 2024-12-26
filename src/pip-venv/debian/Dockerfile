@@ -3,13 +3,14 @@ ARG HTTPS_PROXY
 ARG HTTP_PROXY
 ENV DEBIAN_FRONTEND=noninteractive
 ENV HTTPS_PROXY=$HTTPS_PROXY
-ENV HTTP_PROXY=$HTTPS_PROXY
+ENV HTTP_PROXY=$HTTP_PROXY
 ENV VIRTUAL_ENV=/opt/venv
-ENV http_proxy=$HTTPS_PROXY
+ENV http_proxy=$HTTP_PROXY
 ENV https_proxy=$HTTPS_PROXY
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 # hadolint ignore=DL3008
-RUN https_proxy=$HTTPS_PROXY apt-get update \
+RUN apt-get update \
   && apt-get -y --no-install-recommends -o APT::Get::AllowUnauthenticated=true install \
   git \
   python3 \
