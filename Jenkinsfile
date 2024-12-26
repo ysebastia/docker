@@ -374,7 +374,7 @@ pipeline {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_pip_venv_alpine}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv/alpine").push()
                                 docker.build("${env.release_pip_venv_centos}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv/centos").push()
-                                docker.build("${env.release_pip_venv_debian}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv/debian").push()
+                                docker.build("${env.release_pip_venv_debian}", "--build-arg https_proxy=$HTTPS_PROXY--build-arg http_proxy=$HTTPS_PROXY src/pip-venv/debian").push()
                             }
                         }
                     }
