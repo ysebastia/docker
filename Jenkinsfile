@@ -374,6 +374,7 @@ pipeline {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_pip_venv_alpine}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv/alpine").push()
                                 docker.build("${env.release_pip_venv_centos}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv/centos").push()
+                                docker.build("${env.release_pip_venv_debian}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv/debian").push()
                             }
                         }
                     }
@@ -483,7 +484,8 @@ pipeline {
             runtrivy("${env.release_phpcs}", "phpcs")
             runtrivy("${env.release_phpmd}", "phpmd")
             runtrivy("${env.release_pip_venv_alpine}", "pip-venv-alpine")
-            runtrivy("${env.release_pip_venv_cenots}", "pip-venv-centos")
+            runtrivy("${env.release_pip_venv_centos}", "pip-venv-centos")
+            runtrivy("${env.release_pip_venv_debian}", "pip-venv-debian")
             runtrivy("${env.release_pylint}", "pylint")
             runtrivy("${env.release_python}", "python")
             runtrivy("${env.release_shellcheck}", "shellcheck")
