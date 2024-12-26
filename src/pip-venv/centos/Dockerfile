@@ -8,8 +8,7 @@ ENV http_proxy=$HTTPS_PROXY
 ENV https_proxy=$HTTPS_PROXY
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 # hadolint ignore=DL3041
-RUN echo "proxy=${https_proxy}" >> /etc/dnf/dnf.conf \
-  && dnf update -y \
+RUN dnf update -y \
   && dnf -y install \
   epel-release \
   git \
