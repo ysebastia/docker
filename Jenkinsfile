@@ -36,7 +36,7 @@ pipeline {
     release_make = "ysebastia/make:4.4.1-r2"
     release_molecule = "ysebastia/molecule:25.1.0"
     release_molecule_alma = "ysebastia/molecule:alma-9.5"
-    release_molecule_debian = "ysebastia/molecule:debian-12.8"
+    release_molecule_debian = "ysebastia/molecule:debian-12.9"
     release_molecule_ubuntu = "ysebastia/molecule:ubuntu-noble"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.31"
     release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.31"
