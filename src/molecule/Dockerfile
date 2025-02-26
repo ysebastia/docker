@@ -5,7 +5,7 @@ RUN pip install --no-cache-dir --use-pep517 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
-FROM ysebastia/python:3.12.8
+FROM ysebastia/python:3.12.9
 COPY --from=builder /venv /venv
 COPY requirements.yml /root/
 COPY run_molecule.bash /usr/local/bin/

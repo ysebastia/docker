@@ -5,6 +5,6 @@ RUN pip install --no-cache-dir \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
-FROM ysebastia/python:3.12.8
+FROM ysebastia/python:3.12.9
 COPY --from=builder /venv /venv
 CMD ["/venv/bin/yamllint"]

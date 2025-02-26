@@ -2,7 +2,7 @@ FROM ysebastia/pip-venv:25.0.1-alpine AS builder
 RUN apk add --no-cache \
   gcc=14.2.0-r5 \
   musl-dev=1.2.5-r9 \
-  python3-dev=3.12.8-r1 \
+  python3-dev=3.12.9-r0 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-lint-junit==0.17.8 \
   ansible-lint==25.1.3 \
@@ -15,7 +15,7 @@ RUN apk add --no-cache \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
-FROM ysebastia/python:3.12.8
+FROM ysebastia/python:3.12.9
 COPY --from=builder /venv /venv
 RUN apk add --no-cache \
   openssl=3.3.3-r0 \
