@@ -1,4 +1,4 @@
-FROM ysebastia/pip-venv:24.3.1-alpine AS builder
+FROM ysebastia/pip-venv:25.0.1-alpine AS builder
 RUN apk add --no-cache \
   gcc=14.2.0-r5 \
   musl-dev=1.2.5-r9 \
