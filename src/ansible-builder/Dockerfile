@@ -8,8 +8,8 @@ FROM ysebastia/python:3.12.8
 COPY --from=builder /venv /venv
 RUN apk add --no-cache \
   bash=5.2.37-r0 \
-  docker-cli=27.5.1-r0 \
-  docker=27.5.1-r0 \
+  docker-cli=27.5.1-r1 \
+  docker=27.5.1-r1 \
   openssl=3.3.3-r0 \
   py3-docker-py=7.1.0-r0 \
   py3-openssl=25.0.0-r0
