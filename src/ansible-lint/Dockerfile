@@ -19,7 +19,7 @@ FROM ysebastia/python:3.12.8
 COPY --from=builder /venv /venv
 RUN apk add --no-cache \
   openssl=3.3.2-r4 \
-  py3-openssl=24.3.0-r0 \
+  py3-openssl=25.0.0-r0 \
   && mkdir -p /.cache /.ansible \
   && chmod 777 /.cache /.ansible
 CMD ["/venv/bin/ansible-lint"]
