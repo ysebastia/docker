@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
-export ANSIBLE_COLLECTIONS_PATH="~/.ansible/collections/:./collections"
 NOCOLOR='\033[0m'
 GREEN='\033[0;32m'
 
