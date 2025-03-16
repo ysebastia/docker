@@ -11,7 +11,7 @@ RUN apk add --no-cache \
   jsonschema==4.23.0 \
   pytest==8.3.4 \
   wcmatch==10.0 \
-  yamllint==1.35.1 \
+  yamllint==1.36.1 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
