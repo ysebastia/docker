@@ -48,7 +48,7 @@ pipeline {
     release_python = "ysebastia/python:3.12.9"
     release_shellcheck = "ysebastia/shellcheck:0.10.0"
     release_tflint = "ysebastia/tflint:0.55.1"
-    release_trivy = "ysebastia/trivy:0.58.1"
+    release_trivy = "ysebastia/trivy:0.60.0"
     release_wget = "ysebastia/wget:1.25.0-r1"
     release_yamllint = "ysebastia/yamllint:1.36.1"
     }
