@@ -1,6 +1,6 @@
 FROM ysebastia/pip-venv:25.0.1-alpine AS builder
 RUN pip install --no-cache-dir --use-pep517 \
-  ansible-core==2.18.3 \
+  ansible-core==2.18.4 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
