@@ -1,4 +1,4 @@
-all: ansible ansible-builder molecule ansible-lint
+all: pip ansible ansible-builder molecule ansible-lint
 
 ansible:
 	docker build --progress=plain src/ansible -t ysebastia/ansible:2.18.4
@@ -20,3 +20,6 @@ pip:
 	podman build src/pylint -t ysebastia/pylint:3.3.5
 	podman build src/yamllint -t ysebastia/yamllint:1.37.0
 	podman build src/checkov -t ysebastia/checkov:3.2.377
+
+dmarc:
+	podman build src/dmarcts-report-parser -t ysebastia/dmarcts-report-parser:master-bookworm-slim
