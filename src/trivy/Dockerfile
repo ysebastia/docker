@@ -1,6 +1,6 @@
 FROM docker.io/ysebastia/wget:1.25.0-r1 AS downloader
 
-RUN wget -q https://github.com/aquasecurity/trivy/releases/download/v0.60.0/trivy_0.60.0_Linux-64bit.tar.gz -O trivy.tar.gz && tar xzf trivy.tar.gz
+RUN wget -q https://github.com/aquasecurity/trivy/releases/download/v0.62.0/trivy_0.62.0_Linux-64bit.tar.gz -O trivy.tar.gz && tar xzf trivy.tar.gz
 
 FROM alpine:20250108
 COPY --from=downloader /tmp/trivy /usr/local/bin/trivy
