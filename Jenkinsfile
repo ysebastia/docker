@@ -45,7 +45,7 @@ pipeline {
     release_pip_venv_centos = "ysebastia/pip-venv:25.1-centos"
     release_pip_venv_debian = "ysebastia/pip-venv:25.1-debian"
     release_pylint = "ysebastia/pylint:3.3.5"
-    release_python = "ysebastia/python:3.12.9"
+    release_python = "ysebastia/python:3.12.10"
     release_shellcheck = "ysebastia/shellcheck:0.10.0"
     release_tflint = "ysebastia/tflint:0.55.1"
     release_trivy = "ysebastia/trivy:0.60.0"

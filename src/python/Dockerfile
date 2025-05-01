@@ -9,4 +9,4 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN apk add --no-cache \
   curl=8.13.0-r1 \
   git=2.49.0-r0 \
-  python3=3.12.9-r0 \
+  python3=3.12.10-r0 \

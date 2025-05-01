@@ -4,7 +4,7 @@ RUN pip install --no-cache-dir --use-pep517 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
-FROM ysebastia/python:3.12.9
+FROM ysebastia/python:3.12.10
 COPY --from=builder /venv /venv
 RUN mkdir -p /.cache /.ansible \
   && chmod 777 /.cache /.ansible

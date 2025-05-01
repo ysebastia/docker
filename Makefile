@@ -16,7 +16,7 @@ pip:
 	podman build src/pip-venv/alpine -t ysebastia/pip-venv:25.1-alpine
 	podman build src/pip-venv/centos -t ysebastia/pip-venv:25.1-centos
 	podman build src/pip-venv/debian -t ysebastia/pip-venv:25.1-debian
-	podman build src/python -t ysebastia/python:3.12.9
+	podman build src/python -t ysebastia/python:3.12.10
 	podman build src/pylint -t ysebastia/pylint:3.3.5
 	podman build src/yamllint -t ysebastia/yamllint:1.37.0
 	podman build src/checkov -t ysebastia/checkov:3.2.377
