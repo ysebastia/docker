@@ -2,7 +2,7 @@ FROM docker.io/ysebastia/pip-venv:25.1-alpine AS builder
 RUN pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
-FROM alpine:20240923
+FROM alpine:20250108
 COPY --from=builder /venv /venv
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"

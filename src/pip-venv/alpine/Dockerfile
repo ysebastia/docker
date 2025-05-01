@@ -1,4 +1,4 @@
-FROM alpine:20240923
+FROM alpine:20250108
 ENV VIRTUAL_ENV=/venv
 RUN apk add --no-cache \
   openssl=3.5.0-r0 \

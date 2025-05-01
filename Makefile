@@ -21,7 +21,28 @@ pip:
 	podman build src/yamllint -t docker.io/ysebastia/yamllint:1.37.0
 	podman build src/checkov -t docker.io/ysebastia/checkov:3.2.413
 
-other: dmarc wget
+other: dmarc wget cloc doxygen helm make shellcheck tflint trivy
+
+doxygen:
+	podman build src/doxygen -t docker.io/ysebastia/doxygen
+
+helm:
+	podman build src/helm -t docker.io/ysebastia/helm
+
+make:
+	podman build src/make -t docker.io/ysebastia/make
+
+shellcheck:
+	podman build src/shellcheck -t docker.io/ysebastia/shellcheck
+
+tflint:
+	podman build src/tflint -t docker.io/ysebastia/tflint
+
+trivy:
+	podman build src/trivy -t docker.io/ysebastia/trivy
+
+cloc:
+	podman build src/cloc -t docker.io/ysebastia/cloc
 
 wget:
 	podman build src/wget -t docker.io/ysebastia/wget:1.25.0-r1
