@@ -1,4 +1,4 @@
-FROM ysebastia/pip-venv:25.0.1-alpine AS builder
+FROM ysebastia/pip-venv:25.1-alpine AS builder
 RUN pip install --no-cache-dir --use-pep517 \
   ansible-core==2.18.4 \
   && pip list -o \
