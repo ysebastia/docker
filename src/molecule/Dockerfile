@@ -1,11 +1,11 @@
-FROM ysebastia/ansible:2.18.4 AS builder
+FROM docker.io/ysebastia/ansible:2.18.4 AS builder
 RUN pip install --no-cache-dir --use-pep517 \
   molecule==25.4.0 \
   molecule-plugins[docker]==23.7.0 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
-FROM ysebastia/python:3.12.10
+FROM docker.io/ysebastia/python:3.12.10
 COPY --from=builder /venv /venv
 COPY requirements.yml /root/
 COPY run_molecule.bash /usr/local/bin/

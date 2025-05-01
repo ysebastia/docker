@@ -1,4 +1,4 @@
-FROM ysebastia/pip-venv:25.1-alpine AS builder
+FROM docker.io/ysebastia/pip-venv:25.1-alpine AS builder
 RUN pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 

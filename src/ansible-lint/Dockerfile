@@ -1,4 +1,4 @@
-FROM ysebastia/pip-venv:25.1-alpine AS builder
+FROM docker.io/ysebastia/pip-venv:25.1-alpine AS builder
 RUN apk add --no-cache \
   gcc=14.2.0-r5 \
   musl-dev=1.2.5-r10 \
@@ -15,7 +15,7 @@ RUN apk add --no-cache \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
-FROM ysebastia/python:3.12.10
+FROM docker.io/ysebastia/python:3.12.10
 COPY --from=builder /venv /venv
 RUN apk add --no-cache \
   openssl=3.5.0-r0 \
