@@ -1,7 +1,7 @@
 all: pip ansible ansible-builder molecule ansible-lint other
 
 ansible:
-	podman build src/ansible -t docker.io/ysebastia/ansible:2.18.4
+	podman build src/ansible -t docker.io/ysebastia/ansible:2.18.5
 
 ansible-builder:
 	podman build src/ansible-builder -t docker.io/ysebastia/ansible-builder
