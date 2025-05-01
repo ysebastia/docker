@@ -19,7 +19,7 @@ pip:
 	podman build src/python -t ysebastia/python:3.12.10
 	podman build src/pylint -t ysebastia/pylint:3.3.6
 	podman build src/yamllint -t ysebastia/yamllint:1.37.0
-	podman build src/checkov -t ysebastia/checkov:3.2.377
+	podman build src/checkov -t ysebastia/checkov:3.2.413
 
 other: dmarc curl
 
