@@ -46,7 +46,7 @@ function fake_coverage()
     for i in $(find "${dir_collection}/${source}/" -maxdepth 1 -type "${type}" | grep -v "/$" | sort);
     do
         item="$(echo "${i}" | awk -F '/' '{print $NF}' | awk -F '.' '{print $1}')"
-        fqcn="${begin_with}$(echo ${dir_collection} | rev | awk -F '/' '{print $1"."$2}' | rev).${item}${end_with}"
+        fqcn="${begin_with}$(echo "${dir_collection}" | rev | awk -F '/' '{print $1"."$2}' | rev).${item}${end_with}"
         nb_call="$(grep -rlE "${fqcn}" "${dir_collection}/extensions/molecule" | wc -l)"
         if [[ "${nb_call}" -gt 0 ]]; then
             echo -e "${GREEN}Test ${source}/${item} : OK (${nb_call})${NOCOLOR}"
