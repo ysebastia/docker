@@ -69,7 +69,6 @@ pipeline {
                 stage ('cloc') {
                   agent {
                     dockerfile {
-                      label 'docker'
                         dir 'src/cloc'
                         filename 'Dockerfile'
                         additionalBuildArgs "--build-arg https_proxy=$HTTPS_PROXY"
@@ -85,7 +84,6 @@ pipeline {
             stage ('hadolint') {
                   agent {
                     dockerfile {
-                      label 'docker'
                       dir 'src/hadolint'
                       filename 'Dockerfile'
                       additionalBuildArgs "--build-arg https_proxy=$HTTPS_PROXY"
@@ -98,7 +96,6 @@ pipeline {
                 stage ('shellcheck') {
                   agent {
                     dockerfile {
-                      label 'docker'
                         dir 'src/shellcheck'
                         filename 'Dockerfile'
                         additionalBuildArgs "--build-arg https_proxy=$HTTPS_PROXY"
@@ -119,9 +116,6 @@ pipeline {
         stage('Build #0') {
             parallel {
                 stage('wget') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -135,9 +129,6 @@ pipeline {
         stage('Build #1') {
             parallel {
                 stage('cloc') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -147,9 +138,6 @@ pipeline {
                     }
                 }
                 stage('csslint') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -159,9 +147,6 @@ pipeline {
                     }
                 }
                 stage('dmarcts-report-parser') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -171,9 +156,6 @@ pipeline {
                     }
                 }
                 stage('dmarcts-report-viewer') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -183,9 +165,6 @@ pipeline {
                     }
                 }
                 stage('doxygen') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -195,9 +174,6 @@ pipeline {
                     }
                 }
                 stage('hadolint') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -207,9 +183,6 @@ pipeline {
                     }
                 }
                 stage('helm') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -219,9 +192,6 @@ pipeline {
                     }
                 }
                 stage('jest') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -231,9 +201,6 @@ pipeline {
                     }
                 }
                 stage('jscpd') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -243,9 +210,6 @@ pipeline {
                     }
                 }                
                 stage('jshint') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -255,9 +219,6 @@ pipeline {
                     }
                 }
                 stage('make') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -267,9 +228,6 @@ pipeline {
                     }
                 }
                 stage('phpcpd') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -279,9 +237,6 @@ pipeline {
                     }
                 }
                 stage('phpcs') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -291,9 +246,6 @@ pipeline {
                     }
                 }
                 stage('phpmd') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -303,9 +255,6 @@ pipeline {
                     }
                 }
                 stage('pip-venv') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -317,9 +266,6 @@ pipeline {
                     }
                 }
                 stage('shellcheck') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -329,9 +275,6 @@ pipeline {
                     }
                 }
                 stage('tflint') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -341,9 +284,6 @@ pipeline {
                     }
                 }
                 stage('trivy') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -357,9 +297,6 @@ pipeline {
         stage('Build #2') {
             parallel {
                 stage('ansible') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -369,9 +306,6 @@ pipeline {
                     }
                 }
                 stage('ansible-builder') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -381,9 +315,6 @@ pipeline {
                     }
                 }
                 stage('ansible-lint') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -393,9 +324,6 @@ pipeline {
                     }
                 }
                 stage('checkov') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -405,9 +333,6 @@ pipeline {
                     }
                 }
                 stage('pylint') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -417,9 +342,6 @@ pipeline {
                     }
                 }
                 stage('python') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -429,9 +351,6 @@ pipeline {
                     }
                 }
                 stage('yamllint') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -445,9 +364,6 @@ pipeline {
         stage('Build #3') {
             parallel {
                 stage('molecule') {
-                    agent {
-                        label 'docker'
-                    }
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
@@ -464,7 +380,6 @@ pipeline {
         stage('Trivy') {
           agent {
             docker {
-              label 'docker'
               image "${env.release_trivy}"
             }
           }

@@ -23,7 +23,6 @@ Jenkins stage
         stage('Trivy') {
           agent {
             docker {
-              label 'docker'
               image docker.io/ysebastia/trivy:0.62.0
             }
           }
