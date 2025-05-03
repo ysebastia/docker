@@ -13,9 +13,9 @@ molecule:
 	podman build src/molecule -t docker.io/ysebastia/molecule
 
 pip:
-	podman build src/pip-venv/alpine -t docker.io/ysebastia/pip-venv:25.1-alpine
-	podman build src/pip-venv/centos -t docker.io/ysebastia/pip-venv:25.1-centos
-	podman build src/pip-venv/debian -t docker.io/ysebastia/pip-venv:25.1-debian
+	podman build src/pip-venv/alpine -t docker.io/ysebastia/pip-venv:25.1.1-alpine
+	podman build src/pip-venv/centos -t docker.io/ysebastia/pip-venv:25.1.1-centos
+	podman build src/pip-venv/debian -t docker.io/ysebastia/pip-venv:25.1.1-debian
 	podman build src/python -t docker.io/ysebastia/python:3.12.10
 	podman build src/pylint -t docker.io/ysebastia/pylint:3.3.6
 	podman build src/yamllint -t docker.io/ysebastia/yamllint:1.37.0
