@@ -134,54 +134,6 @@ pipeline {
         }
         stage('Build #1') {
             parallel {
-                stage('ansible') {
-                    agent {
-                        label 'docker'
-                    }
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_ansible}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible").push()
-                            }
-                        }
-                    }
-                }
-                stage('ansible-builder') {
-                    agent {
-                        label 'docker'
-                    }
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_ansiblebuilder}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible-builder").push()
-                            }
-                        }
-                    }
-                }
-                stage('ansible-lint') {
-                    agent {
-                        label 'docker'
-                    }
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_ansiblelint}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible-lint").push()
-                            }
-                        }
-                    }
-                }
-                stage('checkov') {
-                    agent {
-                        label 'docker'
-                    }
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_checkov}", "--build-arg https_proxy=$HTTPS_PROXY src/checkov").push()
-                            }
-                        }
-                    }
-                }
                 stage('cloc') {
                     agent {
                         label 'docker'
@@ -314,21 +266,6 @@ pipeline {
                         }
                     }
                 }
-                stage('molecule') {
-                    agent {
-                        label 'docker'
-                    }
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_molecule_alma}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-alma").push()
-                                docker.build("${env.release_molecule_debian}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-debian").push()
-                                docker.build("${env.release_molecule_ubuntu}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-ubuntu").push()
-                                docker.build("${env.release_molecule}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule").push()
-                            }
-                        }
-                    }
-                }
                 stage('phpcpd') {
                     agent {
                         label 'docker'
@@ -379,30 +316,6 @@ pipeline {
                         }
                     }
                 }
-                stage('pylint') {
-                    agent {
-                        label 'docker'
-                    }
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_pylint}", "--build-arg https_proxy=$HTTPS_PROXY src/pylint").push()
-                            }
-                        }
-                    }
-                }
-                stage('python') {
-                    agent {
-                        label 'docker'
-                    }
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_python}", "--build-arg https_proxy=$HTTPS_PROXY src/python").push()
-                            }
-                        }
-                    }
-                }
                 stage('shellcheck') {
                     agent {
                         label 'docker'
@@ -439,6 +352,82 @@ pipeline {
                         }
                     }
                 }
+            }
+        }
+        stage('Build #2') {
+            parallel {
+                stage('ansible') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_ansible}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible").push()
+                            }
+                        }
+                    }
+                }
+                stage('ansible-builder') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_ansiblebuilder}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible-builder").push()
+                            }
+                        }
+                    }
+                }
+                stage('ansible-lint') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_ansiblelint}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible-lint").push()
+                            }
+                        }
+                    }
+                }
+                stage('checkov') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_checkov}", "--build-arg https_proxy=$HTTPS_PROXY src/checkov").push()
+                            }
+                        }
+                    }
+                }
+                stage('pylint') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_pylint}", "--build-arg https_proxy=$HTTPS_PROXY src/pylint").push()
+                            }
+                        }
+                    }
+                }
+                stage('python') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_python}", "--build-arg https_proxy=$HTTPS_PROXY src/python").push()
+                            }
+                        }
+                    }
+                }
                 stage('yamllint') {
                     agent {
                         label 'docker'
@@ -447,6 +436,25 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_yamllint}", "--build-arg https_proxy=$HTTPS_PROXY src/yamllint").push()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Build #3') {
+            parallel {
+                stage('molecule') {
+                    agent {
+                        label 'docker'
+                    }
+                    steps {
+                        script {
+                            withDockerRegistry(credentialsId: 'docker') {
+                                docker.build("${env.release_molecule_alma}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-alma").push()
+                                docker.build("${env.release_molecule_debian}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-debian").push()
+                                docker.build("${env.release_molecule_ubuntu}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-ubuntu").push()
+                                docker.build("${env.release_molecule}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule").push()
                             }
                         }
                     }
