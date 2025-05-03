@@ -50,7 +50,7 @@ function fake_coverage()
         nb_call="$(grep -rlE "${fqcn}" "${dir_collection}/extensions/molecule" | wc -l)"
         if [[ "${nb_call}" -gt 0 ]]; then
             echo -e "${GREEN}Test ${source}/${item} : OK (${nb_call})${NOCOLOR}"
-            nb_molecule=$(expr $nb_molecule + 1)
+            nb_molecule=$((nb_molecule + 1))
         else
             echo -e "${RED}Test ${source}/${item} : KO${NOCOLOR}"
         fi;
