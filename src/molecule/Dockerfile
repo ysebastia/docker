@@ -7,7 +7,7 @@ RUN pip install --no-cache-dir --use-pep517 \
 
 FROM docker.io/ysebastia/python:3.12.10
 COPY --from=builder /venv /venv
-COPY requirements.yml /root/
+COPY docker.requirements.yml /root/requirements.yml
 COPY run_molecule.bash /usr/local/bin/
 COPY coverage.bash /usr/local/bin/
 RUN apk add --no-cache \

@@ -35,6 +35,7 @@ pipeline {
     release_jshint = "ysebastia/jshint:2.13.6"
     release_make = "ysebastia/make:4.4.1-r3"
     release_molecule = "ysebastia/molecule:25.4.0"
+    release_molecule_podman = "ysebastia/molecule:25.4.0-podman"
     release_molecule_alma = "ysebastia/molecule:alma-9.6"
     release_molecule_centos10 = "ysebastia/molecule:centos-stream10"
     release_molecule_debian = "ysebastia/molecule:debian-12.10"
@@ -372,6 +373,7 @@ pipeline {
                                 docker.build("${env.release_molecule_centos10}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY  --build-arg BASE_OS=quay.io/centos/centos --build-arg VERSION_OS=stream10 src/molecule-redhat").push()
                                 docker.build("${env.release_molecule_debian}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-debian").push()
                                 docker.build("${env.release_molecule_ubuntu}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-ubuntu").push()
+                                docker.build("${env.release_molecule_podman}", "--build-arg https_proxy=$HTTPS_PROXY -f src/molecule/podman.Dockerfile src/molecule").push()
                                 docker.build("${env.release_molecule}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule").push()
                             }
                         }

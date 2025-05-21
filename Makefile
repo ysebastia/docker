@@ -11,6 +11,7 @@ ansible-lint:
 
 molecule:
 	podman build --no-cache src/molecule -t docker.io/ysebastia/molecule
+	podman build --no-cache -f src/molecule/podman.Dockerfile src/molecule -t docker.io/ysebastia/molecule:podman
 
 molecule_os:
 	podman build --no-cache src/molecule-redhat --build-arg BASE_OS=almalinux --build-arg VERSION_OS=9.6 -t docker.io/ysebastia/molecule:alma-9.6
