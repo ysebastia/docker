@@ -33,7 +33,7 @@ pipeline {
     release_jest = "ysebastia/jest:29.7.0"
     release_jscpd = "ysebastia/jscpd:3.5.10-1"
     release_jshint = "ysebastia/jshint:2.13.6"
-    release_make = "ysebastia/make:4.4.1-r2"
+    release_make = "ysebastia/make:4.4.1-r3"
     release_molecule = "ysebastia/molecule:25.4.0"
     release_molecule_alma = "ysebastia/molecule:alma-9.6"
     release_molecule_centos10 = "ysebastia/molecule:centos-stream10"
