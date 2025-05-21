@@ -4,7 +4,7 @@
 
 Command call
 ```
-docker run --rm -t -v "${PWD}":/app -w /app docker.io/ysebastia/tflint:0.57.0 tflint --recursive
+podman run --rm -t -v "${PWD}":/app:Z -w /app docker.io/ysebastia/tflint:0.57.0 tflint --recursive
 ```
 
 ## Jenkins

@@ -6,7 +6,7 @@
 Command call
 
 ```bash
-docker run --rm -t -v "${PWD}":/app -w /app docker.io/ysebastia/ansible-lint:25.4.0 ansible-lint -p /app
+podman run --rm -t -v "${PWD}":/app:Z -w /app docker.io/ysebastia/ansible-lint:25.4.0 ansible-lint -p /app
 ```
 
 ## Jenkins

@@ -32,5 +32,5 @@ Jenkins stage
 
 Command call
 ```
-docker run --rm -t -v "${PWD}":/app -w /app docker.io/ysebastia/hadolint:2.12.0-1
+podman run --rm -t -v "${PWD}":/app:Z -w /app docker.io/ysebastia/hadolint:2.12.0-1
 ```
