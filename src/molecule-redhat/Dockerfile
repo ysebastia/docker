@@ -1,6 +1,7 @@
+ARG BASE_OS
 ARG VERSION_OS
 
-FROM almalinux:$VERSION_OS
+FROM $BASE_OS:$VERSION_OS
 ARG HTTPS_PROXY
 ARG HTTP_PROXY
 ENV ANSIBLE_USER=ansible
@@ -24,7 +25,7 @@ RUN dnf update -y \
   systemd-sysv \
   && ssh-keygen -q -t rsa -b 2048 -f /etc/ssh/ssh_host_rsa_key -N '' \
   && ssh-keygen -q -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N '' \
-  && ssh-keygen -t dsa -f /etc/ssh/ssh_host_ed25519_key  -N '' \
+  && ssh-keygen -q -t ed25519 -f /etc/ssh/ssh_host_ed25519_key  -N '' \
   && dnf clean all && rm -rf /tmp/* /var/tmp/*
 
 # https://hub.docker.com/_/centos/

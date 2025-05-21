@@ -36,6 +36,7 @@ pipeline {
     release_make = "ysebastia/make:4.4.1-r2"
     release_molecule = "ysebastia/molecule:25.4.0"
     release_molecule_alma = "ysebastia/molecule:alma-9.6"
+    release_molecule_centos10 = "ysebastia/molecule:centos-stream10"
     release_molecule_debian = "ysebastia/molecule:debian-12.10"
     release_molecule_ubuntu = "ysebastia/molecule:ubuntu-noble"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.31"
@@ -367,7 +368,8 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_molecule_alma}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY --build-arg VERSION_OS=9.6 src/molecule-alma").push()
+                                docker.build("${env.release_molecule_alma}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY  --build-arg BASE_OS=almalinux --build-arg VERSION_OS=9.6 src/molecule-redhat").push()
+                                docker.build("${env.release_molecule_centos10}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY  --build-arg BASE_OS=quay.io/centos/centos --build-arg VERSION_OS=stream10 src/molecule-redhat").push()
                                 docker.build("${env.release_molecule_debian}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-debian").push()
                                 docker.build("${env.release_molecule_ubuntu}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-ubuntu").push()
                                 docker.build("${env.release_molecule}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule").push()
@@ -399,7 +401,8 @@ pipeline {
             runtrivy("${env.release_jscpd}", "jscpd")
             runtrivy("${env.release_jshint}", "jshint")
             runtrivy("${env.release_make}", "make")
-            runtrivy("${env.release_molecule_alma}", "molecule-alma")
+            runtrivy("${env.release_molecule_alma}", "molecule-redhat")
+            runtrivy("${env.release_molecule_centos10}", "molecule-redhat")
             runtrivy("${env.release_molecule_debian}", "molecule-debian")
             runtrivy("${env.release_molecule_ubuntu}", "molecule-ubuntu")
             runtrivy("${env.release_molecule}", "molecule")
