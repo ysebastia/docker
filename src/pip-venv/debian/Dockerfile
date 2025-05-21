@@ -19,7 +19,7 @@ RUN apt-get update \
   && python3 -m venv /opt/venv \
   && pip install --no-cache-dir --upgrade pip==25.1.1 \
   && pip install --no-cache-dir \
-  setuptools==75.6.0 \
+  setuptools==80.8.0 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \

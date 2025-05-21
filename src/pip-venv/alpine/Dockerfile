@@ -11,6 +11,6 @@ RUN apk add --no-cache \
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip==25.1.1 \
   && pip install --no-cache-dir \
-  setuptools==75.6.0 \
+  setuptools==80.8.0 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete

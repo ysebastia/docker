@@ -20,7 +20,7 @@ RUN dnf update -y \
   && python3.12 -m venv /opt/venv \
   && pip install --no-cache-dir --upgrade pip==25.1.1 \
   && pip install --no-cache-dir \
-  setuptools==75.6.0 \
+  setuptools==80.8.0 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete \
   && dnf clean all && rm -rf /tmp/* /var/tmp/*
