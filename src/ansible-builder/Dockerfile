@@ -8,8 +8,8 @@ FROM docker.io/ysebastia/python:3.12.10
 COPY --from=builder /venv /venv
 RUN apk add --no-cache \
   bash=5.2.37-r0 \
-  docker-cli=28.1.1-r1 \
-  docker=28.1.1-r1 \
+  docker-cli=28.1.1-r2 \
+  docker=28.1.1-r2 \
   openssl=3.5.0-r0 \
   py3-docker-py=7.1.0-r0 \
   py3-openssl=25.0.0-r0
