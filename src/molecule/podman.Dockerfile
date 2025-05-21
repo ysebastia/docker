@@ -24,8 +24,8 @@ RUN apk add --no-cache \
   slirp4netns=1.3.1-r0 \
   sshpass=1.10-r0 \
   sudo=1.9.16_p2-r1 \
-  && mkdir -p /.cache /.ansible /.ansible_async \
-  && chmod 777 /.cache /.ansible /.ansible_async \
+  && mkdir -p /.cache /.ansible /.ansible_async /.config \
+  && chmod 777 /.cache /.ansible /.ansible_async /.config \
   && ansible-galaxy collection install -r /root/requirements.yml --collections-path "/usr/share/ansible/collections" \
   && chmod +x /usr/local/bin/*.bash
   
