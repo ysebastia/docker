@@ -24,8 +24,12 @@ RUN apk add --no-cache \
   slirp4netns=1.3.1-r0 \
   sshpass=1.10-r0 \
   sudo=1.9.16_p2-r1 \
-  && mkdir -p /.cache /.ansible /.ansible_async /.config \
-  && chmod 777 /.cache /.ansible /.ansible_async /.config \
+  && addgroup --gid 1001 -S podman \
+  && adduser --uid 1001 -S podman -G podman \
+  && echo podman:10000:5000 > /etc/subuid \
+  && echo podman:10000:5000 > /etc/subgid \
+  && mkdir -p /home/podman/.cache /home/podman/.ansible /home/podman/.ansible_async /home/podman/.local/share/containers /home/podman/.config/containers \
+  && chown -R podman:podman /venv /home/podman \
   && ansible-galaxy collection install -r /root/requirements.yml --collections-path "/usr/share/ansible/collections" \
   && chmod +x /usr/local/bin/*.bash
   
