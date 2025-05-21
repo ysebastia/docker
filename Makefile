@@ -12,6 +12,9 @@ ansible-lint:
 molecule:
 	podman build src/molecule -t docker.io/ysebastia/molecule
 
+molecule_os:
+	podman build src/molecule-alma --build-arg VERSION_OS=9.6 -t docker.io/ysebastia/molecule-alma:9.6
+
 pip:
 	podman build src/pip-venv/alpine -t docker.io/ysebastia/pip-venv:25.1.1-alpine
 	podman build src/pip-venv/centos -t docker.io/ysebastia/pip-venv:25.1.1-centos

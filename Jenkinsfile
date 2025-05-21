@@ -35,7 +35,7 @@ pipeline {
     release_jshint = "ysebastia/jshint:2.13.6"
     release_make = "ysebastia/make:4.4.1-r2"
     release_molecule = "ysebastia/molecule:25.4.0"
-    release_molecule_alma = "ysebastia/molecule:alma-9.5"
+    release_molecule_alma = "ysebastia/molecule:alma-9.6"
     release_molecule_debian = "ysebastia/molecule:debian-12.10"
     release_molecule_ubuntu = "ysebastia/molecule:ubuntu-noble"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.31"
@@ -367,7 +367,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_molecule_alma}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-alma").push()
+                                docker.build("${env.release_molecule_alma}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY --build-arg VERSION_OS=9.6 src/molecule-alma").push()
                                 docker.build("${env.release_molecule_debian}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-debian").push()
                                 docker.build("${env.release_molecule_ubuntu}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-ubuntu").push()
                                 docker.build("${env.release_molecule}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule").push()
