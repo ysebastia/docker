@@ -1,4 +1,6 @@
-FROM quay.io/centos/centos:stream9
+ARG VERSION_OS
+
+FROM quay.io/centos/centos:$VERSION_OS
 ARG HTTPS_PROXY
 ARG HTTP_PROXY
 ENV HTTPS_PROXY=$HTTPS_PROXY

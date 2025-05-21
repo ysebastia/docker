@@ -42,7 +42,7 @@ pipeline {
     release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.31"
     release_phpmd = "ysebastia/phpmd:2.15.0-php8.1.31"
     release_pip_venv_alpine = "ysebastia/pip-venv:25.1.1-alpine"
-    release_pip_venv_centos = "ysebastia/pip-venv:25.1.1-centos"
+    release_pip_venv_centos9 = "ysebastia/pip-venv:25.1.1-centos9"
     release_pip_venv_debian = "ysebastia/pip-venv:25.1.1-debian"
     release_pylint = "ysebastia/pylint:3.3.7"
     release_python = "ysebastia/python:3.12.10"
@@ -259,7 +259,7 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_pip_venv_alpine}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv/alpine").push()
-                                docker.build("${env.release_pip_venv_centos}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv/centos").push()
+                                docker.build("${env.release_pip_venv_centos9}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg VERSION_OS=stream9 src/pip-venv/centos").push()
                                 docker.build("${env.release_pip_venv_debian}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTPS_PROXY src/pip-venv/debian").push()
                             }
                         }

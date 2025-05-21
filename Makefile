@@ -1,4 +1,4 @@
-all: pip ansible ansible-builder molecule ansible-lint other
+all: pip ansible ansible-builder molecule ansible-lint molecule_os other
 
 ansible:
 	podman build src/ansible -t docker.io/ysebastia/ansible:2.18.5
@@ -17,7 +17,7 @@ molecule_os:
 
 pip:
 	podman build src/pip-venv/alpine -t docker.io/ysebastia/pip-venv:25.1.1-alpine
-	podman build src/pip-venv/centos -t docker.io/ysebastia/pip-venv:25.1.1-centos
+	podman build src/pip-venv/centos --build-arg VERSION_OS=stream9 -t docker.io/ysebastia/pip-venv:25.1.1-centos9
 	podman build src/pip-venv/debian -t docker.io/ysebastia/pip-venv:25.1.1-debian
 	podman build src/python -t docker.io/ysebastia/python:3.12.10
 	podman build src/pylint -t docker.io/ysebastia/pylint:3.3.7
