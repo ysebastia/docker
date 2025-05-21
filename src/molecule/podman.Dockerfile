@@ -17,7 +17,6 @@ RUN apk add --no-cache \
   fuse-overlayfs=1.15-r0 \
   openssl=3.5.0-r0 \
   podman=5.5.0-r0 \
-  py3-docker-py=7.1.0-r0 \
   py3-openssl=25.0.0-r0 \
   rsync=3.4.1-r0 \ 
   sshpass=1.10-r0 \
@@ -25,11 +24,6 @@ RUN apk add --no-cache \
   && mkdir -p /.cache /.ansible /.ansible_async \
   && chmod 777 /.cache /.ansible /.ansible_async \
   && ansible-galaxy collection install -r /root/requirements.yml --collections-path "/usr/share/ansible/collections" \
-  && chmod +x /usr/local/bin/*.bash \
-  && mkdir -p /var/lib/shared/{overlay-images,overlay-layers,vfs-images,vfs-layers } \
-  && touch /var/lib/shared/overlay-images/images.lock \
-  && touch /var/lib/shared/overlay-layers/layers.lock \
-  && touch /var/lib/shared/vfs-images/images.lock \
-  && touch /var/lib/shared/vfs-layers/layers.lock
+  && chmod +x /usr/local/bin/*.bash
   
 VOLUME /var/lib/containers
