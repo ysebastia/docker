@@ -5,7 +5,7 @@ RUN apk add --no-cache \
   python3-dev=3.12.10-r0 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-lint-junit==0.17.8 \
-  ansible-lint==25.4.0 \
+  ansible-lint==25.5.0 \
   black==24.10.0 \
   jmespath==1.0.1 \
   jsonschema==4.23.0 \
