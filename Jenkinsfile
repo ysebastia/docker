@@ -38,7 +38,7 @@ pipeline {
     release_molecule_podman = "ysebastia/molecule:25.4.0-podman"
     release_molecule_alma = "ysebastia/molecule:alma-9.6"
     release_molecule_centos10 = "ysebastia/molecule:centos-stream10"
-    release_molecule_debian = "ysebastia/molecule:debian-12.10"
+    release_molecule_debian = "ysebastia/molecule:debian-12.11"
     release_molecule_ubuntu = "ysebastia/molecule:ubuntu-noble"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.31"
     release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.31"

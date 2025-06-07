@@ -3,7 +3,7 @@ FROM docker.io/ysebastia/wget:1.25.0-r1 AS downloader
 RUN wget -q https://github.com/techsneeze/dmarcts-report-parser/archive/refs/heads/master.zip \
   && unzip -q master.zip
 
-FROM debian:12.10-slim
+FROM debian:12.11-slim
 ARG DEBIAN_FRONTEND=noninteractive
 ARG HTTPS_PROXY
 ARG HTTP_PROXY
