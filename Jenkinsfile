@@ -39,7 +39,8 @@ pipeline {
     release_molecule_alma = "ysebastia/molecule:alma-9.6"
     release_molecule_centos10 = "ysebastia/molecule:centos-stream10"
     release_molecule_debian = "ysebastia/molecule:debian-12.11"
-    release_molecule_ubuntu = "ysebastia/molecule:ubuntu-noble"
+    release_molecule_jammy = "ysebastia/molecule:ubuntu-jammy"
+    release_molecule_noble = "ysebastia/molecule:ubuntu-noble"
     release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.31"
     release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.31"
     release_phpmd = "ysebastia/phpmd:2.15.0-php8.1.31"
@@ -372,7 +373,8 @@ pipeline {
                                 docker.build("${env.release_molecule_alma}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY  --build-arg BASE_OS=almalinux --build-arg VERSION_OS=9.6 src/molecule-redhat").push()
                                 docker.build("${env.release_molecule_centos10}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY  --build-arg BASE_OS=quay.io/centos/centos --build-arg VERSION_OS=stream10 src/molecule-redhat").push()
                                 docker.build("${env.release_molecule_debian}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-debian").push()
-                                docker.build("${env.release_molecule_ubuntu}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-ubuntu").push()
+                                docker.build("${env.release_molecule_noble}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY --build-arg BASE_OS=ubuntu --build-arg VERSION_OS=jammy src/molecule-ubuntu").push()
+                                docker.build("${env.release_molecule_jammy}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY --build-arg BASE_OS=ubuntu --build-arg VERSION_OS=noble src/molecule-ubuntu").push()
                                 docker.build("${env.release_molecule_podman}", "--build-arg https_proxy=$HTTPS_PROXY -f src/molecule/podman.Dockerfile src/molecule").push()
                                 docker.build("${env.release_molecule}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule").push()
                             }
@@ -406,7 +408,8 @@ pipeline {
             runtrivy("${env.release_molecule_alma}", "molecule-alma")
             runtrivy("${env.release_molecule_centos10}", "molecule-centos")
             runtrivy("${env.release_molecule_debian}", "molecule-debian")
-            runtrivy("${env.release_molecule_ubuntu}", "molecule-ubuntu")
+            runtrivy("${env.release_molecule_noble}", "molecule-noble")
+            runtrivy("${env.release_molecule_jammy}", "molecule-jammy")
             runtrivy("${env.release_molecule}", "molecule")
             runtrivy("${env.release_phpcpd}", "phpcpd")
             runtrivy("${env.release_phpcs}", "phpcs")
