@@ -1,6 +1,6 @@
 FROM docker.io/ysebastia/ansible:2.18.6 AS builder
 RUN pip install --no-cache-dir --use-pep517 \
-  molecule==25.5.0 \
+  molecule==25.6.0 \
   molecule-plugins[podman]==23.7.0 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
