@@ -23,7 +23,7 @@ RUN apk add --no-cache \
   rsync=3.4.1-r0 \ 
   slirp4netns=1.3.1-r0 \
   sshpass=1.10-r0 \
-  sudo=1.9.16_p2-r1 \
+  sudo=1.9.17_p1-r0 \
   && addgroup --gid 1001 -S podman \
   && adduser --uid 1001 -S podman -G podman \
   && echo podman:100000:65536 > /etc/subuid \
