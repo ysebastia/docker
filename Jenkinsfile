@@ -18,41 +18,42 @@ def runtrivy(image, name) {
 pipeline {
     agent {label 'docker'}
     environment {
-    QUALITY_DOCKERFILE = "1"
-    release_ansible = "ysebastia/ansible:2.18.6"
-    release_ansiblebuilder = "ysebastia/ansible-builder:3.1.0"
-    release_ansiblelint = "ysebastia/ansible-lint:25.6.1"
-    release_checkov = "ysebastia/checkov:3.2.413"
-    release_cloc = "ysebastia/cloc:2.04"
-    release_csslint = "ysebastia/csslint:1.0.5-1"
-    release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-bookworm-slim"
-    release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.31-bookworm"
-    release_doxygen = "ysebastia/doxygen:1.13.2"
-    release_hadolint = "ysebastia/hadolint:2.12.0-1"
-    release_helm = "ysebastia/helm:3.18.0"
-    release_jest = "ysebastia/jest:29.7.0"
-    release_jscpd = "ysebastia/jscpd:3.5.10-1"
-    release_jshint = "ysebastia/jshint:2.13.6"
-    release_make = "ysebastia/make:4.4.1-r3"
-    release_molecule = "ysebastia/molecule:25.6.0"
-    release_molecule_podman = "ysebastia/molecule:25.6.0-podman"
-    release_molecule_rhel9 = "ysebastia/molecule:rhel-9.6"
-    release_molecule_rhel10 = "ysebastia/molecule:rhel-10.0"
-    release_molecule_debian = "ysebastia/molecule:debian-12.11"
-    release_molecule_jammy = "ysebastia/molecule:ubuntu-jammy"
-    release_molecule_noble = "ysebastia/molecule:ubuntu-noble"
-    release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.31"
-    release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.31"
-    release_phpmd = "ysebastia/phpmd:2.15.0-php8.1.31"
-    release_pip_venv_alpine = "ysebastia/pip-venv:25.1.1-alpine"
-    release_pip_venv_debian = "ysebastia/pip-venv:25.1.1-debian"
-    release_pylint = "ysebastia/pylint:3.3.7"
-    release_python = "ysebastia/python:3.12.10"
-    release_shellcheck = "ysebastia/shellcheck:0.10.0"
-    release_tflint = "ysebastia/tflint:0.57.0"
-    release_trivy = "ysebastia/trivy:0.62.1"
-    release_wget = "ysebastia/wget:1.25.0-r2"
-    release_yamllint = "ysebastia/yamllint:1.37.1"
+        DH_CREDS=credentials('docker')
+        QUALITY_DOCKERFILE = "1"
+        release_ansible = "ysebastia/ansible:2.18.6"
+        release_ansiblebuilder = "ysebastia/ansible-builder:3.1.0"
+        release_ansiblelint = "ysebastia/ansible-lint:25.6.1"
+        release_checkov = "ysebastia/checkov:3.2.413"
+        release_cloc = "ysebastia/cloc:2.04"
+        release_csslint = "ysebastia/csslint:1.0.5-1"
+        release_dmarctsreportparser = "ysebastia/dmarcts-report-parser:master-bookworm-slim"
+        release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.31-bookworm"
+        release_doxygen = "ysebastia/doxygen:1.13.2"
+        release_hadolint = "ysebastia/hadolint:2.12.0-1"
+        release_helm = "ysebastia/helm:3.18.0"
+        release_jest = "ysebastia/jest:29.7.0"
+        release_jscpd = "ysebastia/jscpd:3.5.10-1"
+        release_jshint = "ysebastia/jshint:2.13.6"
+        release_make = "ysebastia/make:4.4.1-r3"
+        release_molecule = "ysebastia/molecule:25.6.0"
+        release_molecule_debian = "ysebastia/molecule:debian-12.11"
+        release_molecule_jammy = "ysebastia/molecule:ubuntu-jammy"
+        release_molecule_noble = "ysebastia/molecule:ubuntu-noble"
+        release_molecule_podman = "ysebastia/molecule:25.6.0-podman"
+        release_molecule_rhel10 = "ysebastia/molecule:rhel-10.0"
+        release_molecule_rhel9 = "ysebastia/molecule:rhel-9.6"
+        release_phpcpd = "ysebastia/phpcpd:6.0.3-php8.1.31"
+        release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.31"
+        release_phpmd = "ysebastia/phpmd:2.15.0-php8.1.31"
+        release_pip_venv_alpine = "ysebastia/pip-venv:25.1.1-alpine"
+        release_pip_venv_debian = "ysebastia/pip-venv:25.1.1-debian"
+        release_pylint = "ysebastia/pylint:3.3.7"
+        release_python = "ysebastia/python:3.12.10"
+        release_shellcheck = "ysebastia/shellcheck:0.10.0"
+        release_tflint = "ysebastia/tflint:0.57.0"
+        release_trivy = "ysebastia/trivy:0.62.1"
+        release_wget = "ysebastia/wget:1.25.0-r2"
+        release_yamllint = "ysebastia/yamllint:1.37.1"
     }
     stages {
         stage ('Checkout') {
@@ -370,6 +371,13 @@ pipeline {
                     agent { label 'rhel' }
                     steps {
                         sh 'make molecule molecule_os'
+                        sh 'echo $DH_CREDS_PSW | podman login -u $DH_CREDS_USR --password-stdin docker.io'
+	                    sh 'podman push docker.io/ysebastia/molecule:debian-12.11'
+	                    sh 'podman push docker.io/ysebastia/molecule:jammy'
+	                    sh 'podman push docker.io/ysebastia/molecule:noble'
+	                    sh 'podman push docker.io/ysebastia/molecule:rhel-10.0'
+                        sh 'podman push docker.io/ysebastia/molecule:rhel-9.6'
+                        sh 'podman logout docker.io'
                     }
                 }
             }
