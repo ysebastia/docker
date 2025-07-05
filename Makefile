@@ -13,11 +13,11 @@ molecule:
 	podman build --no-cache src/molecule -t docker.io/ysebastia/molecule
 
 molecule_os:
-	podman build --no-cache src/molecule-redhat --build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY --build-arg BASE_OS=registry.access.redhat.com/ubi9/ubi --build-arg VERSION_OS=9.6 -t docker.io/ysebastia/molecule:rhel-9.6
-	podman build --no-cache src/molecule-redhat --build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY --build-arg BASE_OS=registry.access.redhat.com/ubi10/ubi --build-arg VERSION_OS=10.0 -t docker.io/ysebastia/molecule:rhel-10.0
-	podman build --no-cache src/molecule-ubuntu --build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY --build-arg BASE_OS=ubuntu --build-arg VERSION_OS=noble -t docker.io/ysebastia/molecule:noble
-	podman build --no-cache src/molecule-ubuntu --build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY --build-arg BASE_OS=ubuntu --build-arg VERSION_OS=jammy -t docker.io/ysebastia/molecule:jammy
-	podman build --no-cache src/molecule-debian --build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY -t docker.io/ysebastia/molecule:debian-12.11
+	podman build --no-cache src/molecule-redhat --build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=${HTTP_PROXY} --build-arg BASE_OS=registry.access.redhat.com/ubi9/ubi --build-arg VERSION_OS=9.6 -t docker.io/ysebastia/molecule:rhel-9.6
+	podman build --no-cache src/molecule-redhat --build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=${HTTP_PROXY} --build-arg BASE_OS=registry.access.redhat.com/ubi10/ubi --build-arg VERSION_OS=10.0 -t docker.io/ysebastia/molecule:rhel-10.0
+	podman build --no-cache src/molecule-ubuntu --build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=${HTTP_PROXY} --build-arg BASE_OS=ubuntu --build-arg VERSION_OS=noble -t docker.io/ysebastia/molecule:noble
+	podman build --no-cache src/molecule-ubuntu --build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=${HTTP_PROXY} --build-arg BASE_OS=ubuntu --build-arg VERSION_OS=jammy -t docker.io/ysebastia/molecule:jammy
+	podman build --no-cache src/molecule-debian --build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=${HTTP_PROXY} -t docker.io/ysebastia/molecule:debian-12.11
 
 pip:
 	podman build --no-cache src/pip-venv/alpine -t docker.io/ysebastia/pip-venv:25.1.1-alpine
