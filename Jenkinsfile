@@ -37,7 +37,7 @@ pipeline {
     release_molecule = "ysebastia/molecule:25.6.0"
     release_molecule_podman = "ysebastia/molecule:25.6.0-podman"
     release_molecule_rhel9 = "ysebastia/molecule:rhel-9.6"
-    release_molecule_rhel10 = "ysebastia/molecule:rhel10"
+    release_molecule_rhel10 = "ysebastia/molecule:rhel-10.0"
     release_molecule_debian = "ysebastia/molecule:debian-12.11"
     release_molecule_jammy = "ysebastia/molecule:ubuntu-jammy"
     release_molecule_noble = "ysebastia/molecule:ubuntu-noble"
@@ -365,17 +365,10 @@ pipeline {
         stage('Build #3') {
             parallel {
                 stage('molecule') {
+                    agent rhel
                     steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_molecule_rhel9}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY  --build-arg BASE_OS=registry.access.redhat.com/ubi9/ubi --build-arg VERSION_OS=9.6 src/molecule-redhat").push()
-                                docker.build("${env.release_molecule_rhel10}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY  --build-arg BASE_OS=registry.access.redhat.com/ubi9/ubi --build-arg VERSION_OS=10 src/molecule-redhat").push()
-                                docker.build("${env.release_molecule_debian}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-debian").push()
-                                docker.build("${env.release_molecule_noble}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY --build-arg BASE_OS=ubuntu --build-arg VERSION_OS=jammy src/molecule-ubuntu").push()
-                                docker.build("${env.release_molecule_jammy}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY --build-arg BASE_OS=ubuntu --build-arg VERSION_OS=noble src/molecule-ubuntu").push()
-                                docker.build("${env.release_molecule_podman}", "--build-arg https_proxy=$HTTPS_PROXY -f src/molecule/podman.Dockerfile src/molecule").push()
-                                docker.build("${env.release_molecule}", "--build-arg https_proxy=$HTTPS_PROXY src/molecule").push()
-                            }
+                        steps {
+                            sh 'make molecule molecule_os'
                         }
                     }
                 }
