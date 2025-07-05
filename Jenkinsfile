@@ -375,7 +375,6 @@ pipeline {
         }
         stage('Trivy') {
           agent {
-            label 'docker'
             docker {
               image "${env.release_trivy}"
             }
