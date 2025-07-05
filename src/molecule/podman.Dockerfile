@@ -15,7 +15,7 @@ COPY iptables.conf /etc/modules-load.d/iptables.conf
 
 RUN apk add --no-cache \
   bash=5.2.37-r0 \
-  fuse-overlayfs=1.15-r0 \
+  fuse-overlayfs=1.15-r1 \
   iptables=1.8.11-r1 \
   openssl=3.5.1-r0 \
   podman=5.5.2-r0 \
