@@ -365,7 +365,7 @@ pipeline {
         stage('Build #3') {
             parallel {
                 stage('molecule') {
-                    agent rhel
+                    agent { label 'rhel' }
                     steps {
                         steps {
                             sh 'make molecule molecule_os'
