@@ -52,7 +52,7 @@ pipeline {
     release_shellcheck = "ysebastia/shellcheck:0.10.0"
     release_tflint = "ysebastia/tflint:0.57.0"
     release_trivy = "ysebastia/trivy:0.62.1"
-    release_wget = "ysebastia/wget:1.25.0-r1"
+    release_wget = "ysebastia/wget:1.25.0-r2"
     release_yamllint = "ysebastia/yamllint:1.37.1"
     }
     stages {

@@ -52,7 +52,7 @@ cloc:
 	podman build --no-cache src/cloc -t docker.io/ysebastia/cloc
 
 wget:
-	podman build --no-cache src/wget -t docker.io/ysebastia/wget:1.25.0-r1
+	podman build --no-cache src/wget -t docker.io/ysebastia/wget:1.25.0-r2
 
 dmarc:
 	podman build --no-cache src/dmarcts-report-parser -t docker.io/ysebastia/dmarcts-report-parser:master-bookworm-slim
