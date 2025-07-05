@@ -70,9 +70,10 @@ pipeline {
                 stage ('cloc') {
                   agent {
                     dockerfile {
+                        additionalBuildArgs "--build-arg https_proxy=$HTTPS_PROXY"
                         dir 'src/cloc'
                         filename 'Dockerfile'
-                        additionalBuildArgs "--build-arg https_proxy=$HTTPS_PROXY"
+                        label 'docker'
                      }
                   }
                   steps {
@@ -85,9 +86,10 @@ pipeline {
             stage ('hadolint') {
                   agent {
                     dockerfile {
+                      additionalBuildArgs "--build-arg https_proxy=$HTTPS_PROXY"
                       dir 'src/hadolint'
                       filename 'Dockerfile'
-                      additionalBuildArgs "--build-arg https_proxy=$HTTPS_PROXY"
+                      label 'docker'
                      }
                   }
                 steps {
@@ -97,9 +99,10 @@ pipeline {
                 stage ('shellcheck') {
                   agent {
                     dockerfile {
+                        additionalBuildArgs "--build-arg https_proxy=$HTTPS_PROXY"
                         dir 'src/shellcheck'
                         filename 'Dockerfile'
-                        additionalBuildArgs "--build-arg https_proxy=$HTTPS_PROXY"
+                        label 'docker'
                      }
                   }
                   steps {
