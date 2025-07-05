@@ -10,7 +10,7 @@ RUN apk add --no-cache \
   bash=5.2.37-r0 \
   docker-cli=28.2.2-r0 \
   docker=28.2.2-r0 \
-  openssl=3.5.0-r0 \
+  openssl=3.5.1-r0 \
   py3-docker-py=7.1.0-r0 \
   py3-openssl=25.0.0-r0
 CMD ["/venv/bin/ansible-builder"]

@@ -18,7 +18,7 @@ RUN apk add --no-cache \
 FROM docker.io/ysebastia/python:3.12.10
 COPY --from=builder /venv /venv
 RUN apk add --no-cache \
-  openssl=3.5.0-r0 \
+  openssl=3.5.1-r0 \
   py3-openssl=25.0.0-r0 \
   && mkdir -p /.cache /.ansible \
   && chmod 777 /.cache /.ansible
