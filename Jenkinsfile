@@ -16,7 +16,7 @@ def runtrivy(image, name) {
    sh 'rm trivy.xml'
 }
 pipeline {
-    agent any
+    agent {label 'docker'}
     environment {
     QUALITY_DOCKERFILE = "1"
     release_ansible = "ysebastia/ansible:2.18.6"
@@ -56,7 +56,6 @@ pipeline {
     }
     stages {
         stage ('Checkout') {
-            agent any
             steps {
                 checkout([
                   $class: 'GitSCM',
@@ -70,6 +69,7 @@ pipeline {
         parallel {
                 stage ('cloc') {
                   agent {
+                    label 'docker'
                     dockerfile {
                         dir 'src/cloc'
                         filename 'Dockerfile'
@@ -85,6 +85,7 @@ pipeline {
                 }
             stage ('hadolint') {
                   agent {
+                    label 'docker'
                     dockerfile {
                       dir 'src/hadolint'
                       filename 'Dockerfile'
@@ -97,6 +98,7 @@ pipeline {
             }
                 stage ('shellcheck') {
                   agent {
+                    label 'docker'
                     dockerfile {
                         dir 'src/shellcheck'
                         filename 'Dockerfile'
@@ -376,6 +378,7 @@ pipeline {
         }
         stage('Trivy') {
           agent {
+            label 'docker'
             docker {
               image "${env.release_trivy}"
             }
