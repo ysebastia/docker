@@ -18,7 +18,7 @@ RUN apk add --no-cache \
   fuse-overlayfs=1.15-r0 \
   iptables=1.8.11-r1 \
   openssl=3.5.1-r0 \
-  podman=5.5.1-r0 \
+  podman=5.5.2-r0 \
   py3-openssl=25.0.0-r0 \
   rsync=3.4.1-r0 \ 
   slirp4netns=1.3.1-r0 \
