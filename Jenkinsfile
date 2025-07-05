@@ -36,8 +36,8 @@ pipeline {
     release_make = "ysebastia/make:4.4.1-r3"
     release_molecule = "ysebastia/molecule:25.6.0"
     release_molecule_podman = "ysebastia/molecule:25.6.0-podman"
-    release_molecule_alma = "ysebastia/molecule:alma-9.6"
-    release_molecule_centos10 = "ysebastia/molecule:centos-stream10"
+    release_molecule_rhel9 = "ysebastia/molecule:rhel-9.6"
+    release_molecule_rhel10 = "ysebastia/molecule:rhel10"
     release_molecule_debian = "ysebastia/molecule:debian-12.11"
     release_molecule_jammy = "ysebastia/molecule:ubuntu-jammy"
     release_molecule_noble = "ysebastia/molecule:ubuntu-noble"
@@ -45,7 +45,6 @@ pipeline {
     release_phpcs = "ysebastia/phpcs:3.7.2-php8.1.31"
     release_phpmd = "ysebastia/phpmd:2.15.0-php8.1.31"
     release_pip_venv_alpine = "ysebastia/pip-venv:25.1.1-alpine"
-    release_pip_venv_centos9 = "ysebastia/pip-venv:25.1.1-centos9"
     release_pip_venv_debian = "ysebastia/pip-venv:25.1.1-debian"
     release_pylint = "ysebastia/pylint:3.3.7"
     release_python = "ysebastia/python:3.12.10"
@@ -262,7 +261,6 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_pip_venv_alpine}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv/alpine").push()
-                                docker.build("${env.release_pip_venv_centos9}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg VERSION_OS=stream9 src/pip-venv/centos").push()
                                 docker.build("${env.release_pip_venv_debian}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTPS_PROXY src/pip-venv/debian").push()
                             }
                         }
@@ -370,8 +368,8 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_molecule_alma}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY  --build-arg BASE_OS=almalinux --build-arg VERSION_OS=9.6 src/molecule-redhat").push()
-                                docker.build("${env.release_molecule_centos10}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY  --build-arg BASE_OS=quay.io/centos/centos --build-arg VERSION_OS=stream10 src/molecule-redhat").push()
+                                docker.build("${env.release_molecule_rhel9}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY  --build-arg BASE_OS=registry.access.redhat.com/ubi9/ubi --build-arg VERSION_OS=9.6 src/molecule-redhat").push()
+                                docker.build("${env.release_molecule_rhel10}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY  --build-arg BASE_OS=registry.access.redhat.com/ubi9/ubi --build-arg VERSION_OS=10 src/molecule-redhat").push()
                                 docker.build("${env.release_molecule_debian}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/molecule-debian").push()
                                 docker.build("${env.release_molecule_noble}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY --build-arg BASE_OS=ubuntu --build-arg VERSION_OS=jammy src/molecule-ubuntu").push()
                                 docker.build("${env.release_molecule_jammy}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY --build-arg BASE_OS=ubuntu --build-arg VERSION_OS=noble src/molecule-ubuntu").push()
@@ -405,8 +403,8 @@ pipeline {
             runtrivy("${env.release_jscpd}", "jscpd")
             runtrivy("${env.release_jshint}", "jshint")
             runtrivy("${env.release_make}", "make")
-            runtrivy("${env.release_molecule_alma}", "molecule-alma")
-            runtrivy("${env.release_molecule_centos10}", "molecule-centos")
+            runtrivy("${env.release_molecule_rhel9}", "molecule-rhel9")
+            runtrivy("${env.release_molecule_rhel10}", "molecule-rhel10")
             runtrivy("${env.release_molecule_debian}", "molecule-debian")
             runtrivy("${env.release_molecule_noble}", "molecule-noble")
             runtrivy("${env.release_molecule_jammy}", "molecule-jammy")
@@ -415,7 +413,6 @@ pipeline {
             runtrivy("${env.release_phpcs}", "phpcs")
             runtrivy("${env.release_phpmd}", "phpmd")
             runtrivy("${env.release_pip_venv_alpine}", "pip-venv-alpine")
-            runtrivy("${env.release_pip_venv_centos}", "pip-venv-centos")
             runtrivy("${env.release_pip_venv_debian}", "pip-venv-debian")
             runtrivy("${env.release_pylint}", "pylint")
             runtrivy("${env.release_python}", "python")
