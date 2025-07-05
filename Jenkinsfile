@@ -69,7 +69,6 @@ pipeline {
         parallel {
                 stage ('cloc') {
                   agent {
-                    label 'docker'
                     dockerfile {
                         dir 'src/cloc'
                         filename 'Dockerfile'
@@ -85,7 +84,6 @@ pipeline {
                 }
             stage ('hadolint') {
                   agent {
-                    label 'docker'
                     dockerfile {
                       dir 'src/hadolint'
                       filename 'Dockerfile'
@@ -98,7 +96,6 @@ pipeline {
             }
                 stage ('shellcheck') {
                   agent {
-                    label 'docker'
                     dockerfile {
                         dir 'src/shellcheck'
                         filename 'Dockerfile'
