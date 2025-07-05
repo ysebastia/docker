@@ -369,9 +369,7 @@ pipeline {
                 stage('molecule') {
                     agent { label 'rhel' }
                     steps {
-                        steps {
-                            sh 'make molecule molecule_os'
-                        }
+                        sh 'make molecule molecule_os'
                     }
                 }
             }
