@@ -11,7 +11,7 @@ COPY docker.requirements.yml /root/requirements.yml
 COPY run_molecule.bash /usr/local/bin/
 COPY coverage.bash /usr/local/bin/
 RUN apk add --no-cache \
-  bash=5.2.37-r0 \
+  bash=5.3.0-r0 \
   docker-cli=28.3.2-r0 \
   docker=28.3.2-r0 \
   openssl=3.5.1-r0 \
