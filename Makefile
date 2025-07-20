@@ -25,7 +25,7 @@ pip:
 	podman build --no-cache src/python -t docker.io/ysebastia/python:3.12.10
 	podman build --no-cache src/pylint -t docker.io/ysebastia/pylint:3.3.7
 	podman build --no-cache src/yamllint -t docker.io/ysebastia/yamllint:1.37.1
-	podman build --no-cache src/checkov -t docker.io/ysebastia/checkov:3.2.413
+	podman build --no-cache src/checkov -t docker.io/ysebastia/checkov:3.2.451
 
 other: dmarc wget cloc doxygen helm make shellcheck tflint trivy
 
