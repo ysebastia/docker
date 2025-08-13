@@ -20,8 +20,8 @@ molecule_os:
 	podman build --no-cache src/molecule-debian --build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=${HTTP_PROXY} -t docker.io/ysebastia/molecule:debian-12.11
 
 pip:
-	podman build --no-cache src/pip-venv/alpine -t docker.io/ysebastia/pip-venv:25.1.1-alpine
-	podman build --no-cache src/pip-venv/debian -t docker.io/ysebastia/pip-venv:25.1.1-debian
+	podman build --no-cache src/pip-venv/alpine -t docker.io/ysebastia/pip-venv:25.2-alpine
+	podman build --no-cache src/pip-venv/debian -t docker.io/ysebastia/pip-venv:25.2-debian
 	podman build --no-cache src/python -t docker.io/ysebastia/python:3.12.10
 	podman build --no-cache src/pylint -t docker.io/ysebastia/pylint:3.3.7
 	podman build --no-cache src/yamllint -t docker.io/ysebastia/yamllint:1.37.1

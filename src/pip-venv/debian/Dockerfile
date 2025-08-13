@@ -17,7 +17,7 @@ RUN apt-get update \
   python3-pip \
   python3-venv \
   && python3 -m venv /opt/venv \
-  && pip install --no-cache-dir --upgrade pip==25.1.1 \
+  && pip install --no-cache-dir --upgrade pip==25.2 \
   && pip install --no-cache-dir \
   setuptools==80.8.0 \
   && pip list -o \
