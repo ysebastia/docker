@@ -1,7 +1,7 @@
 all: pip ansible ansible-builder molecule ansible-lint molecule_os other
 
 ansible:
-	podman build --no-cache src/ansible -t docker.io/ysebastia/ansible:2.18.7
+	podman build --no-cache src/ansible -t docker.io/ysebastia/ansible:2.19.0
 
 ansible-builder:
 	podman build --no-cache src/ansible-builder -t docker.io/ysebastia/ansible-builder
