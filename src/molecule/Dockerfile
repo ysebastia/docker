@@ -12,8 +12,8 @@ COPY run_molecule.bash /usr/local/bin/
 COPY coverage.bash /usr/local/bin/
 RUN apk add --no-cache \
   bash=5.3.3-r0 \
-  docker-cli=28.3.2-r0 \
-  docker=28.3.2-r0 \
+  docker-cli=28.3.3-r1 \
+  docker=28.3.3-r1 \
   openssl=3.5.2-r0 \
   py3-docker-py=7.1.0-r0 \
   py3-openssl=25.0.0-r0 \
