@@ -19,7 +19,7 @@ RUN apk add --no-cache \
   py3-openssl=25.0.0-r0 \
   rsync=3.4.1-r0 \ 
   sshpass=1.10-r0 \
-  sudo=1.9.17_p1-r0 \
+  sudo=1.9.17_p2-r0 \
   && mkdir -p /.cache /.ansible /.ansible_async \
   && chmod 777 /.cache /.ansible /.ansible_async \
   && ansible-galaxy collection install -r /root/requirements.yml --collections-path "/usr/share/ansible/collections" \
