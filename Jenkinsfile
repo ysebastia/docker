@@ -49,7 +49,7 @@ pipeline {
         release_pip_venv_debian = "ysebastia/pip-venv:25.2-debian"
         release_pylint = "ysebastia/pylint:3.3.7"
         release_python = "ysebastia/python:3.12.10"
-        release_shellcheck = "ysebastia/shellcheck:0.10.0"
+        release_shellcheck = "ysebastia/shellcheck:0.11.0"
         release_tflint = "ysebastia/tflint:0.58.1"
         release_trivy = "ysebastia/trivy:0.64.1"
         release_wget = "ysebastia/wget:1.25.0-r2"
