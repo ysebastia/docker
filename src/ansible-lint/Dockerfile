@@ -1,7 +1,7 @@
 FROM docker.io/ysebastia/pip-venv:25.2-alpine AS builder
 RUN apk add --no-cache \
   gcc=15.2.0-r0 \
-  musl-dev=1.2.5-r14 \
+  musl-dev=1.2.5-r18 \
   python3-dev=3.12.11-r0 \
   && pip install --no-cache-dir --use-pep517 \
   ansible-lint-junit==0.17.8 \
