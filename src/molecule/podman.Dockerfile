@@ -14,7 +14,7 @@ COPY containers/*.conf /etc/containers/
 COPY iptables.conf /etc/modules-load.d/iptables.conf
 
 RUN apk add --no-cache \
-  bash=5.3.3-r0 \
+  bash=5.3.3-r1 \
   fuse-overlayfs=1.15-r1 \
   iptables=1.8.11-r1 \
   openssl=3.5.2-r0 \
