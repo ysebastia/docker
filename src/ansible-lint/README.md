@@ -15,7 +15,7 @@ Jenkins definition
 
 ```
 def ansiblelint(quality) {
-  sh 'find . -name requirements.yml -exec ansible-galaxy collection install -r {} --ignore-certs --force --collections-path "~/.ansible/collections" \\;'
+  sh 'find . -name requirements.yml -exec ansible-galaxy collection install --force -r {} --ignore-certs --force --collections-path "~/.ansible/collections" \\;'
   sh 'ansible-galaxy collection list'
   sh 'touch ansible-lint.txt'
   sh 'ansible-lint -p | tee -a ansible-lint.txt'
@@ -62,7 +62,7 @@ ansible-lint:
   # Mise à jour des permissions du répertoire build pour éviter d'exécuter ansible dans un dossier permissif
   before_script:
     - test -f .config/ansible.cfg && cp -f .config/ansible.cfg ansible.cfg
-    - find . -name requirements.yml -exec ansible-galaxy collection install -r {} --ignore-certs --force --collections-path "~/.ansible/collections" \;
+    - find . -name requirements.yml -exec ansible-galaxy collection install --force -r {} --ignore-certs --force --collections-path "~/.ansible/collections" \;
     - ansible-galaxy collection list
     - test -f requirements.txt && pip install --no-cache -r requirements.txt
     - chmod -R 700 /builds/
