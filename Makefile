@@ -27,10 +27,7 @@ pip:
 	podman build --no-cache src/yamllint -t docker.io/ysebastia/yamllint:1.37.1
 	podman build --no-cache src/checkov -t docker.io/ysebastia/checkov:3.2.451
 
-other: wget cloc doxygen helm make shellcheck tflint trivy
-
-doxygen:
-	podman build --no-cache src/doxygen -t docker.io/ysebastia/doxygen
+other: wget cloc helm make shellcheck tflint trivy
 
 helm:
 	podman build --no-cache src/helm -t docker.io/ysebastia/helm
