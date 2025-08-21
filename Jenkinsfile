@@ -37,7 +37,6 @@ pipeline {
         release_molecule_podman = "ysebastia/molecule:25.7.0-podman"
         release_molecule_rhel10 = "ysebastia/molecule:rhel-10.0"
         release_molecule_rhel9 = "ysebastia/molecule:rhel-9.6"
-        release_phpmd = "ysebastia/phpmd:2.15.0-php8.1.31"
         release_pip_venv_alpine = "ysebastia/pip-venv:25.2-alpine"
         release_pip_venv_debian = "ysebastia/pip-venv:25.2-debian"
         release_pylint = "ysebastia/pylint:3.3.7"
@@ -176,15 +175,6 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_make}", "--build-arg https_proxy=$HTTPS_PROXY src/make").push()
-                            }
-                        }
-                    }
-                }
-                stage('phpmd') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_phpmd}", "--build-arg https_proxy=$HTTPS_PROXY src/phpmd").push()
                             }
                         }
                     }
@@ -335,7 +325,6 @@ pipeline {
             runtrivy("${env.release_molecule_noble}", "molecule-noble")
             runtrivy("${env.release_molecule_jammy}", "molecule-jammy")
             runtrivy("${env.release_molecule}", "molecule")
-            runtrivy("${env.release_phpmd}", "phpmd")
             runtrivy("${env.release_pip_venv_alpine}", "pip-venv-alpine")
             runtrivy("${env.release_pip_venv_debian}", "pip-venv-debian")
             runtrivy("${env.release_pylint}", "pylint")
