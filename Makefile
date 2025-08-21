@@ -10,12 +10,12 @@ ansible-lint:
 	podman build --no-cache src/ansible-lint -t docker.io/ysebastia/ansible-lint
 
 molecule:
-	podman build --no-cache src/molecule --build-arg https_proxy=$(HTTP_PROXY) --build-arg http_proxy=$(HTTP_PROXY) --security-opt label=disable -t docker.io/ysebastia/molecule
+	podman build --no-cache src/molecule --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable -t docker.io/ysebastia/molecule
 
 molecule_os:
-	podman build --no-cache src/molecule-redhat --build-arg https_proxy=$(HTTP_PROXY) --build-arg http_proxy=$(HTTP_PROXY) --security-opt label=disable --build-arg BASE_OS=registry.access.redhat.com/ubi9/ubi --build-arg VERSION_OS=9.6 -t docker.io/ysebastia/molecule:rhel-9.6
-	podman build --no-cache src/molecule-redhat --build-arg https_proxy=$(HTTP_PROXY) --build-arg http_proxy=$(HTTP_PROXY) --security-opt label=disable --build-arg BASE_OS=registry.access.redhat.com/ubi10/ubi --build-arg VERSION_OS=10.0 -t docker.io/ysebastia/molecule:rhel-10.0
-	podman build --no-cache src/molecule-debian --build-arg https_proxy=$(HTTP_PROXY) --build-arg http_proxy=$(HTTP_PROXY) --security-opt label=disable -t docker.io/ysebastia/molecule:debian-12.11
+	podman build --no-cache src/molecule-redhat --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable --build-arg BASE_OS=registry.access.redhat.com/ubi9/ubi --build-arg VERSION_OS=9.6 -t docker.io/ysebastia/molecule:rhel-9.6
+	podman build --no-cache src/molecule-redhat --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable --build-arg BASE_OS=registry.access.redhat.com/ubi10/ubi --build-arg VERSION_OS=10.0 -t docker.io/ysebastia/molecule:rhel-10.0
+	podman build --no-cache src/molecule-debian --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable -t docker.io/ysebastia/molecule:debian-12.11
 
 pip:
 	podman build --no-cache src/pip-venv/alpine -t docker.io/ysebastia/pip-venv:25.2-alpine
