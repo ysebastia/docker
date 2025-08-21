@@ -291,8 +291,6 @@ pipeline {
                         sh 'make molecule molecule_os'
                         sh 'echo $DH_CREDS_PSW | podman login -u $DH_CREDS_USR --password-stdin docker.io'
 	                    sh 'podman push docker.io/ysebastia/molecule:debian-12.11'
-	                    sh 'podman push docker.io/ysebastia/molecule:jammy'
-	                    sh 'podman push docker.io/ysebastia/molecule:noble'
 	                    sh 'podman push docker.io/ysebastia/molecule:rhel-10.0'
                         sh 'podman push docker.io/ysebastia/molecule:rhel-9.6'
                         sh 'podman logout docker.io'
@@ -320,8 +318,6 @@ pipeline {
             runtrivy("${env.release_molecule_rhel9}", "molecule-rhel9")
             runtrivy("${env.release_molecule_rhel10}", "molecule-rhel10")
             runtrivy("${env.release_molecule_debian}", "molecule-debian")
-            runtrivy("${env.release_molecule_noble}", "molecule-noble")
-            runtrivy("${env.release_molecule_jammy}", "molecule-jammy")
             runtrivy("${env.release_molecule}", "molecule")
             runtrivy("${env.release_pip_venv_alpine}", "pip-venv-alpine")
             runtrivy("${env.release_pip_venv_debian}", "pip-venv-debian")
