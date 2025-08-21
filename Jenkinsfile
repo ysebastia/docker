@@ -28,7 +28,6 @@ pipeline {
         release_csslint = "ysebastia/csslint:1.0.5-1"
         release_hadolint = "ysebastia/hadolint:2.12.0-1"
         release_helm = "ysebastia/helm:3.18.4"
-        release_jest = "ysebastia/jest:29.7.0"
         release_jscpd = "ysebastia/jscpd:3.5.10-1"
         release_jshint = "ysebastia/jshint:2.13.6"
         release_make = "ysebastia/make:4.4.1-r3"
@@ -162,15 +161,6 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_helm}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTP_PROXY src/helm").push()
-                            }
-                        }
-                    }
-                }
-                stage('jest') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_jest}", "--build-arg https_proxy=$HTTPS_PROXY src/jest").push()
                             }
                         }
                     }
@@ -367,7 +357,6 @@ pipeline {
             runtrivy("${env.release_csslint}", "csslint")
             runtrivy("${env.release_hadolint}", "hadolint")
             runtrivy("${env.release_helm}", "helm")
-            runtrivy("${env.release_jest}", "jest")
             runtrivy("${env.release_jscpd}", "jscpd")
             runtrivy("${env.release_jshint}", "jshint")
             runtrivy("${env.release_make}", "make")
