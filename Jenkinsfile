@@ -32,8 +32,6 @@ pipeline {
         release_make = "ysebastia/make:4.4.1-r3"
         release_molecule = "ysebastia/molecule:25.7.0"
         release_molecule_debian = "ysebastia/molecule:debian-12.11"
-        release_molecule_jammy = "ysebastia/molecule:ubuntu-jammy"
-        release_molecule_noble = "ysebastia/molecule:ubuntu-noble"
         release_molecule_podman = "ysebastia/molecule:25.7.0-podman"
         release_molecule_rhel10 = "ysebastia/molecule:rhel-10.0"
         release_molecule_rhel9 = "ysebastia/molecule:rhel-9.6"
