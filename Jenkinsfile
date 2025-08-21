@@ -29,7 +29,6 @@ pipeline {
         release_hadolint = "ysebastia/hadolint:2.12.0-1"
         release_helm = "ysebastia/helm:3.18.4"
         release_jscpd = "ysebastia/jscpd:3.5.10-1"
-        release_jshint = "ysebastia/jshint:2.13.6"
         release_make = "ysebastia/make:4.4.1-r3"
         release_molecule = "ysebastia/molecule:25.7.0"
         release_molecule_debian = "ysebastia/molecule:debian-12.11"
@@ -174,15 +173,6 @@ pipeline {
                         }
                     }
                 }                
-                stage('jshint') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_jshint}", "--build-arg https_proxy=$HTTPS_PROXY src/jshint").push()
-                            }
-                        }
-                    }
-                }
                 stage('make') {
                     steps {
                         script {
@@ -358,7 +348,6 @@ pipeline {
             runtrivy("${env.release_hadolint}", "hadolint")
             runtrivy("${env.release_helm}", "helm")
             runtrivy("${env.release_jscpd}", "jscpd")
-            runtrivy("${env.release_jshint}", "jshint")
             runtrivy("${env.release_make}", "make")
             runtrivy("${env.release_molecule_rhel9}", "molecule-rhel9")
             runtrivy("${env.release_molecule_rhel10}", "molecule-rhel10")
