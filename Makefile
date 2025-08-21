@@ -10,7 +10,7 @@ ansible-lint:
 	podman build --no-cache src/ansible-lint -t docker.io/ysebastia/ansible-lint
 
 molecule:
-	podman build --no-cache src/molecule -t docker.io/ysebastia/molecule
+	podman build --no-cache src/molecule --build-arg https_proxy=$(HTTP_PROXY) --build-arg http_proxy=$(HTTP_PROXY) -t docker.io/ysebastia/molecule
 
 molecule_os:
 	podman build --no-cache src/molecule-redhat --build-arg https_proxy=$(HTTP_PROXY) --build-arg http_proxy=$(HTTP_PROXY) --build-arg BASE_OS=registry.access.redhat.com/ubi9/ubi --build-arg VERSION_OS=9.6 -t docker.io/ysebastia/molecule:rhel-9.6
