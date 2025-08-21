@@ -8,5 +8,5 @@ ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN apk add --no-cache \
   curl=8.15.0-r1 \
-  git=2.50.1-r0 \
+  git=2.51.0-r0 \
   python3=3.12.11-r0 \
