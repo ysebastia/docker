@@ -26,7 +26,6 @@ pipeline {
         release_checkov = "ysebastia/checkov:3.2.451"
         release_cloc = "ysebastia/cloc:2.06"
         release_csslint = "ysebastia/csslint:1.0.5-1"
-        release_dmarctsreportviewer = "ysebastia/dmarcts-report-viewer:master-php8.1.31-bookworm"
         release_doxygen = "ysebastia/doxygen:1.13.2"
         release_hadolint = "ysebastia/hadolint:2.12.0-1"
         release_helm = "ysebastia/helm:3.18.4"
@@ -146,15 +145,6 @@ pipeline {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
                                 docker.build("${env.release_csslint}", "--build-arg https_proxy=$HTTPS_PROXY src/csslint").push()
-                            }
-                        }
-                    }
-                }
-                stage('dmarcts-report-viewer') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_dmarctsreportviewer}", "--build-arg https_proxy=$HTTPS_PROXY src/dmarcts-report-viewer").push()
                             }
                         }
                     }
@@ -385,7 +375,6 @@ pipeline {
             runtrivy("${env.release_checkov}", "checkov")
             runtrivy("${env.release_cloc}", "cloc")
             runtrivy("${env.release_csslint}", "csslint")
-            runtrivy("${env.release_dmarctsreportviewer}", "dmarcts-report-viewer")
             runtrivy("${env.release_doxygen}", "doxygen")
             runtrivy("${env.release_hadolint}", "hadolint")
             runtrivy("${env.release_helm}", "helm")
