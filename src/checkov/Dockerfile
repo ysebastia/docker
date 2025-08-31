@@ -1,6 +1,6 @@
 FROM docker.io/ysebastia/pip-venv:25.2-alpine AS builder
 RUN apk add --no-cache \
-  py3-setuptools-rust=1.11.1-r0 \
+  py3-setuptools-rust=1.12.0-r0 \
   && pip install --no-cache-dir \
   checkov==3.2.451 \
   && pip list -o \
