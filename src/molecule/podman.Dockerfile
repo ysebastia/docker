@@ -1,4 +1,4 @@
-FROM docker.io/ysebastia/ansible:2.19.0 AS builder
+FROM docker.io/ysebastia/ansible:2.19.2 AS builder
 RUN pip install --no-cache-dir --use-pep517 \
   molecule==25.7.0 \
   molecule-plugins[podman]==25.8.12 \
