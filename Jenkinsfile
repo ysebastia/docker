@@ -27,7 +27,7 @@ pipeline {
         release_cloc = "ysebastia/cloc:2.06"
         release_csslint = "ysebastia/csslint:1.0.5-1"
         release_hadolint = "ysebastia/hadolint:2.12.0-1"
-        release_helm = "ysebastia/helm:3.18.4"
+        release_helm = "ysebastia/helm:3.19.0"
         release_jscpd = "ysebastia/jscpd:3.5.10-1"
         release_make = "ysebastia/make:4.4.1-r3"
         release_molecule = "ysebastia/molecule:25.7.0"
