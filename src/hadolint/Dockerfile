@@ -1,4 +1,4 @@
-FROM docker.io/hadolint/hadolint:2.12.0-alpine
+FROM docker.io/hadolint/hadolint:2.13.1-alpine
 RUN apk add --no-cache \
   git=2.34.8-r0 \
   xmlstarlet=1.6.1-r0
