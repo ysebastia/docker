@@ -1,4 +1,4 @@
-FROM debian:13.0-slim
+FROM debian:13.1-slim
 ARG HTTPS_PROXY
 ARG HTTP_PROXY
 ENV DEBIAN_FRONTEND=noninteractive
