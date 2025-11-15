@@ -1,6 +1,6 @@
 FROM docker.io/ysebastia/pip-venv:25.3-alpine AS builder
 RUN pip install --no-cache-dir --use-pep517 \
-  ansible-builder==3.1.0 \
+  ansible-builder==3.1.1 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
