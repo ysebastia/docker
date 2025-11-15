@@ -1,4 +1,4 @@
-FROM docker.io/ysebastia/pip-venv:25.2-alpine AS builder
+FROM docker.io/ysebastia/pip-venv:25.3-alpine AS builder
 RUN apk add --no-cache \
   gcc=15.2.0-r0 \
   musl-dev=1.2.6_git20250919-r1 \
