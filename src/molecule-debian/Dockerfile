@@ -1,4 +1,4 @@
-FROM debian:13.2
+FROM debian:13.1
 ARG DEBIAN_FRONTEND=noninteractive
 ARG HTTPS_PROXY
 ARG HTTP_PROXY
