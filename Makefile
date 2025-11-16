@@ -25,7 +25,7 @@ pip:
 	podman build --no-cache src/yamllint -t docker.io/ysebastia/yamllint:1.37.1
 	podman build --no-cache src/checkov -t docker.io/ysebastia/checkov:3.2.451
 
-other: wget cloc helm make shellcheck tflint trivy
+other: wget cloc helm make shellcheck tflint trivy hadolint
 
 helm:
 	podman build --no-cache src/helm -t docker.io/ysebastia/helm
@@ -47,3 +47,6 @@ cloc:
 
 wget:
 	podman build --no-cache src/wget -t docker.io/ysebastia/wget:1.25.0-r2
+
+hadolint:
+	podman build --no-cache src/hadolint -t docker.io/ysebastia/hadolint:2.14.0
