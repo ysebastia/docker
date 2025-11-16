@@ -21,7 +21,7 @@ Jenkins stage
   stage ('hadolint') {
     agent {
         docker {
-              image 'docker.io/ysebastia/hadolint:2.13.1'
+              image 'docker.io/ysebastia/hadolint:2.14.0'
           }
     }
     steps {
@@ -32,5 +32,5 @@ Jenkins stage
 
 Command call
 ```
-podman run --rm -t -v "${PWD}":/app:Z -w /app docker.io/ysebastia/hadolint:2.13.1
+podman run --rm -t -v "${PWD}":/app:Z -w /app docker.io/ysebastia/hadolint:2.14.0
 ```
