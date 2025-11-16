@@ -1,6 +1,6 @@
 FROM docker.io/ysebastia/pip-venv:25.3-alpine AS builder
 RUN apk add --no-cache \
-  gcc=15.2.0-r0 \
+  gcc=15.2.0-r2 \
   musl-dev=1.2.5-r21 \
   python3-dev=3.12.12-r0 \
   && pip install --no-cache-dir --use-pep517 \
