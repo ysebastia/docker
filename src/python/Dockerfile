@@ -7,6 +7,6 @@ COPY --from=builder /venv /venv
 ENV VIRTUAL_ENV=/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN apk add --no-cache \
-  curl=8.16.0-r1 \
+  curl=8.17.0-r1 \
   git=2.51.0-r0 \
   python3=3.12.12-r0 \
