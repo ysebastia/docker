@@ -19,7 +19,7 @@ RUN apk add --no-cache \
   iptables=1.8.11-r1 \
   openssl=3.5.4-r0 \
   podman=5.5.2-r0 \
-  py3-openssl=25.0.0-r0 \
+  py3-openssl=25.3.0-r0 \
   rsync=3.4.1-r0 \ 
   slirp4netns=1.3.1-r0 \
   sshpass=1.10-r0 \
