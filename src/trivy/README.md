@@ -23,7 +23,7 @@ Jenkins stage
         stage('Trivy') {
           agent {
             docker {
-              image docker.io/ysebastia/trivy:0.67.2
+              image docker.io/ysebastia/trivy:0.68.1
             }
           }
           steps {
@@ -39,7 +39,7 @@ Jenkins stage
 
 .trivy:
   image:
-    name: docker.io/ysebastia/trivy:0.67.2
+    name: docker.io/ysebastia/trivy:0.68.1
     entrypoint: [""]
   tags:
     - docker
