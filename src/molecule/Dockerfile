@@ -17,7 +17,7 @@ RUN apk add --no-cache \
   openssl=3.5.4-r0 \
   py3-docker-py=7.1.0-r0 \
   py3-openssl=25.3.0-r0 \
-  rsync=3.4.1-r0 \ 
+  rsync=3.4.1-r1 \ 
   sshpass=1.10-r0 \
   sudo=1.9.17_p2-r0 \
   && mkdir -p /.cache /.ansible /.ansible_async \
