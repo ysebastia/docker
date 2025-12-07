@@ -31,7 +31,7 @@ pipeline {
         release_jscpd = "ysebastia/jscpd:3.5.10-1"
         release_make = "ysebastia/make:4.4.1-r3"
         release_molecule = "ysebastia/molecule:25.11.0"
-        release_molecule_debian = "ysebastia/molecule:debian-13.1"
+        release_molecule_debian = "ysebastia/molecule:debian-13.2"
         release_molecule_podman = "ysebastia/molecule:25.11.0-podman"
         release_molecule_rhel10 = "ysebastia/molecule:rhel-10.0"
         release_molecule_rhel9 = "ysebastia/molecule:rhel-9.6"
@@ -290,7 +290,7 @@ pipeline {
                     steps {
                         sh 'make molecule molecule_os'
                         sh 'echo $DH_CREDS_PSW | podman login -u $DH_CREDS_USR --password-stdin docker.io'
-	                    sh 'podman push docker.io/ysebastia/molecule:debian-13.1'
+	                    sh 'podman push docker.io/ysebastia/molecule:debian-13.2'
 	                    sh 'podman push docker.io/ysebastia/molecule:rhel-10.0'
                         sh 'podman push docker.io/ysebastia/molecule:rhel-9.6'
                         sh 'podman logout docker.io'
