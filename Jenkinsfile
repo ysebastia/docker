@@ -23,7 +23,7 @@ pipeline {
         release_ansible = "ysebastia/ansible:2.20.0"
         release_ansiblebuilder = "ysebastia/ansible-builder:3.1.1"
         release_ansiblelint = "ysebastia/ansible-lint:25.11.0"
-        release_checkov = "ysebastia/checkov:3.2.451"
+        release_checkov = "ysebastia/checkov:3.2.495"
         release_cloc = "ysebastia/cloc:2.06"
         release_csslint = "ysebastia/csslint:1.0.5-1"
         release_hadolint = "ysebastia/hadolint:2.14.0"
