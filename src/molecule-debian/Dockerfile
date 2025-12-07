@@ -1,4 +1,4 @@
-FROM docker.io/library/debian:debian-13.2
+FROM docker.io/debian:13.2-slim
 ARG DEBIAN_FRONTEND=noninteractive
 ARG HTTPS_PROXY
 ARG HTTP_PROXY
