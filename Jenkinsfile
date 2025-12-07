@@ -37,7 +37,7 @@ pipeline {
         release_molecule_rhel9 = "ysebastia/molecule:rhel-9.6"
         release_pip_venv_alpine = "ysebastia/pip-venv:25.3-alpine"
         release_pip_venv_debian = "ysebastia/pip-venv:25.3-debian"
-        release_pylint = "ysebastia/pylint:3.3.7"
+        release_pylint = "ysebastia/pylint:4.0.4"
         release_python = "ysebastia/python:3.12.10"
         release_shellcheck = "ysebastia/shellcheck:0.11.0"
         release_tflint = "ysebastia/tflint:0.58.1"

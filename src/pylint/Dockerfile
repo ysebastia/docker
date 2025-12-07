@@ -1,6 +1,6 @@
 FROM docker.io/ysebastia/pip-venv:25.3-alpine AS builder
 RUN pip install --no-cache-dir --use-pep517 \
-  pylint==3.3.7 \
+  pylint==4.0.4 \
   && pip list -o \
   && find /usr/lib/ -name '*.pyc' -delete
 
