@@ -20,7 +20,7 @@ pipeline {
     environment {
         DH_CREDS=credentials('docker')
         QUALITY_DOCKERFILE = "1"
-        release_ansible = "ysebastia/ansible:2.20.0"
+        release_ansible = "ysebastia/ansible:2.20.1"
         release_ansiblebuilder = "ysebastia/ansible-builder:3.1.1"
         release_ansiblelint = "ysebastia/ansible-lint:25.12.1"
         release_checkov = "ysebastia/checkov:3.2.495"

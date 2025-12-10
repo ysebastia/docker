@@ -1,4 +1,4 @@
-FROM docker.io/ysebastia/ansible:2.20.0 AS builder
+FROM docker.io/ysebastia/ansible:2.20.1 AS builder
 RUN pip install --no-cache-dir --use-pep517 \
   molecule==25.12.0 \
   molecule-plugins[docker]==25.8.12 \
