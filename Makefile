@@ -30,8 +30,6 @@ pylint:
 	podman build --no-cache src/pylint -t docker.io/ysebastia/pylint:4.0.4
 
 pip:
-	podman build --no-cache src/pip-venv/alpine -t docker.io/ysebastia/pip-venv:25.3-alpine
-	podman build --no-cache src/pip-venv/debian -t docker.io/ysebastia/pip-venv:25.3-debian
 	podman build --no-cache src/python -t docker.io/ysebastia/python:3.12.10
 	podman build --no-cache src/pylint -t docker.io/ysebastia/pylint:4.0.4
 	podman build --no-cache src/yamllint -t docker.io/ysebastia/yamllint:1.37.1
