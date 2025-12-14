@@ -1,25 +1,13 @@
-FROM docker.io/ysebastia/pip-venv:25.3-alpine AS builder
+FROM docker.io/ysebastia/python:3.12.10
 RUN apk add --no-cache \
   gcc=15.2.0-r2 \
   musl-dev=1.2.5-r21 \
-  python3-dev=3.12.12-r0 \
-  && pip install --no-cache-dir --use-pep517 \
-  ansible-lint-junit==0.17.8 \
-  ansible-lint==25.12.1 \
-  black==24.10.0 \
-  jmespath==1.0.1 \
-  jsonschema==4.23.0 \
-  pytest==8.3.4 \
-  wcmatch==10.0 \
-  yamllint==1.37.1 \
-  && pip list -o \
-  && find /usr/lib/ -name '*.pyc' -delete
-
-FROM docker.io/ysebastia/python:3.12.10
-COPY --from=builder /venv /venv
-RUN apk add --no-cache \
   openssl=3.5.4-r0 \
   py3-openssl=25.3.0-r0 \
+  python3-dev=3.12.12-r0 \
+  && pipx install ansible-lint==25.12.1 \
+  && pipx install ansible-lint-junit==0.17.8 \
+  && pipx install yamllint==1.37.1 \
   && mkdir -p /.cache /.ansible \
   && chmod 777 /.cache /.ansible
-CMD ["/venv/bin/ansible-lint"]
+CMD ["/root/.local/bin/ansible-lint"]

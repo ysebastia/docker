@@ -1,12 +1,7 @@
-FROM docker.io/ysebastia/pip-venv:25.3-alpine AS builder
-RUN pip list -o \
-  && find /usr/lib/ -name '*.pyc' -delete
-
 FROM alpine:3.23.0
-COPY --from=builder /venv /venv
-ENV VIRTUAL_ENV=/venv
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+ENV PATH="/root/.local/bin:$PATH"
 RUN apk add --no-cache \
   curl=8.17.0-r1 \
   git=2.52.0-r0 \
-  python3=3.12.12-r0 \
+  pipx=1.8.0-r0 \
+  python3=3.12.12-r0

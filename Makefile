@@ -17,6 +17,18 @@ molecule_os:
 	podman build --no-cache src/molecule-redhat --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable --build-arg BASE_OS=registry.access.redhat.com/ubi10/ubi --build-arg VERSION_OS=10.0 -t docker.io/ysebastia/molecule:rhel-10.0
 	podman build --no-cache src/molecule-debian --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable -t docker.io/ysebastia/molecule:debian-13.2
 
+python:
+	podman build --no-cache src/python -t docker.io/ysebastia/python:3.12.10
+
+yamllint:
+	podman build --no-cache src/yamllint -t docker.io/ysebastia/yamllint:1.37.1
+
+checkov:
+	podman build --no-cache src/checkov -t docker.io/ysebastia/checkov:3.2.495
+
+pylint:
+	podman build --no-cache src/pylint -t docker.io/ysebastia/pylint:4.0.4
+
 pip:
 	podman build --no-cache src/pip-venv/alpine -t docker.io/ysebastia/pip-venv:25.3-alpine
 	podman build --no-cache src/pip-venv/debian -t docker.io/ysebastia/pip-venv:25.3-debian
