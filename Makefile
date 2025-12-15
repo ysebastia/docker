@@ -1,13 +1,13 @@
-all: pip ansible ansible-builder molecule ansible-lint molecule_os other
+all: python ansible ansible-builder molecule ansible-lint molecule_os other
 
 ansible:
-	podman build --no-cache src/ansible -t docker.io/ysebastia/ansible:2.20.1
+	podman build --no-cache src/python --target ansible -t docker.io/ysebastia/ansible:2.20.1
 
 ansible-builder:
-	podman build --no-cache src/ansible-builder -t docker.io/ysebastia/ansible-builder
+	podman build --no-cache src/python --target ansible-builder -t docker.io/ysebastia/ansible-builder
 
 ansible-lint:
-	podman build --no-cache src/ansible-lint -t docker.io/ysebastia/ansible-lint
+	podman build --no-cache src/python --target ansible-lint -t docker.io/ysebastia/ansible-lint
 
 molecule:
 	podman build --no-cache src/molecule --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable -t docker.io/ysebastia/molecule
@@ -17,23 +17,17 @@ molecule_os:
 	podman build --no-cache src/molecule-redhat --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable --build-arg BASE_OS=registry.access.redhat.com/ubi10/ubi --build-arg VERSION_OS=10.0 -t docker.io/ysebastia/molecule:rhel-10.0
 	podman build --no-cache src/molecule-debian --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable -t docker.io/ysebastia/molecule:debian-13.2
 
-python:
-	podman build --no-cache src/python -t docker.io/ysebastia/python:3.12.10
-
 yamllint:
-	podman build --no-cache src/yamllint -t docker.io/ysebastia/yamllint:1.37.1
+	podman build --no-cache src/python --target yamllint -t docker.io/ysebastia/yamllint:1.37.1
 
 checkov:
-	podman build --no-cache src/checkov -t docker.io/ysebastia/checkov:3.2.495
+	podman build --no-cache src/python --target checkov -t docker.io/ysebastia/checkov:3.2.495
 
 pylint:
-	podman build --no-cache src/pylint -t docker.io/ysebastia/pylint:4.0.4
+	podman build --no-cache src/python --target pylint -t docker.io/ysebastia/pylint:4.0.4
 
-pip:
-	podman build --no-cache src/python -t docker.io/ysebastia/python:3.12.10
-	podman build --no-cache src/pylint -t docker.io/ysebastia/pylint:4.0.4
-	podman build --no-cache src/yamllint -t docker.io/ysebastia/yamllint:1.37.1
-	podman build --no-cache src/checkov -t docker.io/ysebastia/checkov:3.2.495
+python: ansible ansible-builder ansible-lint checkov pylint yamllint
+	
 
 other: wget cloc helm make shellcheck tflint trivy hadolint
 

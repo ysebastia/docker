@@ -36,7 +36,6 @@ pipeline {
         release_molecule_rhel10 = "ysebastia/molecule:rhel-10.0"
         release_molecule_rhel9 = "ysebastia/molecule:rhel-9.6"
         release_pylint = "ysebastia/pylint:4.0.4"
-        release_python = "ysebastia/python:3.12.10"
         release_shellcheck = "ysebastia/shellcheck:0.11.0"
         release_tflint = "ysebastia/tflint:0.58.1"
         release_trivy = "ysebastia/trivy:0.68.1"
@@ -210,7 +209,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_ansible}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible").push()
+                                docker.build("${env.release_ansible}", "--build-arg https_proxy=$HTTPS_PROXY --target ansible src/python").push()
                             }
                         }
                     }
@@ -219,7 +218,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_ansiblebuilder}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible-builder").push()
+                                docker.build("${env.release_ansiblebuilder}", "--build-arg https_proxy=$HTTPS_PROXY --target ansible-builder src/python").push()
                             }
                         }
                     }
@@ -228,7 +227,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_ansiblelint}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible-lint").push()
+                                docker.build("${env.release_ansiblelint}", "--build-arg https_proxy=$HTTPS_PROXY --target ansible-lint src/python").push()
                             }
                         }
                     }
@@ -237,7 +236,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_checkov}", "--build-arg https_proxy=$HTTPS_PROXY src/checkov").push()
+                                docker.build("${env.release_checkov}", "--build-arg https_proxy=$HTTPS_PROXY --target checkov src/python").push()
                             }
                         }
                     }
@@ -246,16 +245,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_pylint}", "--build-arg https_proxy=$HTTPS_PROXY src/pylint").push()
-                            }
-                        }
-                    }
-                }
-                stage('python') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_python}", "--build-arg https_proxy=$HTTPS_PROXY src/python").push()
+                                docker.build("${env.release_pylint}", "--build-arg https_proxy=$HTTPS_PROXY --target pylint src/python").push()
                             }
                         }
                     }
@@ -264,7 +254,7 @@ pipeline {
                     steps {
                         script {
                             withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_yamllint}", "--build-arg https_proxy=$HTTPS_PROXY src/yamllint").push()
+                                docker.build("${env.release_yamllint}", "--build-arg https_proxy=$HTTPS_PROXY --target pylint src/yamllint").push()
                             }
                         }
                     }
@@ -308,7 +298,6 @@ pipeline {
             runtrivy("${env.release_molecule_debian}", "molecule-debian")
             runtrivy("${env.release_molecule}", "molecule")
             runtrivy("${env.release_pylint}", "pylint")
-            runtrivy("${env.release_python}", "python")
             runtrivy("${env.release_shellcheck}", "shellcheck")
             runtrivy("${env.release_tflint}", "tflint")
             runtrivy("${env.release_trivy}", "trivy")
