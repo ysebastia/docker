@@ -206,6 +206,7 @@ pipeline {
         stage('Build #2') {
             parallel {
                 stage('python') {
+                    agent { label 'rhel' }
                     steps {
                         sh 'make python'
                         sh 'echo $DH_CREDS_PSW | podman login -u $DH_CREDS_USR --password-stdin docker.io'
