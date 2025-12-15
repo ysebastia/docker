@@ -205,60 +205,19 @@ pipeline {
         }
         stage('Build #2') {
             parallel {
-                stage('ansible') {
+                stage('python') {
                     steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_ansible}", "--build-arg https_proxy=$HTTPS_PROXY --target ansible src/python").push()
-                            }
-                        }
+                        sh 'make python'
+                        sh 'echo $DH_CREDS_PSW | podman login -u $DH_CREDS_USR --password-stdin docker.io'
+	                    sh "podman push docker.io/${env.release_ansible}"
+                        sh "podman push docker.io/${env.release_ansiblebuilder}"
+                        sh "podman push docker.io/${env.release_ansiblelint}"
+                        sh "podman push docker.io/${env.release_checkov}"
+                        sh "podman push docker.io/${env.release_pylint}"
+                        sh "podman push docker.io/${env.release_yamllint}"
+                        sh 'podman logout docker.io'
                     }
-                }
-                stage('ansible-builder') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_ansiblebuilder}", "--build-arg https_proxy=$HTTPS_PROXY --target ansible-builder src/python").push()
-                            }
-                        }
-                    }
-                }
-                stage('ansible-lint') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_ansiblelint}", "--build-arg https_proxy=$HTTPS_PROXY --target ansible-lint src/python").push()
-                            }
-                        }
-                    }
-                }
-                stage('checkov') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_checkov}", "--build-arg https_proxy=$HTTPS_PROXY --target checkov src/python").push()
-                            }
-                        }
-                    }
-                }
-                stage('pylint') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_pylint}", "--build-arg https_proxy=$HTTPS_PROXY --target pylint src/python").push()
-                            }
-                        }
-                    }
-                }
-                stage('yamllint') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_yamllint}", "--build-arg https_proxy=$HTTPS_PROXY --target pylint src/yamllint").push()
-                            }
-                        }
-                    }
-                }
+                }                
             }
         }
         stage('Build #3') {
