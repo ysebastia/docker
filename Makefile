@@ -1,13 +1,13 @@
 all: python ansible ansible-builder molecule ansible-lint molecule_os other
 
 ansible:
-	podman build --no-cache src/python --target ansible -t docker.io/ysebastia/ansible:2.20.1
+	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --target ansible -t docker.io/ysebastia/ansible:2.20.1
 
 ansible-builder:
-	podman build --no-cache src/python --target ansible-builder -t docker.io/ysebastia/ansible-builder
+	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --target ansible-builder -t docker.io/ysebastia/ansible-builder
 
 ansible-lint:
-	podman build --no-cache src/python --target ansible-lint -t docker.io/ysebastia/ansible-lint
+	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --target ansible-lint -t docker.io/ysebastia/ansible-lint
 
 molecule:
 	podman build --no-cache src/molecule --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable -t docker.io/ysebastia/molecule
@@ -18,13 +18,13 @@ molecule_os:
 	podman build --no-cache src/molecule-debian --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable -t docker.io/ysebastia/molecule:debian-13.2
 
 yamllint:
-	podman build --no-cache src/python --target yamllint -t docker.io/ysebastia/yamllint:1.37.1
+	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --target yamllint -t docker.io/ysebastia/yamllint:1.37.1
 
 checkov:
-	podman build --no-cache src/python --target checkov -t docker.io/ysebastia/checkov:3.2.495
+	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --target checkov -t docker.io/ysebastia/checkov:3.2.495
 
 pylint:
-	podman build --no-cache src/python --target pylint -t docker.io/ysebastia/pylint:4.0.4
+	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --target pylint -t docker.io/ysebastia/pylint:4.0.4
 
 python: ansible ansible-builder ansible-lint checkov pylint yamllint
 	
