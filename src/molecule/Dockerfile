@@ -1,19 +1,13 @@
 FROM docker.io/ysebastia/ansible:2.20.1 AS builder
-RUN pip install --no-cache-dir --use-pep517 \
-  molecule==25.12.0 \
-  molecule-plugins[docker]==25.8.12 \
-  && pip list -o \
-  && find /usr/lib/ -name '*.pyc' -delete
-
-FROM docker.io/ysebastia/python:3.12.10
-COPY --from=builder /venv /venv
+RUN pipx install molecule==25.12.0 \
+  && pipx inject molecule molecule-plugins[docker]==25.8.12
 COPY docker.requirements.yml /root/requirements.yml
 COPY run_molecule.bash /usr/local/bin/
 COPY coverage.bash /usr/local/bin/
 RUN apk add --no-cache \
   bash=5.3.3-r1 \
-  docker-cli=29.1.2-r1 \
-  docker=29.1.2-r1 \
+  docker-cli=29.1.3-r0 \
+  docker=29.1.3-r0 \
   openssl=3.5.4-r0 \
   py3-docker-py=7.1.0-r0 \
   py3-openssl=25.3.0-r0 \

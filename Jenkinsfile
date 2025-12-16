@@ -35,10 +35,7 @@ pipeline {
         release_molecule_podman = "ysebastia/molecule:25.12.0-podman"
         release_molecule_rhel10 = "ysebastia/molecule:rhel-10.0"
         release_molecule_rhel9 = "ysebastia/molecule:rhel-9.6"
-        release_pip_venv_alpine = "ysebastia/pip-venv:25.3-alpine"
-        release_pip_venv_debian = "ysebastia/pip-venv:25.3-debian"
         release_pylint = "ysebastia/pylint:4.0.4"
-        release_python = "ysebastia/python:3.12.10"
         release_shellcheck = "ysebastia/shellcheck:0.11.0"
         release_tflint = "ysebastia/tflint:0.58.1"
         release_trivy = "ysebastia/trivy:0.68.1"
@@ -177,16 +174,6 @@ pipeline {
                         }
                     }
                 }
-                stage('pip-venv') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_pip_venv_alpine}", "--build-arg https_proxy=$HTTPS_PROXY src/pip-venv/alpine").push()
-                                docker.build("${env.release_pip_venv_debian}", "--build-arg https_proxy=$HTTPS_PROXY --build-arg http_proxy=$HTTPS_PROXY src/pip-venv/debian").push()
-                            }
-                        }
-                    }
-                }
                 stage('shellcheck') {
                     steps {
                         script {
@@ -218,69 +205,20 @@ pipeline {
         }
         stage('Build #2') {
             parallel {
-                stage('ansible') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_ansible}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible").push()
-                            }
-                        }
-                    }
-                }
-                stage('ansible-builder') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_ansiblebuilder}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible-builder").push()
-                            }
-                        }
-                    }
-                }
-                stage('ansible-lint') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_ansiblelint}", "--build-arg https_proxy=$HTTPS_PROXY src/ansible-lint").push()
-                            }
-                        }
-                    }
-                }
-                stage('checkov') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_checkov}", "--build-arg https_proxy=$HTTPS_PROXY src/checkov").push()
-                            }
-                        }
-                    }
-                }
-                stage('pylint') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_pylint}", "--build-arg https_proxy=$HTTPS_PROXY src/pylint").push()
-                            }
-                        }
-                    }
-                }
                 stage('python') {
+                    agent { label 'rhel' }
                     steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_python}", "--build-arg https_proxy=$HTTPS_PROXY src/python").push()
-                            }
-                        }
+                        sh 'make python'
+                        sh 'echo $DH_CREDS_PSW | podman login -u $DH_CREDS_USR --password-stdin docker.io'
+	                    sh "podman push docker.io/${env.release_ansible}"
+                        sh "podman push docker.io/${env.release_ansiblebuilder}"
+                        sh "podman push docker.io/${env.release_ansiblelint}"
+                        sh "podman push docker.io/${env.release_checkov}"
+                        sh "podman push docker.io/${env.release_pylint}"
+                        sh "podman push docker.io/${env.release_yamllint}"
+                        sh 'podman logout docker.io'
                     }
-                }
-                stage('yamllint') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_yamllint}", "--build-arg https_proxy=$HTTPS_PROXY src/yamllint").push()
-                            }
-                        }
-                    }
-                }
+                }                
             }
         }
         stage('Build #3') {
@@ -319,10 +257,7 @@ pipeline {
             runtrivy("${env.release_molecule_rhel10}", "molecule-rhel10")
             runtrivy("${env.release_molecule_debian}", "molecule-debian")
             runtrivy("${env.release_molecule}", "molecule")
-            runtrivy("${env.release_pip_venv_alpine}", "pip-venv-alpine")
-            runtrivy("${env.release_pip_venv_debian}", "pip-venv-debian")
             runtrivy("${env.release_pylint}", "pylint")
-            runtrivy("${env.release_python}", "python")
             runtrivy("${env.release_shellcheck}", "shellcheck")
             runtrivy("${env.release_tflint}", "tflint")
             runtrivy("${env.release_trivy}", "trivy")
