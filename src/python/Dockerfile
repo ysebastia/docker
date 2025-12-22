@@ -36,7 +36,7 @@ RUN apk add --no-cache \
   openssl=3.5.4-r0 \
   py3-openssl=25.3.0-r0 \
   python3-dev=3.12.12-r0 \
-  && pipx install ansible-lint==25.12.1 \
+  && pipx install ansible-lint==25.12.2 \
   && pipx install ansible-lint-junit==0.17.8 \
   && pipx install yamllint==1.37.1
 CMD ["/root/.local/bin/ansible-lint"]
