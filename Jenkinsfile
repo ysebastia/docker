@@ -34,7 +34,7 @@ pipeline {
         release_molecule_debian = "ysebastia/molecule:debian-13.2"
         release_molecule_podman = "ysebastia/molecule:25.12.0-podman"
         release_molecule_rhel10 = "ysebastia/molecule:rhel-10.0"
-        release_molecule_rhel9 = "ysebastia/molecule:rhel-9.6"
+        release_molecule_rhel9 = "ysebastia/molecule:rhel-9.7"
         release_pylint = "ysebastia/pylint:4.0.4"
         release_shellcheck = "ysebastia/shellcheck:0.11.0"
         release_tflint = "ysebastia/tflint:0.58.1"
@@ -230,7 +230,7 @@ pipeline {
                         sh 'echo $DH_CREDS_PSW | podman login -u $DH_CREDS_USR --password-stdin docker.io'
 	                    sh 'podman push docker.io/ysebastia/molecule:debian-13.2'
 	                    sh 'podman push docker.io/ysebastia/molecule:rhel-10.0'
-                        sh 'podman push docker.io/ysebastia/molecule:rhel-9.6'
+                        sh 'podman push docker.io/ysebastia/molecule:rhel-9.7'
                         sh 'podman logout docker.io'
                     }
                 }

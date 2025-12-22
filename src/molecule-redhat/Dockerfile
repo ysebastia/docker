@@ -13,8 +13,6 @@ ENV https_proxy=$HTTPS_PROXY
 # hadolint ignore=DL3041
 RUN dnf update -y \
   && dnf -y install \
-  NetworkManager\
-  firewalld \
   git \
   iproute \
   kmod \
