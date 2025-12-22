@@ -32,9 +32,10 @@ pipeline {
         release_make = "ysebastia/make:4.4.1-r3"
         release_molecule = "ysebastia/molecule:25.12.0"
         release_molecule_debian = "ysebastia/molecule:debian-13.2"
-        release_molecule_podman = "ysebastia/molecule:25.12.0-podman"
         release_molecule_rhel10 = "ysebastia/molecule:rhel-10.1"
         release_molecule_rhel9 = "ysebastia/molecule:rhel-9.7"
+        release_molecule_ubuntu22 = "ysebastia/molecule:ubuntu-22.04"
+        release_molecule_ubuntu24 = "ysebastia/molecule:ubuntu-24.04"
         release_pylint = "ysebastia/pylint:4.0.4"
         release_shellcheck = "ysebastia/shellcheck:0.11.0"
         release_tflint = "ysebastia/tflint:0.58.1"
@@ -228,9 +229,11 @@ pipeline {
                     steps {
                         sh 'make molecule molecule_os'
                         sh 'echo $DH_CREDS_PSW | podman login -u $DH_CREDS_USR --password-stdin docker.io'
-	                    sh 'podman push docker.io/ysebastia/molecule:debian-13.2'
-	                    sh 'podman push docker.io/ysebastia/molecule:rhel-10.1'
-                        sh 'podman push docker.io/ysebastia/molecule:rhel-9.7'
+	                    sh "podman push docker.io/${env.release_molecule_debian}"
+	                    sh "podman push docker.io/${env.release_molecule_rhel10}"
+                        sh "podman push docker.io/${env.release_molecule_rhel9}"
+                        sh "podman push docker.io/${env.release_molecule_ubuntu22}"
+                        sh "podman push docker.io/${env.release_molecule_ubuntu24}"
                         sh 'podman logout docker.io'
                     }
                 }
@@ -243,9 +246,9 @@ pipeline {
             }
           }
           steps {
+            runtrivy("${env.release_ansible}", "ansible")
             runtrivy("${env.release_ansiblebuilder}", "ansible-builder")
             runtrivy("${env.release_ansiblelint}", "ansible-lint")
-            runtrivy("${env.release_ansible}", "ansible")
             runtrivy("${env.release_checkov}", "checkov")
             runtrivy("${env.release_cloc}", "cloc")
             runtrivy("${env.release_csslint}", "csslint")
@@ -253,9 +256,11 @@ pipeline {
             runtrivy("${env.release_helm}", "helm")
             runtrivy("${env.release_jscpd}", "jscpd")
             runtrivy("${env.release_make}", "make")
-            runtrivy("${env.release_molecule_rhel9}", "molecule-rhel9")
-            runtrivy("${env.release_molecule_rhel10}", "molecule-rhel10")
             runtrivy("${env.release_molecule_debian}", "molecule-debian")
+            runtrivy("${env.release_molecule_rhel10}", "molecule-rhel10")
+            runtrivy("${env.release_molecule_rhel9}", "molecule-rhel9")
+            runtrivy("${env.release_molecule_ubuntu22}", "molecule-ubuntu22")
+            runtrivy("${env.release_molecule_ubuntu24}", "molecule-ubuntu24")            
             runtrivy("${env.release_molecule}", "molecule")
             runtrivy("${env.release_pylint}", "pylint")
             runtrivy("${env.release_shellcheck}", "shellcheck")
