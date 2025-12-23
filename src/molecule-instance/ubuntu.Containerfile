@@ -16,6 +16,7 @@ ENV https_proxy=$HTTPS_PROXY
 RUN apt-get update \
   && apt-get -y --no-install-recommends -o APT::Get::AllowUnauthenticated=true install \
   curl \
+  ca-certificates \
   dbus \
   iproute2 \
   ipset \
