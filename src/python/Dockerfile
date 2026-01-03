@@ -11,15 +11,13 @@ RUN apk add --no-cache \
   python3=3.12.12-r0
 
 FROM base AS ansible
-RUN pipx install \
-  ansible-core==2.20.1 \
+RUN pipx install ansible-core==2.20.1 \
   && mkdir -p /.cache /.ansible \
   && chmod 777 /.cache /.ansible
 CMD ["/root/.local/bin/ansible"]
 
 FROM base AS ansible-builder
-RUN pipx install \
-  ansible-builder==3.1.1 \
+RUN pipx install ansible-builder==3.1.1 \
   && apk add --no-cache \
   bash=5.3.3-r1 \
   docker-cli=29.1.3-r0 \
@@ -29,7 +27,7 @@ RUN pipx install \
   py3-openssl=25.3.0-r0
 CMD ["/root/.local/bin/ansible-builder"]
 
-FROM ansible AS ansible-lint
+FROM base AS ansible-lint
 RUN apk add --no-cache \
   gcc=15.2.0-r2 \
   musl-dev=1.2.5-r21 \
@@ -38,7 +36,10 @@ RUN apk add --no-cache \
   python3-dev=3.12.12-r0 \
   && pipx install ansible-lint==25.12.2 \
   && pipx install ansible-lint-junit==0.17.8 \
-  && pipx install yamllint==1.37.1
+  && pipx install yamllint==1.37.1 \
+  && pipx install ansible-core==2.20.1 \
+  && mkdir -p /.cache /.ansible \
+  && chmod 777 /.cache /.ansible
 CMD ["/root/.local/bin/ansible-lint"]
 
 FROM base AS checkov
