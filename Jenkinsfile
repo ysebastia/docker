@@ -38,7 +38,7 @@ pipeline {
         release_molecule_ubuntu24 = "ysebastia/molecule:ubuntu-24.04"
         release_pylint = "ysebastia/pylint:4.0.4"
         release_shellcheck = "ysebastia/shellcheck:0.11.0"
-        release_tflint = "ysebastia/tflint:0.58.1"
+        release_tflint = "ysebastia/tflint:0.60.0"
         release_trivy = "ysebastia/trivy:0.68.2"
         release_wget = "ysebastia/wget:1.25.0-r2"
         release_yamllint = "ysebastia/yamllint:1.37.1"

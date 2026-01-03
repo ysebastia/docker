@@ -4,7 +4,7 @@
 
 Command call
 ```
-podman run --rm -t -v "${PWD}":/app:Z -w /app docker.io/ysebastia/tflint:0.58.1 tflint --recursive
+podman run --rm -t -v "${PWD}":/app:Z -w /app docker.io/ysebastia/tflint:0.60.0 tflint --recursive
 ```
 
 ## Jenkins
@@ -32,7 +32,7 @@ Jenkins stage
   stage ('Tflint') {
     agent {
       docker {
-        image 'ysebastia/tflint:0.58.1'
+        image 'ysebastia/tflint:0.60.0'
       }
     }
     steps {
@@ -51,7 +51,7 @@ Jenkins stage
 # Un runner docker est utilisé pour l'exécution des jobs
 # Les résultats des tests sont publiés au format Junit
 .tflint:
-  image: docker.io/ysebastia/tflint:0.58.1
+  image: docker.io/ysebastia/tflint:0.60.0
   stage: test
   tags:
     - docker
