@@ -1,0 +1,14 @@
+---
+- name: Converge
+  hosts: all
+  become: true  # Connection with regular user
+  tasks:
+    - name: Show current user
+      ansible.builtin.debug:
+        msg: "Connected user: {{ ansible_user }}"
+    - name: Update Redhat family
+      become: true
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest  # noqa package-latest
+        update_cache: true

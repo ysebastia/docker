@@ -1,0 +1,101 @@
+---
+prerun: false
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      remote_tmp: /tmp
+      interpreter_python: auto_silent
+      callback_whitelist: profile_tasks, timer, yaml
+    ssh_connection:
+      pipelining: true
+  inventory:
+    group_vars:
+      all:
+        ansible_user: ansible
+driver:
+  name: podman
+  options:
+    managed: false
+    login_cmd_template: "podman exec -ti {instance} bash"
+    ansible_connection_options:
+      ansible_connection: podman
+platforms:
+  - name: "rhel9${CI_COMMIT_SHORT_SHA}"
+    image: docker.io/ysebastia/molecule:rhel-9.7
+    pre_build_image: true
+    privileged: true
+    env:
+      HTTPS_PROXY: "${HTTPS_PROXY}"
+      HTTP_PROXY: "${HTTPS_PROXY}"
+    stop_signal: "SIGRTMIN+3"
+    security_opts:
+      - "label=disable"
+    capabilities:
+      - CAP_MKNOD
+      - CAP_NET_ADMIN
+      - CAP_NET_BIND_SERVICE
+      - CAP_NET_RAW
+      - CAP_SYS_ADMIN
+      - SYS_ADMIN
+    command: "/usr/sbin/init"
+    tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    cgroupns_mode: host
+  - name: "centosstream9${CI_COMMIT_SHORT_SHA}"
+    image: docker.io/ysebastia/molecule:centos-stream9
+    pre_build_image: true
+    privileged: true
+    env:
+      HTTPS_PROXY: "${HTTPS_PROXY}"
+      HTTP_PROXY: "${HTTPS_PROXY}"
+    stop_signal: "SIGRTMIN+3"
+    security_opts:
+      - "label=disable"
+    capabilities:
+      - CAP_MKNOD
+      - CAP_NET_ADMIN
+      - CAP_NET_BIND_SERVICE
+      - CAP_NET_RAW
+      - CAP_SYS_ADMIN
+      - SYS_ADMIN
+    command: "/usr/sbin/init"
+    tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    cgroupns_mode: host
+  - name: "rockylinux9${CI_COMMIT_SHORT_SHA}"
+    image: docker.io/ysebastia/molecule:rockylinux-9.7
+    pre_build_image: true
+    privileged: true
+    env:
+      HTTPS_PROXY: "${HTTPS_PROXY}"
+      HTTP_PROXY: "${HTTPS_PROXY}"
+    stop_signal: "SIGRTMIN+3"
+    security_opts:
+      - "label=disable"
+    capabilities:
+      - CAP_MKNOD
+      - CAP_NET_ADMIN
+      - CAP_NET_BIND_SERVICE
+      - CAP_NET_RAW
+      - CAP_SYS_ADMIN
+      - SYS_ADMIN
+    command: "/usr/sbin/init"
+    tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    cgroupns_mode: host
+scenario:
+  test_sequence:
+    - dependency
+    - cleanup
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - converge
+    - verify
+    - cleanup
+    - destroy

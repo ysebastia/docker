@@ -33,3 +33,6 @@ run_rocky9:
 
 run_centos9:
 	podman run --rm -ti --name centos9 $(centos9) /bin/bash
+
+molecule_test:
+	cd extensions && molecule test
