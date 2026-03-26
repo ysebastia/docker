@@ -13,7 +13,7 @@ RUN apk add --no-cache \
 
 FROM base AS ansible
 USER ci
-RUN pipx install ansible-core==2.20.1 \
+RUN pipx install ansible-core==2.20.4 \
   && mkdir -p /home/ci/.cache /home/ci/.ansible \
   && chmod 777 /home/ci/.cache /home/ci/.ansible
 CMD ["/home/ci/.local/bin/ansible"]
@@ -41,7 +41,7 @@ USER ci
 RUN pipx install ansible-lint==26.3.0 \
   && pipx install ansible-lint-junit==0.17.8 \
   && pipx install yamllint==1.37.1 \
-  && pipx install ansible-core==2.20.1 \
+  && pipx install ansible-core==2.20.4 \
   && mkdir -p /home/ci/.cache /home/ci/.ansible \
   && chmod 777 /home/ci/.cache /home/ci/.ansible
 CMD ["/home/ci/.local/bin/ansible-lint"]

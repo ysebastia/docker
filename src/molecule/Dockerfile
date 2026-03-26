@@ -1,4 +1,4 @@
-FROM docker.io/ysebastia/ansible:2.20.1 AS builder
+FROM docker.io/ysebastia/ansible:2.20.4 AS builder
 USER root
 RUN apk add --no-cache \
 bash=5.3.3-r1 \
