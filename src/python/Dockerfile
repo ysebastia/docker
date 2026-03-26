@@ -38,7 +38,7 @@ RUN apk add --no-cache \
   py3-openssl=25.3.0-r0 \
   python3-dev=3.12.12-r0
 USER ci
-RUN pipx install ansible-lint==25.12.2 \
+RUN pipx install ansible-lint==26.3.0 \
   && pipx install ansible-lint-junit==0.17.8 \
   && pipx install yamllint==1.37.1 \
   && pipx install ansible-core==2.20.1 \
