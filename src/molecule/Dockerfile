@@ -2,8 +2,8 @@ FROM docker.io/ysebastia/ansible:2.20.4 AS builder
 USER root
 RUN apk add --no-cache \
 bash=5.3.3-r1 \
-docker-cli=29.1.3-r0 \
-docker=29.1.3-r0 \
+docker-cli=29.1.3-r3 \
+docker=29.1.3-r3 \
 openssl=3.5.4-r0 \
 py3-docker-py=7.1.0-r0 \
 py3-openssl=25.3.0-r0 \
