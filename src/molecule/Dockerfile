@@ -7,7 +7,7 @@ docker=29.1.3-r4 \
 openssl=3.5.6-r0 \
 py3-docker-py=7.1.0-r0 \
 py3-openssl=26.1.0-r0 \
-rsync=3.4.1-r1 \ 
+rsync=3.4.2-r0 \ 
 sshpass=1.10-r0 \
 sudo=1.9.17_p2-r0
 COPY docker.requirements.yml /root/requirements.yml
