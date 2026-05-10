@@ -5,16 +5,6 @@ def hadolint(quality) {
   archiveArtifacts artifacts: 'hadolint.json', followSymlinks: false
   sh 'rm hadolint.json'
 }
-def runtrivy(image, name) {
-   script {
-     env.IMAGE = image
-     env.NAME = name
-   }
-   sh 'touch trivy.xml'
-   sh 'trivy image $IMAGE --skip-db-update --scanners vuln --severity CRITICAL --no-progress --format template --template "@/tmp/contrib/junit.tpl" --cache-dir /tmp/.cache | tee trivy.xml'
-   recordIssues enabledForFailure: true, tools: [junitParser(id: "trivy_${env.NAME}", name: "trivy_${env.NAME}", pattern: 'trivy.xml')]
-   sh 'rm trivy.xml'
-}
 pipeline {
     agent {label 'docker'}
     environment {
@@ -39,7 +29,6 @@ pipeline {
         release_pylint = "ysebastia/pylint:4.0.4"
         release_shellcheck = "ysebastia/shellcheck:0.11.0"
         release_tflint = "ysebastia/tflint:0.60.0"
-        release_trivy = "ysebastia/trivy:0.68.2"
         release_wget = "ysebastia/wget:1.25.0-r2"
         release_yamllint = "ysebastia/yamllint:1.37.1"
     }
@@ -193,15 +182,6 @@ pipeline {
                         }
                     }
                 }
-                stage('trivy') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_trivy}", "--build-arg https_proxy=$HTTPS_PROXY src/trivy").push()
-                            }
-                        }
-                    }
-                }
             }
         }
         stage('Build #2') {
@@ -239,38 +219,6 @@ pipeline {
                 }
             }
         }
-        stage('Trivy') {
-          agent {
-            docker {
-              image "${env.release_trivy}"
-            }
-          }
-          steps {
-            runtrivy("${env.release_ansible}", "ansible")
-            runtrivy("${env.release_ansiblebuilder}", "ansible-builder")
-            runtrivy("${env.release_ansiblelint}", "ansible-lint")
-            runtrivy("${env.release_checkov}", "checkov")
-            runtrivy("${env.release_cloc}", "cloc")
-            runtrivy("${env.release_csslint}", "csslint")
-            runtrivy("${env.release_hadolint}", "hadolint")
-            runtrivy("${env.release_helm}", "helm")
-            runtrivy("${env.release_jscpd}", "jscpd")
-            runtrivy("${env.release_make}", "make")
-            runtrivy("${env.release_molecule_debian}", "molecule-debian")
-            runtrivy("${env.release_molecule_rhel10}", "molecule-rhel10")
-            runtrivy("${env.release_molecule_rhel9}", "molecule-rhel9")
-            runtrivy("${env.release_molecule_ubuntu22}", "molecule-ubuntu22")
-            runtrivy("${env.release_molecule_ubuntu24}", "molecule-ubuntu24")            
-            runtrivy("${env.release_molecule}", "molecule")
-            runtrivy("${env.release_pylint}", "pylint")
-            runtrivy("${env.release_shellcheck}", "shellcheck")
-            runtrivy("${env.release_tflint}", "tflint")
-            runtrivy("${env.release_trivy}", "trivy")
-            runtrivy("${env.release_wget}", "wget")
-            runtrivy("${env.release_yamllint}", "yamllint")
-          }
-        }
-    }
     post {
        always {
          cleanWs()

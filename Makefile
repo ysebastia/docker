@@ -27,7 +27,7 @@ pylint:
 python: ansible ansible-builder ansible-lint checkov pylint yamllint
 	
 
-other: wget cloc helm make shellcheck tflint trivy hadolint
+other: wget cloc helm make shellcheck tflint hadolint
 
 helm:
 	podman build --no-cache src/helm -t docker.io/ysebastia/helm
@@ -40,9 +40,6 @@ shellcheck:
 
 tflint:
 	podman build --no-cache src/tflint -t docker.io/ysebastia/tflint
-
-trivy:
-	podman build --no-cache src/trivy -t docker.io/ysebastia/trivy
 
 cloc:
 	podman build --no-cache src/cloc -t docker.io/ysebastia/cloc
