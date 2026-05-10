@@ -25,7 +25,7 @@ docker-cli=29.1.3-r4 \
 docker=29.1.3-r4 \
 openssl=3.5.6-r0 \
 py3-docker-py=7.1.0-r0 \
-py3-openssl=25.3.0-r0
+py3-openssl=26.1.0-r0
 USER ci
 RUN pipx install ansible-builder==3.1.1
 CMD ["/home/ci/.local/bin/ansible-builder"]
@@ -35,7 +35,7 @@ RUN apk add --no-cache \
   gcc=15.2.0-r2 \
   musl-dev=1.2.5-r21 \
   openssl=3.5.6-r0 \
-  py3-openssl=25.3.0-r0 \
+  py3-openssl=26.1.0-r0 \
   python3-dev=3.12.13-r0
 USER ci
 RUN pipx install ansible-lint==26.3.0 \
