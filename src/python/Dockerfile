@@ -8,7 +8,7 @@ RUN apk add --no-cache \
   curl=8.17.0-r1 \
   git=2.52.0-r0 \
   pipx=1.8.0-r0 \
-  python3=3.12.12-r0 \
+  python3=3.12.13-r0 \
   && addgroup -S ci && adduser -S ci -G ci
 
 FROM base AS ansible
@@ -36,7 +36,7 @@ RUN apk add --no-cache \
   musl-dev=1.2.5-r21 \
   openssl=3.5.5-r0 \
   py3-openssl=25.3.0-r0 \
-  python3-dev=3.12.12-r0
+  python3-dev=3.12.13-r0
 USER ci
 RUN pipx install ansible-lint==26.3.0 \
   && pipx install ansible-lint-junit==0.17.8 \
