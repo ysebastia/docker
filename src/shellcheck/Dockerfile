@@ -1,4 +1,4 @@
-FROM alpine:3.23.0
+FROM alpine:3.24.1
 RUN apk add --no-cache \
   file=5.46-r2 \
   git=2.52.0-r0 \

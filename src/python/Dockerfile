@@ -1,4 +1,4 @@
-FROM alpine:3.23.0 AS base
+FROM alpine:3.24.1 AS base
 ARG HTTPS_PROXY
 ARG HTTP_PROXY
 ENV http_proxy=$HTTP_PROXY
