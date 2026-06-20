@@ -1,30 +1,30 @@
-FROM alpine:3.23.0 AS base
+FROM alpine:3.24.1 AS base
 ARG HTTPS_PROXY
 ARG HTTP_PROXY
 ENV http_proxy=$HTTP_PROXY
 ENV https_proxy=$HTTPS_PROXY
 ENV PATH="/home/ci/.local/bin:$PATH"
 RUN apk add --no-cache \
-  curl=8.17.0-r1 \
-  git=2.52.0-r0 \
-  pipx=1.8.0-r0 \
-  python3=3.12.13-r0 \
+  curl=8.20.0-r1 \
+  git=2.54.0-r0 \
+  pipx=1.14.0-r0 \
+  python3=3.14.5-r0 \
   && addgroup -S ci && adduser -S ci -G ci
 
 FROM base AS ansible
 USER ci
-RUN pipx install ansible-core==2.20.4 \
+RUN pipx install ansible-core==2.21.1 \
   && mkdir -p /home/ci/.cache /home/ci/.ansible \
   && chmod 777 /home/ci/.cache /home/ci/.ansible
 CMD ["/home/ci/.local/bin/ansible"]
 
 FROM base AS ansible-builder
 RUN apk add --no-cache \
-bash=5.3.3-r1 \
-docker-cli=29.1.3-r4 \
-docker=29.1.3-r4 \
-openssl=3.5.6-r0 \
-py3-docker-py=7.1.0-r0 \
+bash=5.3.9-r1 \
+docker-cli=29.5.3-r0 \
+docker=29.5.3-r0 \
+openssl=3.5.7-r0 \
+py3-docker-py=7.1.0-r1 \
 py3-openssl=26.1.0-r0
 USER ci
 RUN pipx install ansible-builder==3.1.1
@@ -32,23 +32,23 @@ CMD ["/home/ci/.local/bin/ansible-builder"]
 
 FROM base AS ansible-lint
 RUN apk add --no-cache \
-  gcc=15.2.0-r2 \
-  musl-dev=1.2.5-r23 \
-  openssl=3.5.6-r0 \
+  gcc=15.2.0-r5 \
+  musl-dev=1.2.6-r2 \
+  openssl=3.5.7-r0 \
   py3-openssl=26.1.0-r0 \
-  python3-dev=3.12.13-r0
+  python3-dev=3.14.5-r0
 USER ci
-RUN pipx install ansible-lint==26.3.0 \
+RUN pipx install ansible-lint==26.4.0 \
   && pipx install ansible-lint-junit==0.17.8 \
-  && pipx install yamllint==1.37.1 \
-  && pipx install ansible-core==2.20.4 \
+  && pipx install yamllint==1.38.0 \
+  && pipx install ansible-core==2.21.1 \
   && mkdir -p /home/ci/.cache /home/ci/.ansible \
   && chmod 777 /home/ci/.cache /home/ci/.ansible
 CMD ["/home/ci/.local/bin/ansible-lint"]
 
 FROM base AS checkov
 RUN apk add --no-cache \
-  py3-setuptools-rust=1.12.0-r0
+  py3-setuptools-rust=1.12.1-r0
 USER ci
 RUN pipx install checkov==3.2.495
 CMD ["/home/ci/.local/bin/checkov"]
@@ -60,6 +60,6 @@ CMD ["/home/ci/.local/bin/pylint"]
 
 FROM base AS yamllint
 USER ci
-RUN pipx install yamllint==1.37.1 \
+RUN pipx install yamllint==1.38.0 \
   && pipx install yamllint-junit==0.10.1
 CMD ["/home/ci/.local/bin/yamllint"]

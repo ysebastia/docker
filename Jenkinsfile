@@ -10,9 +10,9 @@ pipeline {
     environment {
         DH_CREDS=credentials('docker')
         QUALITY_DOCKERFILE = "1"
-        release_ansible = "ysebastia/ansible:2.20.4"
+        release_ansible = "ysebastia/ansible:2.21.1"
         release_ansiblebuilder = "ysebastia/ansible-builder:3.1.1"
-        release_ansiblelint = "ysebastia/ansible-lint:26.3.0"
+        release_ansiblelint = "ysebastia/ansible-lint:26.4.0"
         release_checkov = "ysebastia/checkov:3.2.495"
         release_cloc = "ysebastia/cloc:2.06"
         release_csslint = "ysebastia/csslint:1.0.5-1"
@@ -20,7 +20,7 @@ pipeline {
         release_helm = "ysebastia/helm:3.19.1"
         release_jscpd = "ysebastia/jscpd:3.5.10-1"
         release_make = "ysebastia/make:4.4.1-r3"
-        release_molecule = "ysebastia/molecule:25.12.0"
+        release_molecule = "ysebastia/molecule:26.4.0"
         release_molecule_debian = "ysebastia/molecule:debian-13.2"
         release_molecule_rhel10 = "ysebastia/molecule:rhel-10.1"
         release_molecule_rhel9 = "ysebastia/molecule:rhel-9.7"
@@ -30,7 +30,7 @@ pipeline {
         release_shellcheck = "ysebastia/shellcheck:0.11.0"
         release_tflint = "ysebastia/tflint:0.60.0"
         release_wget = "ysebastia/wget:1.25.0-r2"
-        release_yamllint = "ysebastia/yamllint:1.37.1"
+        release_yamllint = "ysebastia/yamllint:1.38.0"
     }
     stages {
         stage ('Checkout') {

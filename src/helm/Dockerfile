@@ -3,7 +3,7 @@ FROM docker.io/ysebastia/wget:1.25.0-r2 AS downloader
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN wget -q https://get.helm.sh/helm-v3.19.1-linux-amd64.tar.gz -O - | tar -xzO linux-amd64/helm > /usr/local/bin/helm
 
-FROM alpine:3.23.0
+FROM alpine:3.24.1
 ARG HTTPS_PROXY
 ARG HTTP_PROXY
 ENV http_proxy=$HTTP_PROXY
@@ -12,9 +12,9 @@ ENV HTTP_PROXY=$HTTP_PROXY
 ENV HTTPS_PROXY=$HTTPS_PROXY
 
 RUN apk add --no-cache \
-  bash=5.3.3-r1 \
-  git=2.52.0-r0 \
-  wget=1.25.0-r2
+  bash=5.3.9-r1 \
+  git=2.54.0-r0 \
+  wget=1.25.0-r3
 COPY --from=downloader /usr/local/bin/helm /usr/local/bin/helm
 RUN chmod +x /usr/local/bin/helm \
   && helm repo add "stable" "https://charts.helm.sh/stable" --force-update \
