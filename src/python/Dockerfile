@@ -48,7 +48,7 @@ CMD ["/home/ci/.local/bin/ansible-lint"]
 
 FROM base AS checkov
 RUN apk add --no-cache \
-  py3-setuptools-rust=1.12.0-r0
+  py3-setuptools-rust=1.12.1-r0
 USER ci
 RUN pipx install checkov==3.2.495
 CMD ["/home/ci/.local/bin/checkov"]
