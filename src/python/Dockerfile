@@ -20,7 +20,7 @@ CMD ["/home/ci/.local/bin/ansible"]
 
 FROM base AS ansible-builder
 RUN apk add --no-cache \
-bash=5.3.3-r1 \
+bash=5.3.9-r1 \
 docker-cli=29.1.3-r4 \
 docker=29.1.3-r4 \
 openssl=3.5.6-r0 \
