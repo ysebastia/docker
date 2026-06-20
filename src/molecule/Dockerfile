@@ -16,7 +16,7 @@ COPY coverage.bash /usr/local/bin/
 RUN ansible-galaxy collection install -r /root/requirements.yml --collections-path "/usr/share/ansible/collections" \
   && chmod +x /usr/local/bin/*.bash
 USER ci
-RUN pipx install molecule==25.12.0 \
+RUN pipx install molecule==26.4.0 \
   && pipx inject molecule molecule-plugins[docker]==25.8.12
 RUN mkdir -p /home/ci/.cache /home/ci/.ansible /home/ci/.ansible_async \
   && chmod 777 /home/ci/.cache /home/ci/.ansible /home/ci/.ansible_async
