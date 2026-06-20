@@ -7,7 +7,7 @@ ENV PATH="/home/ci/.local/bin:$PATH"
 RUN apk add --no-cache \
   curl=8.17.0-r1 \
   git=2.52.0-r0 \
-  pipx=1.8.0-r0 \
+  pipx=1.14.0-r0 \
   python3=3.12.13-r0 \
   && addgroup -S ci && adduser -S ci -G ci
 
