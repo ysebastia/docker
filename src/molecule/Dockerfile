@@ -4,7 +4,7 @@ RUN apk add --no-cache \
 bash=5.3.9-r1 \
 docker-cli=29.5.3-r0 \
 docker=29.5.3-r0 \
-openssl=3.5.6-r0 \
+openssl=3.5.7-r0 \
 py3-docker-py=7.1.0-r1 \
 py3-openssl=26.1.0-r0 \
 rsync=3.4.2-r0 \ 
