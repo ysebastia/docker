@@ -14,7 +14,7 @@ ENV HTTPS_PROXY=$HTTPS_PROXY
 RUN apk add --no-cache \
   bash=5.3.9-r1 \
   git=2.54.0-r0 \
-  wget=1.25.0-r2
+  wget=1.25.0-r3
 COPY --from=downloader /usr/local/bin/helm /usr/local/bin/helm
 RUN chmod +x /usr/local/bin/helm \
   && helm repo add "stable" "https://charts.helm.sh/stable" --force-update \
