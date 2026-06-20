@@ -40,7 +40,7 @@ RUN apk add --no-cache \
 USER ci
 RUN pipx install ansible-lint==26.3.0 \
   && pipx install ansible-lint-junit==0.17.8 \
-  && pipx install yamllint==1.37.1 \
+  && pipx install yamllint==1.38.0 \
   && pipx install ansible-core==2.20.4 \
   && mkdir -p /home/ci/.cache /home/ci/.ansible \
   && chmod 777 /home/ci/.cache /home/ci/.ansible
@@ -60,6 +60,6 @@ CMD ["/home/ci/.local/bin/pylint"]
 
 FROM base AS yamllint
 USER ci
-RUN pipx install yamllint==1.37.1 \
+RUN pipx install yamllint==1.38.0 \
   && pipx install yamllint-junit==0.10.1
 CMD ["/home/ci/.local/bin/yamllint"]

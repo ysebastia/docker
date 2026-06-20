@@ -16,7 +16,7 @@ molecule_os:
 	cd src/molecule-instance && $(MAKE) build
 
 yamllint:
-	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable --target yamllint -t docker.io/ysebastia/yamllint:1.37.1
+	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable --target yamllint -t docker.io/ysebastia/yamllint:1.38.0
 
 checkov:
 	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable --target checkov -t docker.io/ysebastia/checkov:3.2.495
