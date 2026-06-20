@@ -32,7 +32,7 @@ CMD ["/home/ci/.local/bin/ansible-builder"]
 
 FROM base AS ansible-lint
 RUN apk add --no-cache \
-  gcc=15.2.0-r2 \
+  gcc=15.2.0-r5 \
   musl-dev=1.2.6-r2 \
   openssl=3.5.7-r0 \
   py3-openssl=26.1.0-r0 \
