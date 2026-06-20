@@ -6,7 +6,7 @@ ENV https_proxy=$HTTPS_PROXY
 ENV PATH="/home/ci/.local/bin:$PATH"
 RUN apk add --no-cache \
   curl=8.17.0-r1 \
-  git=2.52.0-r0 \
+  git=2.54.0-r0 \
   pipx=1.14.0-r0 \
   python3=3.14.5-r0 \
   && addgroup -S ci && adduser -S ci -G ci
