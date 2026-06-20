@@ -9,7 +9,7 @@ py3-docker-py=7.1.0-r1 \
 py3-openssl=26.1.0-r0 \
 rsync=3.4.2-r0 \ 
 sshpass=1.10-r0 \
-sudo=1.9.17_p2-r0
+sudo=1.9.17_p2-r1
 COPY docker.requirements.yml /root/requirements.yml
 COPY run_molecule.bash /usr/local/bin/
 COPY coverage.bash /usr/local/bin/
