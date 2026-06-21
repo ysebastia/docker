@@ -3,6 +3,7 @@ ARG HTTPS_PROXY
 ARG HTTP_PROXY
 ENV http_proxy=$HTTP_PROXY
 ENV https_proxy=$HTTPS_PROXY
+ENV HOME=/home/ci
 ENV PATH="/home/ci/.local/bin:$PATH"
 RUN apk add --no-cache \
   curl=8.20.0-r1 \
