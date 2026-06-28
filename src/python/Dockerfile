@@ -67,5 +67,6 @@ CMD ["/home/ci/.local/bin/yamllint"]
 
 FROM base AS properdocs
 USER ci
-RUN pipx install properdocs==1.6.7
+RUN pipx install properdocs==1.6.7 \
+  && pipx inject properdocs properdocs-theme-readthedocs==1.6.5
 CMD ["/home/ci/.local/bin/properdocs"]
