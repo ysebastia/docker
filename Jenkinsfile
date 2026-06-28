@@ -26,6 +26,7 @@ pipeline {
         release_molecule_rhel9 = "ysebastia/molecule:rhel-9.7"
         release_molecule_ubuntu22 = "ysebastia/molecule:ubuntu-22.04"
         release_molecule_ubuntu24 = "ysebastia/molecule:ubuntu-24.04"
+        release_properdocs = "ysebastia/properdocs:1.6.7"
         release_pylint = "ysebastia/pylint:4.0.4"
         release_shellcheck = "ysebastia/shellcheck:0.11.0"
         release_tflint = "ysebastia/tflint:0.60.0"
@@ -195,6 +196,7 @@ pipeline {
                         sh "podman push docker.io/${env.release_ansiblebuilder}"
                         sh "podman push docker.io/${env.release_ansiblelint}"
                         sh "podman push docker.io/${env.release_checkov}"
+                        sh "podman push docker.io/${env.release_properdocs}"
                         sh "podman push docker.io/${env.release_pylint}"
                         sh "podman push docker.io/${env.release_yamllint}"
                         sh 'podman logout docker.io'

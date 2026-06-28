@@ -64,3 +64,8 @@ USER ci
 RUN pipx install yamllint==1.38.0 \
   && pipx install yamllint-junit==0.10.1
 CMD ["/home/ci/.local/bin/yamllint"]
+
+FROM base AS properdocs
+USER ci
+RUN pipx install properdocs==1.6.7
+CMD ["/home/ci/.local/bin/properdocs"]

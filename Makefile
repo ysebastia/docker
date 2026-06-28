@@ -24,7 +24,10 @@ checkov:
 pylint:
 	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable --target pylint -t docker.io/ysebastia/pylint:4.0.4
 
-python: ansible ansible-builder ansible-lint checkov pylint yamllint
+properdocs:
+	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable --target properdocs -t docker.io/ysebastia/properdocs:1.6.7
+
+python: ansible ansible-builder ansible-lint checkov pylint yamllint properdocs
 	
 
 other: wget cloc helm make shellcheck tflint hadolint
