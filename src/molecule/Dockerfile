@@ -17,6 +17,6 @@ RUN ansible-galaxy collection install -r /root/requirements.yml --collections-pa
   && chmod +x /usr/local/bin/*.bash
 USER ci
 RUN pipx install molecule==26.4.0 \
-  && pipx inject molecule molecule-plugins[docker]==25.8.12
+  && pipx inject molecule molecule-plugins[docker]==26.7.8
 RUN mkdir -p /home/ci/.cache /home/ci/.ansible /home/ci/.ansible_async \
   && chmod 777 /home/ci/.cache /home/ci/.ansible /home/ci/.ansible_async
