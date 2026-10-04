@@ -19,7 +19,6 @@ pipeline {
         release_hadolint = "ysebastia/hadolint:2.14.0"
         release_helm = "ysebastia/helm:3.19.1"
         release_jscpd = "ysebastia/jscpd:3.5.10-1"
-        release_make = "ysebastia/make:4.4.1-r3"
         release_molecule = "ysebastia/molecule:26.4.0"
         release_molecule_debian = "ysebastia/molecule:debian-13.2"
         release_molecule_rhel10 = "ysebastia/molecule:rhel-10.1"
@@ -156,15 +155,6 @@ pipeline {
                         }
                     }
                 }                
-                stage('make') {
-                    steps {
-                        script {
-                            withDockerRegistry(credentialsId: 'docker') {
-                                docker.build("${env.release_make}", "--build-arg https_proxy=$HTTPS_PROXY src/make").push()
-                            }
-                        }
-                    }
-                }
                 stage('shellcheck') {
                     steps {
                         script {

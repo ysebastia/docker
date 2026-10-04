@@ -30,13 +30,10 @@ properdocs:
 python: ansible ansible-builder ansible-lint checkov pylint yamllint properdocs
 	
 
-other: wget cloc helm make shellcheck tflint hadolint
+other: wget cloc helm shellcheck tflint hadolint
 
 helm:
 	podman build --no-cache src/helm -t docker.io/ysebastia/helm
-
-make:
-	podman build --no-cache src/make -t docker.io/ysebastia/make
 
 shellcheck:
 	podman build --no-cache src/shellcheck -t docker.io/ysebastia/shellcheck
