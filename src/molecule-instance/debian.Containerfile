@@ -1,4 +1,6 @@
-FROM docker.io/debian:13.2-slim
+ARG VERSION_OS=13.7
+
+FROM docker.io/debian:${VERSION_OS}-slim
 ARG DEBIAN_FRONTEND=noninteractive
 ARG HTTPS_PROXY
 ARG HTTP_PROXY

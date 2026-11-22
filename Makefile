@@ -1,13 +1,13 @@
 all: python ansible ansible-builder molecule ansible-lint molecule_os other
 
 ansible:
-	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable --target ansible -t docker.io/ysebastia/ansible:2.21.1
+	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable --target ansible -t docker.io/ysebastia/ansible:2.21.2
 
 ansible-builder:
 	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable --target ansible-builder -t docker.io/ysebastia/ansible-builder:3.1.1
 
 ansible-lint:
-	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable --target ansible-lint -t docker.io/ysebastia/ansible-lint:26.4.0
+	podman build --no-cache src/python --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable --target ansible-lint -t docker.io/ysebastia/ansible-lint:26.6.0
 
 molecule:
 	podman build --no-cache src/molecule --build-arg HTTPS_PROXY=$(HTTP_PROXY) --build-arg HTTP_PROXY=$(HTTP_PROXY) --security-opt label=disable -t docker.io/ysebastia/molecule
@@ -30,13 +30,10 @@ properdocs:
 python: ansible ansible-builder ansible-lint checkov pylint yamllint properdocs
 	
 
-other: wget cloc helm make shellcheck tflint hadolint
+other: wget cloc helm shellcheck tflint hadolint
 
 helm:
 	podman build --no-cache src/helm -t docker.io/ysebastia/helm
-
-make:
-	podman build --no-cache src/make -t docker.io/ysebastia/make
 
 shellcheck:
 	podman build --no-cache src/shellcheck -t docker.io/ysebastia/shellcheck

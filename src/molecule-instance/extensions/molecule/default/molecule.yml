@@ -22,13 +22,12 @@ driver:
       ansible_connection: podman
 platforms:
   - name: "rhel9${CI_COMMIT_SHORT_SHA}"
-    image: docker.io/ysebastia/molecule:rhel-9.7
+    image: docker.io/ysebastia/molecule:rhel-9.9
     pre_build_image: true
     privileged: true
     env:
       HTTPS_PROXY: "${HTTPS_PROXY}"
       HTTP_PROXY: "${HTTPS_PROXY}"
-    stop_signal: "SIGRTMIN+3"
     security_opts:
       - "label=disable"
     capabilities:
@@ -39,10 +38,15 @@ platforms:
       - CAP_SYS_ADMIN
       - SYS_ADMIN
     command: "/usr/sbin/init"
-    tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
+    # molecule 26.11 validates platforms against its generic schema (tmpfs: list)
+    # AND the podman driver schema (tmpfs: dict): no value passes both
+    # (cf. ansible/molecule#4692). Pass the mounts as podman CLI options instead.
+    extra_opts:
+      - "--tmpfs=/tmp:exec"
+      - "--tmpfs=/var/tmp:exec"
+      - "--tmpfs=/run:rw,noexec,nosuid,nodev"
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    cgroupns_mode: host
   - name: "centosstream9${CI_COMMIT_SHORT_SHA}"
     image: docker.io/ysebastia/molecule:centos-stream9
     pre_build_image: true
@@ -50,7 +54,6 @@ platforms:
     env:
       HTTPS_PROXY: "${HTTPS_PROXY}"
       HTTP_PROXY: "${HTTPS_PROXY}"
-    stop_signal: "SIGRTMIN+3"
     security_opts:
       - "label=disable"
     capabilities:
@@ -61,10 +64,15 @@ platforms:
       - CAP_SYS_ADMIN
       - SYS_ADMIN
     command: "/usr/sbin/init"
-    tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
+    # molecule 26.11 validates platforms against its generic schema (tmpfs: list)
+    # AND the podman driver schema (tmpfs: dict): no value passes both
+    # (cf. ansible/molecule#4692). Pass the mounts as podman CLI options instead.
+    extra_opts:
+      - "--tmpfs=/tmp:exec"
+      - "--tmpfs=/var/tmp:exec"
+      - "--tmpfs=/run:rw,noexec,nosuid,nodev"
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    cgroupns_mode: host
   - name: "rockylinux9${CI_COMMIT_SHORT_SHA}"
     image: docker.io/ysebastia/molecule:rockylinux-9.7
     pre_build_image: true
@@ -72,7 +80,6 @@ platforms:
     env:
       HTTPS_PROXY: "${HTTPS_PROXY}"
       HTTP_PROXY: "${HTTPS_PROXY}"
-    stop_signal: "SIGRTMIN+3"
     security_opts:
       - "label=disable"
     capabilities:
@@ -83,10 +90,15 @@ platforms:
       - CAP_SYS_ADMIN
       - SYS_ADMIN
     command: "/usr/sbin/init"
-    tmpfs: { "/tmp": "exec", "/var/tmp": "exec", "/run": "rw,noexec,nosuid,nodev" }
+    # molecule 26.11 validates platforms against its generic schema (tmpfs: list)
+    # AND the podman driver schema (tmpfs: dict): no value passes both
+    # (cf. ansible/molecule#4692). Pass the mounts as podman CLI options instead.
+    extra_opts:
+      - "--tmpfs=/tmp:exec"
+      - "--tmpfs=/var/tmp:exec"
+      - "--tmpfs=/run:rw,noexec,nosuid,nodev"
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    cgroupns_mode: host
 scenario:
   test_sequence:
     - dependency
