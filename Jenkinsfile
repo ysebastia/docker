@@ -19,7 +19,7 @@ pipeline {
         release_hadolint = "ysebastia/hadolint:2.14.0"
         release_helm = "ysebastia/helm:3.19.1"
         release_jscpd = "ysebastia/jscpd:3.5.10-1"
-        release_molecule = "ysebastia/molecule:26.4.0"
+        release_molecule = "ysebastia/molecule:26.11.0"
         release_molecule_debian = "ysebastia/molecule:debian-13.7"
         release_molecule_rhel10 = "ysebastia/molecule:rhel-10.3"
         release_molecule_rhel9 = "ysebastia/molecule:rhel-9.9"
