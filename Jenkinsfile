@@ -14,7 +14,7 @@ pipeline {
         release_ansiblebuilder = "ysebastia/ansible-builder:3.1.1"
         release_ansiblelint = "ysebastia/ansible-lint:26.6.0"
         release_checkov = "ysebastia/checkov:3.2.495"
-        release_cloc = "ysebastia/cloc:2.06"
+        release_cloc = "ysebastia/cloc:2.08"
         release_csslint = "ysebastia/csslint:1.0.5-1"
         release_hadolint = "ysebastia/hadolint:2.14.0"
         release_helm = "ysebastia/helm:3.19.1"
@@ -28,8 +28,8 @@ pipeline {
         release_properdocs = "ysebastia/properdocs:1.6.7"
         release_pylint = "ysebastia/pylint:4.0.4"
         release_shellcheck = "ysebastia/shellcheck:0.11.0"
-        release_tflint = "ysebastia/tflint:0.60.0"
-        release_wget = "ysebastia/wget:1.25.0-r2"
+        release_tflint = "ysebastia/tflint:0.66.0"
+        release_wget = "ysebastia/wget:1.25.0-r3"
         release_yamllint = "ysebastia/yamllint:1.38.0"
     }
     stages {
@@ -201,6 +201,7 @@ pipeline {
                     steps {
                         sh 'make molecule molecule_os'
                         sh 'echo $DH_CREDS_PSW | podman login -u $DH_CREDS_USR --password-stdin docker.io'
+	                    sh "podman push docker.io/${env.release_molecule}"
 	                    sh "podman push docker.io/${env.release_molecule_debian}"
 	                    sh "podman push docker.io/${env.release_molecule_rhel10}"
                         sh "podman push docker.io/${env.release_molecule_rhel9}"
